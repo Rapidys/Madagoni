@@ -13,7 +13,6 @@ export let getMessagePage = (params) => {
     try {
       API.getDocument(params)
         .then(response => {
-          debugger
           dispatch(chosenDocPageAC(response.data))
 
         })
@@ -31,7 +30,6 @@ export let getOnPageChange = (documentStatus) => {
       API.getDocuments(documentStatus)
 
         .then(response => {
-          debugger
           dispatch(sendDocumentAC(response.data.documentList))
           dispatch(setToTalPages(response.headers['content-length']))
         })
@@ -62,8 +60,7 @@ export let getSignatureDocs = (documentStatus) => {
       API.getDocuments(documentStatus)
 
         .then(response => {
-
-          console.log(response)
+          debugger
           dispatch(setSignatureAC(response.data.documentList))
           dispatch(setToTalPages(response.headers['content-length']))
         })

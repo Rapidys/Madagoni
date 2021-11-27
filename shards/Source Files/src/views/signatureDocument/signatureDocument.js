@@ -10,6 +10,7 @@ import {
 } from "../../Reducers/PaginationReducer";
 import {Button} from "shards-react";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
+import {setDocTypeAC} from "../../Reducers/addNewPost/selectDocReducer";
 
 
 const SignatureDocuments = (props) => {
@@ -27,6 +28,8 @@ const SignatureDocuments = (props) => {
       PageNumber: currentPage,
       RecordsPerPage: rowsPerPage,
     }))
+
+
   }, [currentPage, rowsPerPage])
 
   let visirable = useSelector(state => state.signatureDocument.signatureDoc)

@@ -1,6 +1,5 @@
 let initialState = {
   signatureDoc: [],  // visitorebis
-
 }
 
 let setSignature = 'setSignature'
