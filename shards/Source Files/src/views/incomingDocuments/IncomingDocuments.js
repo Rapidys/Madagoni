@@ -1,31 +1,36 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
+import DocumentPage from "../DraftMessages/Documents/DocumentPage";
+import {
+  getDraftDocs,
+  getIncomingDocs,
+  getOnPageChange
+} from "../../API/sentDocumentService";
 import {useDispatch, useSelector} from "react-redux";
-import {getOnPageChange} from "../../API/sentDocumentService";
-import DocumentPage from "./Documents/DocumentPage";
 import {
   rowsPerPageAc,
   setCurrentPageAC
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 
-const SentDocuments = (props) => {
-  let dispatch = useDispatch()
+
+const IncomingDocuments = (props) => {
 
   let currentPage = useSelector(state => state.PaginationData.currentPage)
   let rowsPerPage = useSelector(state => state.PaginationData.rowsPerPage)
   let totalCount = useSelector(state => state.PaginationData.totalPages)
 
+
+  let dispatch = useDispatch()
   useEffect(() => {
 
-    dispatch(motionStatusAC(2))
-    dispatch(getOnPageChange({
-      MotionStatus: 2,
+    dispatch(motionStatusAC(5))
+    dispatch(getIncomingDocs({
+      MotionStatus: 5,
       PageNumber: currentPage,
       RecordsPerPage: rowsPerPage,
     }))
-  }, [rowsPerPage, currentPage])
-  let sentDocs = useSelector(state => state.sentDocuments.sentDoc)
-
+  }, [currentPage, rowsPerPage])
+  let drafts = useSelector(state => state.IncomingDocument.incomingDoc)
 
   const handleChangePage = (event, newPage) => {
     dispatch(setCurrentPageAC(newPage));
@@ -39,9 +44,9 @@ const SentDocuments = (props) => {
 
   return (
     <DocumentPage
-      pageTitle={'გაგზავნილები'}
+      pageTitle={'დრაფტები'}
       pageName='/tables'
-      Documents={sentDocs}
+      Documents={drafts}
       handleChangePage={handleChangePage}
       handleChangeRowsPerPage={handleChangeRowsPerPage}
       totalCount={totalCount}
@@ -52,4 +57,4 @@ const SentDocuments = (props) => {
   )
 };
 
-export default SentDocuments;
+export default IncomingDocuments;

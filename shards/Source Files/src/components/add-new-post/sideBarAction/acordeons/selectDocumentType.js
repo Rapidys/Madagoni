@@ -5,7 +5,7 @@ import {
   getType,
 } from "../../../../Reducers/addNewPost/selectDocReducer";
 
-const SelectDocumentType = () => {
+const SelectDocumentType = ({documentType}) => {
 
 
   let dispatch = useDispatch()
@@ -19,7 +19,7 @@ const SelectDocumentType = () => {
   return (
     <div>
       <MySelect
-        defaultValue='დოკუმენტის ტიპი'
+        defaultValue={documentType}
         options={Options}
         className={"mt-4 mb-4"}
       />

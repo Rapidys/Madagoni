@@ -13,7 +13,10 @@ import "../../../assets/quill.css";
 import {useDispatch, useSelector} from "react-redux";
 import {setMotion} from "../../../Reducers/addNewPost/DocumentMotionsReducer";
 import {selectDocumentAC} from "../../../Reducers/addNewPost/selectDocReducer";
-import {statusAC} from "../../../Reducers/addNewPost/addNewPostReducer";
+import {
+  setNewObject,
+  statusAC
+} from "../../../Reducers/addNewPost/addNewPostReducer";
 
 
 const Editor = (props) => {
@@ -48,8 +51,6 @@ const Editor = (props) => {
   ]
 
 
-  const [documentTitle, setDocumentTitle] = useState('')
-  const [documentBody, setDocumentBody] = useState('')
   let Motions = useSelector(state => state.docMotion.Motion)
   let selectType = useSelector(state => state.selectDocument.selectType)
   let fileId = useSelector(state => state.uploadFile.fileId)
@@ -72,14 +73,15 @@ const Editor = (props) => {
     let newPost = {
       DocumentId: 0,
       DocumentDate: null,
-      DocumentTitle: documentTitle,
-      DocumentBody: documentBody,
+      DocumentTitle: props.documentTitle,
+      DocumentBody: props.documentBody,
       isActive: true,
       DocumentTypeId: selectType,
       DocumentMotions: Motions,
       Attachments: fileId
     }
-    props.setNewPost(newPost)
+    dispatch(setNewObject(newPost))
+
   }
 
 
@@ -95,20 +97,20 @@ const Editor = (props) => {
     let newPost = {
       DocumentId: 0,
       DocumentDate: null,
-      DocumentTitle: documentTitle,
-      DocumentBody: documentBody,
+      DocumentTitle: props.documentTitle,
+      DocumentBody: props.documentBody,
       isActive: true,
       DocumentTypeId: selectType,
       DocumentMotions: Motions,
       Attachments: fileId  // unda iyos ibieqti {isActive da atachmentId}
 
     }
-    props.setNewPost(newPost)
+    dispatch(setNewObject(newPost))
 
   }
 
   const handleBody = (e) => {
-    setDocumentBody(e)
+    props.setDocumentBody(e)
   }
 
 
@@ -117,8 +119,8 @@ const Editor = (props) => {
 
   if (status === 200) {
     setOpen(true)
-    setDocumentTitle('')
-    setDocumentBody('')
+    props.setDocumentTitle('')
+    props.setDocumentBody('')
     dispatch(selectDocumentAC({}))
     dispatch(setMotion([]))
     dispatch(statusAC(null))
@@ -130,9 +132,9 @@ const Editor = (props) => {
         <Form className="add-new-post">
           <FormInput size="lg" className="mb-3"
                      placeholder="Your Post Title"
-                     value={documentTitle}
+                     value={props.documentTitle}
                      onChange={(e) => {
-                       setDocumentTitle(e.target.value)
+                       props.setDocumentTitle(e.target.value)
                      }}
 
           />
@@ -141,7 +143,7 @@ const Editor = (props) => {
             modules={Editor.modules}
             formats={Editor.formats}
             onChange={handleBody}
-            value={documentBody}
+            value={props.documentBody}
           />
           <div>
             <Modal open={open} toggle={close}>
@@ -160,14 +162,19 @@ const Editor = (props) => {
           </div>
         </Form>
         <Button
-          disabled={!documentTitle}
+          disabled={!props.documentTitle}
           onClick={addNewPost}
         >გადაგზავნა</Button>
         <Button
-          disabled={!documentTitle}
+          disabled={!props.documentTitle}
           onClick={handleDraft}
           className={"ml-2"}
         >დრაფტად შენახვა</Button>
+        <Button
+          className={props.approve}
+        >
+          ხელმოწერა
+        </Button>
 
       </CardBody>
     </Card>

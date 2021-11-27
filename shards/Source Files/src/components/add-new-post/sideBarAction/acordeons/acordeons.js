@@ -31,7 +31,7 @@ const Accordeons = (props) => {
         <Collapse open={mainInfo}>
           <div className="p-1 mt-3 border rounded">
             <div>
-              <SelectDocumentType/>
+              <SelectDocumentType documentType={props.documentType}/>
             </div>
           </div>
         </Collapse>

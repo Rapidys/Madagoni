@@ -33,15 +33,15 @@ const SideBarVisitors = (props) => {
     let chosens = {
       firstName: visitorFromTree.firstName,
       lastName: visitorFromTree.lastName,
-      userId: visitorFromTree.userId
-    }
-    let setVisitorInfo = {
+      userId: visitorFromTree.userId,
+      departmentId: visitorFromTree.departmentId,
       documentMotionId: 0,
       MotionTypeId: 2,
       TargetId: visitorFromTree.userId,
       TargetTypeId: 0,
       MotionStatusId: 1,
     }
+
     let some = 0
 
     if (visitorFromTree.firstName && visitorFromTree.userId) {
@@ -54,7 +54,6 @@ const SideBarVisitors = (props) => {
       if (some === 0) {
 
         setConfirmation([...confirmation, chosens])
-        setConfirmationuserId([...confirmationuserId, setVisitorInfo])
 
       }
 
@@ -64,13 +63,11 @@ const SideBarVisitors = (props) => {
 
   let Save = () => {
     props.setChosenVisitor(confirmation)
-    dispatch(setMotion(confirmationuserId))
+    dispatch(setMotion(confirmation))
     props.handleCloseVisitors()
   }
 
   let treeData = useSelector(state => state.Tree.Structure)
-
-
 
 
   return (

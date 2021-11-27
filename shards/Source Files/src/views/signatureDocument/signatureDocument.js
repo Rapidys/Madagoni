@@ -1,31 +1,35 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
+import DocumentPage from "../DraftMessages/Documents/DocumentPage";
+import {
+  getSignatureDocs
+} from "../../API/sentDocumentService";
 import {useDispatch, useSelector} from "react-redux";
-import {getOnPageChange} from "../../API/sentDocumentService";
-import DocumentPage from "./Documents/DocumentPage";
 import {
   rowsPerPageAc,
   setCurrentPageAC
 } from "../../Reducers/PaginationReducer";
+import {Button} from "shards-react";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 
-const SentDocuments = (props) => {
-  let dispatch = useDispatch()
+
+const SignatureDocuments = (props) => {
 
   let currentPage = useSelector(state => state.PaginationData.currentPage)
   let rowsPerPage = useSelector(state => state.PaginationData.rowsPerPage)
   let totalCount = useSelector(state => state.PaginationData.totalPages)
 
-  useEffect(() => {
 
-    dispatch(motionStatusAC(2))
-    dispatch(getOnPageChange({
-      MotionStatus: 2,
+  let dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(motionStatusAC(3))
+    dispatch(getSignatureDocs({
+      MotionStatus: 3,
       PageNumber: currentPage,
       RecordsPerPage: rowsPerPage,
     }))
-  }, [rowsPerPage, currentPage])
-  let sentDocs = useSelector(state => state.sentDocuments.sentDoc)
+  }, [currentPage, rowsPerPage])
 
+  let visirable = useSelector(state => state.signatureDocument.signatureDoc)
 
   const handleChangePage = (event, newPage) => {
     dispatch(setCurrentPageAC(newPage));
@@ -39,17 +43,16 @@ const SentDocuments = (props) => {
 
   return (
     <DocumentPage
-      pageTitle={'გაგზავნილები'}
+      pageTitle={'დასადასტურებელი დოკუმენტები'}
       pageName='/tables'
-      Documents={sentDocs}
+      Documents={visirable}
       handleChangePage={handleChangePage}
       handleChangeRowsPerPage={handleChangeRowsPerPage}
       totalCount={totalCount}
       rowsPerPage={rowsPerPage}
       currentPage={currentPage}
-
     />
   )
 };
 
-export default SentDocuments;
+export default SignatureDocuments;

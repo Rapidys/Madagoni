@@ -2,9 +2,6 @@ import {applyMiddleware, combineReducers, createStore} from "redux";
 import sideBarReducer from "../Reducers/sideBarReducer";
 import AuthReducer from "../Reducers/AuthReducer";
 import thunk from "redux-thunk";
-import IncomingMessagesReducer from "../Reducers/sendDocumentReducer";
-import sideBarActionsReducer
-  from "../Reducers/addNewPost/SideBarActionsReducer";
 import {addNewPostReducer} from "../Reducers/addNewPost/addNewPostReducer";
 import {setNewUser} from "../Reducers/registerReducer";
 import treeDataReducer from "../Reducers/TreeDataReducer";
@@ -19,6 +16,9 @@ import DraftDocumentReducer from "../Reducers/DraftDocumentReducer";
 import sentDocumentsReducer from "../Reducers/sendDocumentReducer";
 import PaginationReducer from "../Reducers/PaginationReducer";
 import chosenDocumentReducer from "../Reducers/chosenDocumentReducer";
+import signatureDocumetReducer from "../Reducers/signatureDocumentReducer";
+import IncomingDocumentReducer from "../Reducers/IncomingDocumentsReducer";
+import MotionStatusReducer from "../Reducers/MotionStatusReducer";
 
 
 let Reducers = combineReducers({
@@ -36,7 +36,10 @@ let Reducers = combineReducers({
   docMotion: DocumentMotionsReducer,
   selectDocument: selectDocumentReducer,
   uploadFile: uploadFileReducer,
-  userInfo: userInfoReducer
+  userInfo: userInfoReducer,
+  signatureDocument: signatureDocumetReducer,
+  IncomingDocument: IncomingDocumentReducer,
+  MotionStatus : MotionStatusReducer,
 })
 
 let store = createStore(Reducers, applyMiddleware(thunk))

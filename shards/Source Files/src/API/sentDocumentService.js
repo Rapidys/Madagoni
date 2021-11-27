@@ -1,18 +1,21 @@
 import {
-  IncomingMessagesAC,
+  sendDocumentAC,
 } from "../Reducers/sendDocumentReducer";
 import API from "./ApiBase";
 import {setDraftAC} from "../Reducers/DraftDocumentReducer";
-import {setToTalPages} from "../Reducers/PaginationReducer";
+import {setCurrentPageAC, setToTalPages} from "../Reducers/PaginationReducer";
 import {chosenDocPageAC} from "../Reducers/chosenDocumentReducer";
+import {setSignatureAC} from "../Reducers/signatureDocumentReducer";
+import {setIncomingDocsAC} from "../Reducers/IncomingDocumentsReducer";
 
 export let getMessagePage = (params) => {
   return dispatch => {
     try {
       API.getDocument(params)
-
         .then(response => {
+          debugger
           dispatch(chosenDocPageAC(response.data))
+
         })
 
     } catch (e) {
@@ -28,13 +31,13 @@ export let getOnPageChange = (documentStatus) => {
       API.getDocuments(documentStatus)
 
         .then(response => {
-          console.log(response)
-          dispatch(IncomingMessagesAC(response.data.documentList))
+          debugger
+          dispatch(sendDocumentAC(response.data.documentList))
           dispatch(setToTalPages(response.headers['content-length']))
         })
 
     } catch (e) {
-      alert(e)
+      console.log(e)
     }
   }
 }
@@ -44,13 +47,48 @@ export let getDraftDocs = (documentStatus) => {
       API.getDocuments(documentStatus)
 
         .then(response => {
-          console.log(response)
           dispatch(setDraftAC(response.data.documentList))
           dispatch(setToTalPages(response.headers['content-length']))
         })
 
     } catch (e) {
-      alert(e)
+      console.log(e)
+    }
+  }
+}
+export let getSignatureDocs = (documentStatus) => {
+  return dispatch => {
+    try {
+      API.getDocuments(documentStatus)
+
+        .then(response => {
+
+          console.log(response)
+          dispatch(setSignatureAC(response.data.documentList))
+          dispatch(setToTalPages(response.headers['content-length']))
+        })
+
+    } catch (e) {
+      console.log(e)
+
+    }
+  }
+}
+export let getIncomingDocs = (documentStatus) => {
+  return dispatch => {
+    try {
+      API.getDocuments(documentStatus)
+
+        .then(response => {
+
+          console.log(response)
+          dispatch(setIncomingDocsAC(response.data.documentList))
+          dispatch(setToTalPages(response.headers['content-length']))
+        })
+
+    } catch (e) {
+      console.log(e)
+
     }
   }
 }

@@ -20,7 +20,7 @@ let sentDocumentsReducer = (state = initialState, action) => {
   }
 }
 
-export let IncomingMessagesAC = (doc) => ({type: sendDocs, doc})
+export let sendDocumentAC = (doc) => ({type: sendDocs, doc})
 
 
 

@@ -11,7 +11,7 @@ const SideBarComponents = (props) => {
 
 
   let [chosenDestination, setChosenDestination] = useState([])
-  let [chosenVisitor, setChosenVisitor] = useState([])
+
   const [open, setOpen] = useState(false);
   const [openVisitors, setOpenVisitors] = useState(false);
   const [comments, setComments] = useState(false)
@@ -43,15 +43,18 @@ const SideBarComponents = (props) => {
 
 
       <div className={"mb-1"}>
-        <Accordeons/>
-
-        <div className={"mb-1"}>
-          <Button onClick={handleOpenComments}
-                  className={"w-100"}>კომენტარები</Button>
-          <Comments
-            setComments={setComments}
-            comments={comments}
-          />
+        <Accordeons
+          documentType={props.documentType}
+        />
+        <div className={props.setVisible}>
+          <div className={"mb-1"}>
+            <Button onClick={handleOpenComments}
+                    className={"w-100"}>კომენტარები</Button>
+            <Comments
+              setComments={setComments}
+              comments={comments}
+            />
+          </div>
         </div>
 
 
@@ -61,7 +64,7 @@ const SideBarComponents = (props) => {
                   className={"w-100"}>ვიზირებები</Button>
           <Card>
             <Col>
-              {chosenVisitor.length > 0 && chosenVisitor.map(u => {
+              {props.chosenVisitor && props.chosenVisitor.map(u => {
                 return <Col className={"d-flex justify-content-between mt-2"}
                             key={u.userId}>
                   <Row className={"p-2"}>
@@ -79,8 +82,8 @@ const SideBarComponents = (props) => {
           <SideBarVisitors
             handleCloseVisitors={handleCloseVisitors}
             openVisitors={openVisitors}
-            setChosenVisitor={setChosenVisitor}
-            chosenVisitor={chosenVisitor}
+            setChosenVisitor={props.setChosenVisitor}
+            chosenVisitor={props.chosenVisitor}
           />
         </div>
       </div>

@@ -1,9 +1,10 @@
 import React from 'react';
-import {Card, CardHeader, Col, Container, Row} from "shards-react";
+import {Button, Card, CardHeader, Col, Container, Row} from "shards-react";
 import DocumentBody
   from "./DocumentBody";
 import Pagination from "../../../Pagination/Pagination";
 import styled from "styled-components";
+
 
 const DocumentPage = ({pageTitle, pageName, Documents, ...props}) => {
   let Styles = styled.div`
@@ -32,8 +33,11 @@ const DocumentPage = ({pageTitle, pageName, Documents, ...props}) => {
                 currentPage={props.currentPage}
               />
             </Card>
+
+
           </Col>
         </Row>
+
       </Container>
     </Styles>
   );

@@ -6,6 +6,7 @@ import {
   rowsPerPageAc,
   setCurrentPageAC
 } from "../../Reducers/PaginationReducer";
+import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 
 
 const DraftDocuments = (props) => {
@@ -18,12 +19,13 @@ const DraftDocuments = (props) => {
   let dispatch = useDispatch()
   useEffect(() => {
 
+    dispatch(motionStatusAC(1))
     dispatch(getDraftDocs({
       MotionStatus: 1,
-      PageNumber:currentPage ,
+      PageNumber: currentPage,
       RecordsPerPage: rowsPerPage,
     }))
-  }, [currentPage,rowsPerPage])
+  }, [currentPage, rowsPerPage])
   let drafts = useSelector(state => state.setDrafts.DraftDoc)
 
   const handleChangePage = (event, newPage) => {

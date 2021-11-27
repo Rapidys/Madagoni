@@ -23,10 +23,21 @@ let initialState = {
       htmlBefore: '<i class="material-icons">vertical_split</i>',
       to: "/blog-posts",
     },
+    {
+      title: "მიღებული",
+      htmlBefore: '<i class="material-icons">email</i>',
+      to: "/incomingDocuments",
 
+    },
+    {
+      title: "დასადასტურებელი დოკუმენტები",
+      htmlBefore: '<i class="material-icons">email</i>',
+      to: "/signatureDocuments",
+
+    },
     {
       title: "დრაფტები",
-      htmlBefore: '<i class="material-icons">email</i>',
+      htmlBefore: '<i class="material-icons">drafts</i>',
       to: "/draftDocuments",
 
     },
