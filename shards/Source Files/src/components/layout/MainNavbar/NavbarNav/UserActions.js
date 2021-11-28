@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
 import {
   Dropdown,
   DropdownToggle,
@@ -10,7 +9,7 @@ import {
   NavLink
 } from "shards-react";
 import {connect, useSelector} from "react-redux";
-import {Logout, setIsAuth} from "../../../../Reducers/AuthReducer";
+import {Logout} from "../../../../Reducers/AuthReducer";
 
 let UserActions = (props) => {
 

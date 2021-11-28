@@ -24,7 +24,6 @@ class SidebarNavItems extends React.Component {
   onChange() {
     this.setState({
       ...this.state,
-      // navItems: Store.getSidebarItems()
     });
   }
   render() {

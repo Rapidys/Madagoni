@@ -7,6 +7,7 @@ import {
   setCurrentPageAC
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
+import RightClick from "../../RightClick/RightClick";
 
 const SentDocuments = (props) => {
   let dispatch = useDispatch()
@@ -38,17 +39,20 @@ const SentDocuments = (props) => {
 
 
   return (
-    <DocumentPage
-      pageTitle={'გაგზავნილები'}
-      pageName='/tables'
-      Documents={sentDocs}
-      handleChangePage={handleChangePage}
-      handleChangeRowsPerPage={handleChangeRowsPerPage}
-      totalCount={totalCount}
-      rowsPerPage={rowsPerPage}
-      currentPage={currentPage}
+    <>
+      <DocumentPage
+        pageTitle={'გაგზავნილები'}
+        pageName='/tables'
+        Documents={sentDocs}
+        handleChangePage={handleChangePage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+        totalCount={totalCount}
+        rowsPerPage={rowsPerPage}
+        currentPage={currentPage}
 
-    />
+      />
+    </>
+
   )
 };
 

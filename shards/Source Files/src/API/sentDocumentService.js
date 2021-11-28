@@ -3,7 +3,7 @@ import {
 } from "../Reducers/sendDocumentReducer";
 import API from "./ApiBase";
 import {setDraftAC} from "../Reducers/DraftDocumentReducer";
-import {setCurrentPageAC, setToTalPages} from "../Reducers/PaginationReducer";
+import {setToTalPages} from "../Reducers/PaginationReducer";
 import {chosenDocPageAC} from "../Reducers/chosenDocumentReducer";
 import {setSignatureAC} from "../Reducers/signatureDocumentReducer";
 import {setIncomingDocsAC} from "../Reducers/IncomingDocumentsReducer";
@@ -60,7 +60,6 @@ export let getSignatureDocs = (documentStatus) => {
       API.getDocuments(documentStatus)
 
         .then(response => {
-          debugger
           dispatch(setSignatureAC(response.data.documentList))
           dispatch(setToTalPages(response.headers['content-length']))
         })

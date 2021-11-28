@@ -1,6 +1,6 @@
 let initialState = {
   currentMessagePage: {},
-
+  uniqueId: null,
 }
 
 let chosenDocPage = 'chosenDocPage'
@@ -15,6 +15,13 @@ let chosenDocumentReducer = (state = initialState, action) => {
         currentMessagePage: action.info
       }
     }
+    case 'uniqueId': {
+
+      return {
+        ...state,
+        uniqueId: action.id
+      }
+    }
 
     default:
       return state
@@ -22,6 +29,7 @@ let chosenDocumentReducer = (state = initialState, action) => {
 }
 
 export let chosenDocPageAC = (info) => ({type: chosenDocPage, info})
+export let uniqueIdAC = (id) => ({type: 'uniqueId', id})
 
 
 export default chosenDocumentReducer

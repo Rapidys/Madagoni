@@ -1,15 +1,39 @@
-import React from 'react';
-import {Card, CardBody, Col, Row} from "shards-react";
-import {useHistory, useParams} from "react-router-dom/cjs/react-router-dom";
-import {useSelector} from "react-redux";
+import React, {useState} from 'react';
+import {CardBody} from "shards-react";
+import {useHistory} from "react-router-dom/cjs/react-router-dom";
+import RightClickMenu from "../../../RightClick/RightClickMenu";
+import {uniqueIdAC} from "../../../Reducers/chosenDocumentReducer";
+import {useDispatch} from "react-redux";
 
 const DocumentBody = (props) => {
 
   let router = useHistory()
 
 
+  const [x, setX] = useState(0)
+  const [y, setY] = useState(0)
+  const [showMenu, setShowMenu] = useState(false)
+
+
+  let dispatch = useDispatch()
+
+  let contextMenu = (e, id) => {
+    e.preventDefault()
+    setX(e.pageX - 250)
+    setY(e.pageY - 60)
+
+    setShowMenu(true)
+    dispatch(uniqueIdAC(id))
+  }
+  window.addEventListener('click', () => {
+    setShowMenu(false)
+  })
+
+
   return (
     <CardBody className="p-0 pb-3">
+      <RightClickMenu showMenu={showMenu} x={x} y={y}/>
+
       <table className="table mb-0">
         <thead className="bg-light">
         <tr>
@@ -31,19 +55,28 @@ const DocumentBody = (props) => {
         <tbody>
 
 
-        {props.Documents.map(Mess => {
+        {props.Documents.map((Mess, index) => {
           return (
-            <tr className={"messWrapper"}
-                onClick={() => router.push(`${props.pageName}/${Mess.documentId}`)}
-                key={Mess.documentId}
-            >
-              <td>{Mess.documentId}</td>
-              <td>{Mess.documentDate}</td>
-              <td>{Mess.documentTitle}</td>
-              <td>{Mess.documentType}</td>
+            <>
+              <tr className={"messWrapper"}
+                  onClick={() => {
+                    router.push(`${props.pageName}/${Mess.documentId}`)
+                    setShowMenu(false)
+                  }}
+                  key={Mess.documentId}
+                  onContextMenu={(e) => contextMenu(e, Mess.documentId)}
+                  id={Mess.documentId}
+              >
+
+                <td>{Mess.documentId}</td>
+                <td>{Mess.documentDate}</td>
+                <td>{Mess.documentTitle}</td>
+                <td>{Mess.documentType}</td>
 
 
-            </tr>
+              </tr>
+            </>
+
           )
         })}
         </tbody>

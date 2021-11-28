@@ -18,8 +18,11 @@ const ChosenDocument = (props) => {
   useEffect(() => {
     debugger
     dispatch(getMessagePage(params.id))
-  }, [pageId])
-  const [documentTitle, setDocumentTitle] = useState(chosen.documentTitle)
+    setDocumentTitle(chosen.documentTitle)
+    setDocumentBody(chosen.documentBody || '')
+
+  }, [pageId, chosen])
+  const [documentTitle, setDocumentTitle] = useState('')
   const [documentBody, setDocumentBody] = useState('')
   let [chosenVisitor, setChosenVisitor] = useState(chosen.documentMotions)
   let MotionStatus = useSelector(state => state.MotionStatus.motionStatus)

@@ -2,7 +2,6 @@ import React from "react";
 import classNames from "classnames";
 import {Col} from "shards-react";
 import SidebarMainNavbar from "./SidebarMainNavbar";
-import SidebarSearch from "./SidebarSearch";
 import SidebarNavItemsContainer from "./sideBarItems/SidebarNavItemsContainer";
 import {Store} from "../../../Redux/HeaderMenu";
 
@@ -14,7 +13,6 @@ class MainSidebar extends React.Component {
 
     this.state = {
       menuVisible: false,
-      sidebarNavItems: Store.getSidebarItems()
     };
 
     this.onChange = this.onChange.bind(this);
@@ -53,7 +51,6 @@ class MainSidebar extends React.Component {
         md={{size: 3}}
       >
         <SidebarMainNavbar hideLogoText={this.props.hideLogoText}/>
-        <SidebarSearch/>
         <SidebarNavItemsContainer/>
 
       </Col>

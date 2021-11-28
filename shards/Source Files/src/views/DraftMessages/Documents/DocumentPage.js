@@ -14,6 +14,7 @@ const DocumentPage = ({pageTitle, pageName, Documents, ...props}) => {
   `
   return (
     <Styles>
+
       <Container fluid className="main-content-container px-4">
         <Row>
           <Col>
