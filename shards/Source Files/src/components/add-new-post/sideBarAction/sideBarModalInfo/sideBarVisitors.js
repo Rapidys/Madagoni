@@ -115,8 +115,7 @@ const SideBarVisitors = (props) => {
                     <ChosenVisitors
                       userState={confirmation}
                       changeState={setConfirmation}
-                      uservisitorIds={confirmationuserId}
-                      changevisitorIds={setConfirmationuserId}
+
                     />
                   </div>
 

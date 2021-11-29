@@ -4,6 +4,25 @@ import {useHistory} from "react-router-dom/cjs/react-router-dom";
 import RightClickMenu from "../../../RightClick/RightClickMenu";
 import {uniqueIdAC} from "../../../Reducers/chosenDocumentReducer";
 import {useDispatch} from "react-redux";
+import styled from "styled-components";
+
+let Styles = styled.div`
+  @media screen and (max-width: 500px) {
+    .resTtd {
+      font-size: 12px;
+    }
+  }
+  @media screen and (max-width: 470px) {
+    .resTtd {
+      font-size: 8px;
+    }
+    @media screen and (max-width: 337px) {
+    .resTtd {
+      font-size: 6px;
+    }
+  }
+
+`
 
 const DocumentBody = (props) => {
 
@@ -31,33 +50,33 @@ const DocumentBody = (props) => {
 
 
   return (
-    <CardBody className="p-0 pb-3">
-      <RightClickMenu showMenu={showMenu} x={x} y={y}/>
+    <Styles>
+      <CardBody className="p-0 pb-3">
+        <RightClickMenu showMenu={showMenu} x={x} y={y}/>
 
-      <table className="table mb-0">
-        <thead className="bg-light">
-        <tr>
-          <th scope="col-1" className="border-0">
-            დოკუმენტის ნომერი
-          </th>
-          <th scope="col-2" className="border-0">
-            დოკუმენტის თარიღი
-          </th>
-          <th scope="col-2" className="border-0">
-            დოკუმენტის თემა
-          </th>
-          <th scope="col-5" className="border-0">
-            ავტორი
-          </th>
+        <table className="table mb-0">
+          <thead className="thead bg-light">
+          <tr>
+            <th scope="col" className="resTtd border-0">
+              #
+            </th>
+            <th scope="col" className="resTtd border-0">
+              დოკუმენტის თარიღი
+            </th>
+            <th scope="col" className="resTtd border-0">
+              დოკუმენტის თემა
+            </th>
+            <th scope="col" className="resTtd border-0">
+              ავტორი
+            </th>
 
-        </tr>
-        </thead>
-        <tbody>
+          </tr>
+          </thead>
+          <tbody>
 
 
-        {props.Documents.map((Mess, index) => {
-          return (
-            <>
+          {props.Documents.map((Mess, index) => {
+            return (
               <tr className={"messWrapper"}
                   onClick={() => {
                     router.push(`${props.pageName}/${Mess.documentId}`)
@@ -67,23 +86,24 @@ const DocumentBody = (props) => {
                   onContextMenu={(e) => contextMenu(e, Mess.documentId)}
                   id={Mess.documentId}
               >
-
-                <td>{Mess.documentId}</td>
-                <td>{Mess.documentDate}</td>
-                <td>{Mess.documentTitle}</td>
-                <td>{Mess.documentType}</td>
+                <th scope="row" className={"resTtd"}>{Mess.documentId}</th>
+                <td className={"resTtd"}>{Mess.documentDate}</td>
+                <td className={"resTtd"}>{Mess.documentTitle}</td>
+                <td className={"resTtd"}>{Mess.documentType}</td>
 
 
               </tr>
-            </>
 
-          )
-        })}
-        </tbody>
 
-      </table>
+            )
+          })}
+          </tbody>
 
-    </CardBody>
+        </table>
+
+      </CardBody>
+    </Styles>
+
   );
 };
 

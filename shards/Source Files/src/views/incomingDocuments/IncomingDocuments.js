@@ -1,9 +1,7 @@
 import React, {useEffect} from "react";
 import DocumentPage from "../DraftMessages/Documents/DocumentPage";
 import {
-  getDraftDocs,
   getIncomingDocs,
-  getOnPageChange
 } from "../../API/sentDocumentService";
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -22,7 +20,6 @@ const IncomingDocuments = (props) => {
 
   let dispatch = useDispatch()
   useEffect(() => {
-
     dispatch(motionStatusAC(5))
     dispatch(getIncomingDocs({
       MotionStatus: 5,
@@ -30,28 +27,22 @@ const IncomingDocuments = (props) => {
       RecordsPerPage: rowsPerPage,
     }))
   }, [currentPage, rowsPerPage])
-  let drafts = useSelector(state => state.IncomingDocument.incomingDoc)
 
-  const handleChangePage = (event, newPage) => {
-    dispatch(setCurrentPageAC(newPage));
-  };
-
-  const handleChangeRowsPerPage = event => {
-    dispatch(rowsPerPageAc(parseInt(event.target.value, 10)));
+  useEffect(() => {
     dispatch(setCurrentPageAC(1));
-  };
+  }, [])
+
+  let drafts = useSelector(state => state.IncomingDocument.incomingDoc)
 
 
   return (
     <DocumentPage
-      pageTitle={'დრაფტები'}
+      pageTitle={'მიღებულები'}
       pageName='/tables'
       Documents={drafts}
-      handleChangePage={handleChangePage}
-      handleChangeRowsPerPage={handleChangeRowsPerPage}
       totalCount={totalCount}
       rowsPerPage={rowsPerPage}
-      currentPage={currentPage}
+      currentPage={currentPage - 1}
 
     />
   )

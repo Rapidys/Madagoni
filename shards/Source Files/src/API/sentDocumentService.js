@@ -14,9 +14,7 @@ export let getMessagePage = (params) => {
       API.getDocument(params)
         .then(response => {
           dispatch(chosenDocPageAC(response.data))
-
         })
-
     } catch (e) {
       console.log(e)
     }
@@ -31,7 +29,7 @@ export let getOnPageChange = (documentStatus) => {
 
         .then(response => {
           dispatch(sendDocumentAC(response.data.documentList))
-          dispatch(setToTalPages(response.headers['content-length']))
+          dispatch(setToTalPages(response.data.pageCount))
         })
 
     } catch (e) {
@@ -46,7 +44,7 @@ export let getDraftDocs = (documentStatus) => {
 
         .then(response => {
           dispatch(setDraftAC(response.data.documentList))
-          dispatch(setToTalPages(response.headers['content-length']))
+          dispatch(setToTalPages(response.data.pageCount))
         })
 
     } catch (e) {
@@ -61,7 +59,7 @@ export let getSignatureDocs = (documentStatus) => {
 
         .then(response => {
           dispatch(setSignatureAC(response.data.documentList))
-          dispatch(setToTalPages(response.headers['content-length']))
+          dispatch(setToTalPages(response.data.pageCount))
         })
 
     } catch (e) {
@@ -79,7 +77,7 @@ export let getIncomingDocs = (documentStatus) => {
 
           console.log(response)
           dispatch(setIncomingDocsAC(response.data.documentList))
-          dispatch(setToTalPages(response.headers['content-length']))
+          dispatch(setToTalPages(response.data.pageCount))
         })
 
     } catch (e) {

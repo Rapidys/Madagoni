@@ -1,13 +1,16 @@
 import API from "../API/ApiBase";
+import {Redirect} from "react-router-dom";
 
 let initialState = {
   isAuth: false,
   currentUser: {},
   email: '',
   password: '',
-  isLoading:true,
+  isLoading: true,
+  token: null,
 }
 const Loading = 'SETLOADING'
+const Token = 'TOKEN'
 let AuthReducer = (state = initialState, action) => {
 
   switch (action.type) {
@@ -21,7 +24,6 @@ let AuthReducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload,
-        isAuth: true
       }
 
     }
@@ -42,6 +44,13 @@ let AuthReducer = (state = initialState, action) => {
         isLoading: action.loading
       }
     }
+    case Token: {
+      return {
+        ...state,
+        token: action.tok
+      }
+    }
+
     default:
       return state
   }
@@ -53,23 +62,23 @@ export let setIsAuth = (setAuth) => ({type: 'SET-AUTH', setAuth})
 export let Logout = () => ({type: 'LogOut'})
 export let setUser = (user) => ({type: "SET-USER", payload: user})
 export let LoadingAC = (loading) => ({type: Loading, loading})
+export let TokenAC = (tok) => ({type: Token, tok})
 
 
 export const login = (email, password) => {
-
   return (dispatch) => {
+    dispatch(LoadingAC(true))
+
     try {
-
       API.AuthAPI(email, password)
-
         .then(response => {
           dispatch(setUser({email, password}))
-          if (response.data.success === true) {
+          if (response && response && response.data.success === true) {
+            localStorage.setItem('token', response.data.token)
             dispatch(setIsAuth(true))
-
+            dispatch(TokenAC(response.data.token))
+            dispatch(LoadingAC(false))
           }
-          localStorage.setItem('token', response.data.token)
-
         })
 
     } catch (e) {

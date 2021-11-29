@@ -32,7 +32,7 @@ export let PrivacyRoutes = [
     component: BlogOverview
   },
   {
-    path: "/documents",
+    path: "/documentFiles",
     layout: DefaultLayout,
     component: Documents,
 

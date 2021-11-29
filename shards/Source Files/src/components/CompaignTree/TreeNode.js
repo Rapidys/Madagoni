@@ -1,8 +1,16 @@
 import React, {useCallback, useState} from 'react';
 import Tree from "./Tree";
-import {useSelector} from "react-redux";
+import styled from "styled-components";
 
+let Styles = styled.span`
+  .nameWrapper {
+    max-width: 150px;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
 
+  }
+
+`
 const TreeNode = (props) => {
   const [visibility, setVisibility] = useState(false)
   // let date = useSelector(state => state.chosenData.endDate)
@@ -50,15 +58,19 @@ const TreeNode = (props) => {
         <div className={"col d-tree-head"}>
           {props.node.displayName
             ? <i className="mr-2 mt-1 fas fa-university"/>
-            : <i className="ml-4 mr-2 mt-1 fas fa-user"/>
+            : <i className="ml-2 mr-2 mt-1 fas fa-user"/>
           }
 
 
           {
             <span>
-              <span
-                onClick={setDepartment}
-              >{props.node.displayName}</span>
+                <Styles>
+                   <span
+                     onClick={setDepartment}
+                     className={"nameWrapper"}
+                   >{props.node.displayName}</span>
+                </Styles>
+
               <span
                 style={{cursor: "pointer"}}
                 onClick={setChosen}
@@ -94,6 +106,7 @@ const TreeNode = (props) => {
       })}
 
     </li>
+
   );
 };
 

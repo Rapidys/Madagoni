@@ -1,10 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import {
   Card,
   CardBody,
   ListGroup,
   ListGroupItem,
-  Button
 } from "shards-react";
 
 import SideBarComponents from "./SideBarComponents";
@@ -24,7 +23,7 @@ const SidebarActions = (props) => {
               chosenVisitor={props.chosenVisitor}
               setChosenVisitor={props.setChosenVisitor}
               documentType={props.documentType}
-              setVisible ={props.setVisible}
+              setVisible={props.setVisible}
             />
           </ListGroupItem>
 

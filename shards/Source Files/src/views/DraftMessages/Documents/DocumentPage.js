@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Card, CardHeader, Col, Container, Row} from "shards-react";
+import {Card, CardHeader, Col, Container, Row} from "shards-react";
 import DocumentBody
   from "./DocumentBody";
 import Pagination from "../../../Pagination/Pagination";
@@ -9,7 +9,7 @@ import styled from "styled-components";
 const DocumentPage = ({pageTitle, pageName, Documents, ...props}) => {
   let Styles = styled.div`
     .messWrapper:hover {
-      background: #00a2bf;
+      background: #cfd2ce;
     }
   `
   return (
@@ -27,8 +27,6 @@ const DocumentPage = ({pageTitle, pageName, Documents, ...props}) => {
 
               />
               <Pagination
-                handleChangePage={props.handleChangePage}
-                handleChangeRowsPerPage={props.handleChangeRowsPerPage}
                 totalCount={props.totalCount}
                 rowsPerPage={props.rowsPerPage}
                 currentPage={props.currentPage}

@@ -26,16 +26,12 @@ const DraftDocuments = (props) => {
       RecordsPerPage: rowsPerPage,
     }))
   }, [currentPage, rowsPerPage])
+  useEffect(() => {
+    dispatch(setCurrentPageAC(1));
+  }, [])
+
   let drafts = useSelector(state => state.setDrafts.DraftDoc)
 
-  const handleChangePage = (event, newPage) => {
-    dispatch(setCurrentPageAC(newPage));
-  };
-
-  const handleChangeRowsPerPage = event => {
-    dispatch(rowsPerPageAc(parseInt(event.target.value, 10)));
-    dispatch(setCurrentPageAC(1));
-  };
 
 
   return (
@@ -43,11 +39,10 @@ const DraftDocuments = (props) => {
       pageTitle={'დრაფტები'}
       pageName='/tables'
       Documents={drafts}
-      handleChangePage={handleChangePage}
-      handleChangeRowsPerPage={handleChangeRowsPerPage}
+
       totalCount={totalCount}
       rowsPerPage={rowsPerPage}
-      currentPage={currentPage}
+      currentPage={currentPage - 1}
     />
   )
 };

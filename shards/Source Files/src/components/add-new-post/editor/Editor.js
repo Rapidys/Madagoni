@@ -164,11 +164,12 @@ const Editor = (props) => {
         <Button
           disabled={!props.documentTitle}
           onClick={addNewPost}
+          className={'border - 1'}
         >გადაგზავნა</Button>
         <Button
           disabled={!props.documentTitle}
           onClick={handleDraft}
-          className={"ml-2"}
+          className={"ml-lg-2 ml-sm-0 border - 1"}
         >დრაფტად შენახვა</Button>
         <Button
           className={props.approve}

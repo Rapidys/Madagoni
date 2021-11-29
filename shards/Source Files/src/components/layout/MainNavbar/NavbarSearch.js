@@ -55,7 +55,7 @@ export default () => {
             <span className={"ml-2"}>დიაგრამები</span>
           </DropdownItem>
 
-          <DropdownItem tag={Link} to="/documents" className={"items"}>
+          <DropdownItem tag={Link} to="/documentFiles" className={"items"}>
             <i
               className="material-icons cursor-pointer hov">description</i>
 

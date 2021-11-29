@@ -3,7 +3,6 @@ import {useParams} from "react-router-dom/cjs/react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getMessagePage} from "../../../API/sentDocumentService";
 import AddNewPost from "../../../components/add-new-post/addNewPost";
-import {setDocTypeAC} from "../../../Reducers/addNewPost/selectDocReducer";
 
 const ChosenDocument = (props) => {
 
@@ -16,7 +15,6 @@ const ChosenDocument = (props) => {
 
 
   useEffect(() => {
-    debugger
     dispatch(getMessagePage(params.id))
     setDocumentTitle(chosen.documentTitle)
     setDocumentBody(chosen.documentBody || '')
@@ -39,7 +37,7 @@ const ChosenDocument = (props) => {
       chosenVisitor={chosenVisitor}
       setChosenVisitor={setChosenVisitor}
       documentType={DocumentType}
-      approve={MotionStatus === 3 ? 'ml-2' : 'd-none'}
+      approve={MotionStatus === 3 ? 'lg-ml-2 xs-ml-0 border - 1' : 'd-none'}
     />
   );
 };

@@ -19,8 +19,8 @@ let initialState = {
 
     },
     {
-      title: "დასადასტურებელი დოკუმენტები",
-      htmlBefore: '<i class="material-icons">email</i>',
+      title: "დასადასტურებლები",
+      htmlBefore: '<i class="material-icons">announcement</i>',
       to: "/signatureDocuments",
 
     },

@@ -1,25 +1,25 @@
 import axios from 'axios'
-import {FileIdAC, uploadFileAC} from "../Reducers/addNewPost/UploadFileReducer";
 
 let baseUrl = 'https://cyberdocapiservice20211103000756.azurewebsites.net/api'
-const token = localStorage.getItem('token')
-// axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token')
+let token = localStorage.getItem('token')
+
 let $ApiBase = axios.create({
   baseURL: baseUrl,
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + token
-
+    'Access-Control-Allow-Origin': "*",
+    'Authorization': `Bearer ${token}`
   },
 })
 
 
 // $ApiBase.interceptors.response.use((config) => {
 //   return config
-// }, (error)=>{
-//           if(error.response.status == 401){
 //
-//           }
+// }, (error) => {
+//   if (error.response.status === 403) {
+//     return <Redirect to='/Login'/>
+//   }
 // })
 
 

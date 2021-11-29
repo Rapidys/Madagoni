@@ -8,9 +8,7 @@ import {
   rowsPerPageAc,
   setCurrentPageAC
 } from "../../Reducers/PaginationReducer";
-import {Button} from "shards-react";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
-import {setDocTypeAC} from "../../Reducers/addNewPost/selectDocReducer";
 
 
 const SignatureDocuments = (props) => {
@@ -32,16 +30,11 @@ const SignatureDocuments = (props) => {
 
   }, [currentPage, rowsPerPage])
 
-  let visirable = useSelector(state => state.signatureDocument.signatureDoc)
-
-  const handleChangePage = (event, newPage) => {
-    dispatch(setCurrentPageAC(newPage));
-  };
-
-  const handleChangeRowsPerPage = event => {
-    dispatch(rowsPerPageAc(parseInt(event.target.value, 10)));
+  useEffect(() => {
     dispatch(setCurrentPageAC(1));
-  };
+  }, [])
+
+  let visirable = useSelector(state => state.signatureDocument.signatureDoc)
 
 
   return (
@@ -49,11 +42,9 @@ const SignatureDocuments = (props) => {
       pageTitle={'დასადასტურებელი დოკუმენტები'}
       pageName='/tables'
       Documents={visirable}
-      handleChangePage={handleChangePage}
-      handleChangeRowsPerPage={handleChangeRowsPerPage}
       totalCount={totalCount}
       rowsPerPage={rowsPerPage}
-      currentPage={currentPage}
+      currentPage={currentPage - 1}
     />
   )
 };

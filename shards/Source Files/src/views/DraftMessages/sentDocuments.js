@@ -24,18 +24,13 @@ const SentDocuments = (props) => {
       PageNumber: currentPage,
       RecordsPerPage: rowsPerPage,
     }))
+
   }, [rowsPerPage, currentPage])
-  let sentDocs = useSelector(state => state.sentDocuments.sentDoc)
-
-
-  const handleChangePage = (event, newPage) => {
-    dispatch(setCurrentPageAC(newPage));
-  };
-
-  const handleChangeRowsPerPage = event => {
-    dispatch(rowsPerPageAc(parseInt(event.target.value, 10)));
+  useEffect(() => {
     dispatch(setCurrentPageAC(1));
-  };
+  }, [])
+
+  let sentDocs = useSelector(state => state.sentDocuments.sentDoc)
 
 
   return (
@@ -44,11 +39,9 @@ const SentDocuments = (props) => {
         pageTitle={'გაგზავნილები'}
         pageName='/tables'
         Documents={sentDocs}
-        handleChangePage={handleChangePage}
-        handleChangeRowsPerPage={handleChangeRowsPerPage}
         totalCount={totalCount}
         rowsPerPage={rowsPerPage}
-        currentPage={currentPage}
+        currentPage={currentPage - 1}
 
       />
     </>

@@ -8,22 +8,10 @@ const ChosenVisitors = (props) => {
     return (userId) => props.changeState && props.changeState(props.userState.filter(p => p.userId !== userId))
   }, [props.userState, props.changeState])
 
-  // visitor Ids washla romelic iseteba serverze
-  let deleteVisitorIds = useMemo(() => {
-    return (userId) => props.changevisitorIds && props.changevisitorIds(props.uservisitorIds.filter(p => p !== userId))
-  }, [props.uservisitorIds, props.changevisitorIds])
-
-// archeuli useris washla romelic gare obieqtzea
-
-  let outSideUsers = useMemo(() => {
-    return (userId) => props.setChosenUser && props.setChosenUser(props.chosenUser.filter(p => p.userId !== userId))
-  }, [props.chosenUser, props.setChosenUser])
-
 
   let deleteChosen = (userId) => {
     deleteUsers(userId)
-    outSideUsers(userId)
-    deleteVisitorIds(userId)
+
   }
 
   if (props.userState.length === 0) {

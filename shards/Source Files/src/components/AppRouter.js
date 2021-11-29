@@ -2,23 +2,22 @@ import React, {useEffect} from 'react';
 import {Redirect, Route, Switch} from "react-router-dom";
 import {PrivacyRoutes, PublicRoutes} from "../routes";
 import withTracker from "../withTracker";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {LoadingAC, setIsAuth} from "../Reducers/AuthReducer";
-import {useHistory} from "react-router-dom/cjs/react-router-dom";
 import Preloader from "../Preloader/Preloader";
 
 
 const AppRouter = (props) => {
-  let history = useHistory()
-  let location = history.location.pathname
-  console.log(location)
-
+  let token = useSelector((state => state.Auth.token))
   useEffect(() => {
     if (localStorage.getItem('token')) {
+      props.setIsLoading(false)
       props.setIsAuth(true)
+    }
+    if (!localStorage.getItem('token')) {
       props.setIsLoading(false)
     }
-  }, [])
+  }, [token])
 
   if (props.isLoading) {
     return <Preloader/>
@@ -49,7 +48,8 @@ const AppRouter = (props) => {
             />
           );
         })}
-        <Redirect to='/documents'/>
+        <Redirect to='/blog-overview'/>
+
 
       </Switch>
       :

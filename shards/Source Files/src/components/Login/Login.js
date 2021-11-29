@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import {Button, Card, CardBody, Form, FormGroup, FormInput} from "shards-react";
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {LoadingAC, login} from "../../Reducers/AuthReducer";
 
 
 let Styles = styled.div`
@@ -11,16 +13,17 @@ let Styles = styled.div`
   }
 `
 
-const Login = (props) => {
+const Login = () => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  let dispatch = useDispatch()
   let SignIn = (e) => {
     e.preventDefault()
-    props.setIsAuth(email, password)
-
+    dispatch(login(email, password))
   }
+
 
   return (
     <Styles>
@@ -49,8 +52,10 @@ const Login = (props) => {
             </FormGroup>
             <Button theme="secondary"
                     onClick={SignIn}
-            >Sign In</Button>
-            <Link to = '/register'>
+            >
+              Sign In
+            </Button>
+            <Link to='/register'>
               <Button className={"ml-3"}>Register</Button>
             </Link>
           </Form>

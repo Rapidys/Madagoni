@@ -1,7 +1,7 @@
 let initialState = {
   currentPage: 1,
   rowsPerPage: 10,
-  totalPages: -1,
+  totalPages: null,
 }
 
 
