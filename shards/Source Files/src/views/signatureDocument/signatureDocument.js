@@ -5,13 +5,12 @@ import {
 } from "../../API/sentDocumentService";
 import {useDispatch, useSelector} from "react-redux";
 import {
-  rowsPerPageAc,
   setCurrentPageAC
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 
 
-const SignatureDocuments = (props) => {
+const SignatureDocuments = () => {
 
   let currentPage = useSelector(state => state.PaginationData.currentPage)
   let rowsPerPage = useSelector(state => state.PaginationData.rowsPerPage)

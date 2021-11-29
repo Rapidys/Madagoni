@@ -10,6 +10,7 @@ import {
 } from "shards-react";
 import {connect, useSelector} from "react-redux";
 import {Logout} from "../../../../Reducers/AuthReducer";
+import {Link} from "react-router-dom";
 
 let UserActions = (props) => {
 
@@ -31,23 +32,24 @@ let UserActions = (props) => {
         <span className="d-none d-md-inline-block">{props.login}</span>
       </DropdownToggle>
       <Collapse tag={DropdownMenu} right small open={visible}>
-        <DropdownItem tag={NavLink}
-                      to="/user-profile-lite"
+        <NavLink >
+          <DropdownItem to="/user-profile-lite">
+            <i className="material-icons">&#xE7FD;</i>
+            Profile
+          </DropdownItem>
+        </NavLink>
 
-        >
-          <i className="material-icons">&#xE7FD;</i>
-          Profile
-        </DropdownItem>
 
         <DropdownItem divider/>
-        <DropdownItem tag={NavLink} to="/" className="text-danger"
 
-                      onClick={props.LogOut}
-        >
-          <i className="material-icons text-danger">&#xE879;</i>
+        <NavLink>
+          <DropdownItem to="/" className="text-danger" onClick={props.LogOut}>
+            <i className="material-icons text-danger">&#xE879;</i>
+            Logout
+          </DropdownItem>
+        </NavLink>
 
-          Logout
-        </DropdownItem>
+
       </Collapse>
     </NavItem>
   );

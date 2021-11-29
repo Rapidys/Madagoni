@@ -23,8 +23,7 @@ export let PrivacyRoutes = [
     path: "/",
     exact: true,
     layout: DefaultLayout,
-    component: Documents
-    // () => <Redirect to="/documents"/>
+    component: BlogOverview
   },
   {
     path: "/blog-overview",

@@ -29,7 +29,7 @@ export let getOnPageChange = (documentStatus) => {
 
         .then(response => {
           dispatch(sendDocumentAC(response.data.documentList))
-          dispatch(setToTalPages(response.data.pageCount))
+          dispatch(setToTalPages(response.data.totalCount))
         })
 
     } catch (e) {
@@ -44,7 +44,7 @@ export let getDraftDocs = (documentStatus) => {
 
         .then(response => {
           dispatch(setDraftAC(response.data.documentList))
-          dispatch(setToTalPages(response.data.pageCount))
+          dispatch(setToTalPages(response.data.totalCount))
         })
 
     } catch (e) {
@@ -59,7 +59,7 @@ export let getSignatureDocs = (documentStatus) => {
 
         .then(response => {
           dispatch(setSignatureAC(response.data.documentList))
-          dispatch(setToTalPages(response.data.pageCount))
+          dispatch(setToTalPages(response.data.totalCount))
         })
 
     } catch (e) {
@@ -77,7 +77,7 @@ export let getIncomingDocs = (documentStatus) => {
 
           console.log(response)
           dispatch(setIncomingDocsAC(response.data.documentList))
-          dispatch(setToTalPages(response.data.pageCount))
+          dispatch(setToTalPages(response.data.totalCount))
         })
 
     } catch (e) {

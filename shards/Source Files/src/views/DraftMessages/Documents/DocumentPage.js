@@ -5,13 +5,13 @@ import DocumentBody
 import Pagination from "../../../Pagination/Pagination";
 import styled from "styled-components";
 
-
-const DocumentPage = ({pageTitle, pageName, Documents, ...props}) => {
-  let Styles = styled.div`
+let Styles = styled.div`
     .messWrapper:hover {
       background: #cfd2ce;
     }
   `
+const DocumentPage = ({pageTitle, pageName, Documents, ...props}) => {
+
   return (
     <Styles>
 

@@ -9,86 +9,87 @@ import {Button, Card, Col, FormTextarea, Row,} from "shards-react";
 import {useSelector} from "react-redux";
 import styled from "styled-components";
 
+let Styles = styled.div`
+  .commentBody {
+    height: 250px;
+    overflow-y: scroll;
+  }
 
-const Comments = (props) => {
-  let Styles = styled.div`
-    .commentBody {
-      height: 250px;
-      overflow-y: scroll;
+  .imgDiv {
+    width: 50px;
+    height: 60px;
+    margin-right: 2rem
+  }
+
+  .imgDiv img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+
+  .textDiv {
+    max-width: 370px;
+    display: inline-block;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    border-radius: 10px;
+    padding: 5px;
+  }
+
+  .textDiv:hover {
+    background: #00b8d8;
+  }
+
+  @media screen and (max-width: 625px) {
+    .textDiv {
+      max-width: 270px;
+    }
+  }
+  @media screen and (max-width: 530px) {
+    .textDiv {
+      max-width: 170px;
+      font-size: 12px;
     }
 
     .imgDiv {
-      width: 50px;
-      height: 60px;
-      margin-right: 2rem
-    }
+      width: 40px;
+      height: 50px;
 
-    .imgDiv img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
     }
-
+  }
+  @media screen and (max-width: 455px) {
     .textDiv {
-      max-width: 370px;
-      display: inline-block;
-      overflow-wrap: break-word;
-      white-space: pre-wrap;
-      border-radius: 10px;
-      padding: 5px;
+      max-width: 170px;
+      font-size: 11px;
     }
 
-    .textDiv:hover {
-      background: #00b8d8;
+    .imgDiv {
+      width: 40px;
+      height: 50px;
+      margin-right: 1rem;
     }
+  }
+  @media screen and (max-width: 380px) {
+    .textDiv {
+      max-width: 140px;
+    }
+  }
+  @media screen and (max-width: 350px) {
+    .textDiv {
+      max-width: 100px;
+    }
+  }
 
-    @media screen and (max-width: 625px) {
-      .textDiv {
-        max-width: 270px;
-      }
-    }
-    @media screen and (max-width: 530px) {
-      .textDiv {
-        max-width: 170px;
-        font-size: 12px;
-      }
+  .closeDiv {
+    float: right;
+    padding: 10px;
+    cursor: pointer;
+  }
 
-      .imgDiv {
-        width: 40px;
-        height: 50px;
+`
 
-      }
-    }
-    @media screen and (max-width: 455px) {
-      .textDiv {
-        max-width: 170px;
-        font-size: 11px;
-      }
+const Comments = (props) => {
 
-      .imgDiv {
-        width: 40px;
-        height: 50px;
-        margin-right: 1rem;
-      }
-    }
-    @media screen and (max-width: 380px) {
-      .textDiv {
-        max-width: 140px;
-      }
-    }
-    @media screen and (max-width: 350px) {
-      .textDiv {
-        max-width: 100px;
-      }
-    }
-
-    .closeDiv {
-      float: right;
-      padding: 10px;
-      cursor: pointer;
-    }
-
-  `
   const [textValue, setTextValue] = useState('')
 
   let onTextChange = (e) => {
@@ -182,7 +183,7 @@ const Comments = (props) => {
                     {"🤔 Waiting for you to say something..."}
                   </p>
                   <FormTextarea onChange={onTextChange} value={textValue}
-                                placeHolder='კომენტარი ...'
+                                placeholder='კომენტარი ...'
                                 className={"mb-3"}/>
 
                   <Button

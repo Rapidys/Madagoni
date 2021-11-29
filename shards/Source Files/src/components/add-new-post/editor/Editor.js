@@ -64,7 +64,7 @@ const Editor = (props) => {
   }
 
 
-  function addNewPost(e) {
+  function addNewPost() {
     {
       Motions && Motions.map(motion => {
         motion.MotionStatusId = 2

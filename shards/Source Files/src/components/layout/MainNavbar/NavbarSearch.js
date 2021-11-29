@@ -5,10 +5,10 @@ import {
   Collapse,
   DropdownMenu,
   Dropdown,
-  DropdownItem
+  DropdownItem,
 } from "shards-react";
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 
 let Styles = styled.div`
@@ -34,33 +34,37 @@ export default () => {
 
   const [visible, setVisible] = useState(false)
 
-  let toggleUserActions = () => {
+  let dotesToggle = () => {
     setVisible((c) => !c);
   }
 
   return (
     <Styles className={"align-items-center"}>
 
-      <NavItem tag={Dropdown} caret toggle={toggleUserActions}>
+      <NavItem tag={Dropdown} caret toggle={dotesToggle}>
         <DropdownToggle className={"bg-light border-0"}>
           <i className="material-icons moreBtn">more_vert</i>
 
         </DropdownToggle>
         <Collapse tag={DropdownMenu} left={"true"} small open={visible}>
+          <NavLink to="/blog-overview" className={"text-decoration-none"}>
+            <DropdownItem className={"items"}>
+              <i
+                className="material-icons cursor-pointer hov">assessment</i>
+              <span className={"ml-2"}>დიაგრამები</span>
+            </DropdownItem>
+          </NavLink>
+
           <DropdownItem divider/>
-          <DropdownItem tag={Link} to="/blog-overview"
-                        className={"items"}>
-            <i
-              className="material-icons cursor-pointer hov">assessment</i>
-            <span className={"ml-2"}>დიაგრამები</span>
-          </DropdownItem>
+          <NavLink to="/documentFiles" className={"text-decoration-none"}>
+            <DropdownItem className={"items"}>
+              <i
+                className="material-icons cursor-pointer hov">description</i>
 
-          <DropdownItem tag={Link} to="/documentFiles" className={"items"}>
-            <i
-              className="material-icons cursor-pointer hov">description</i>
+              <span className={"ml-2"}>დოკუმენტები</span>
+            </DropdownItem>
+          </NavLink>
 
-            <span className={"ml-2"}>დოკუმენტები</span>
-          </DropdownItem>
         </Collapse>
       </NavItem>
 

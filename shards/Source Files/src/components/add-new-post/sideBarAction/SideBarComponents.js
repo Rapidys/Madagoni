@@ -69,7 +69,7 @@ const SideBarComponents = (props) => {
                             key={u.userId}>
                   <Row className={"p-2"}>
                     <i className="mr-2 mt-1 fas fa-user"/>
-                    {u.firstName} {u.lastName}</Row>
+                    {u.firstName} {u.lastName} {u.targetName}</Row>
                   <Row className={"p-2 align-items-center"}>
 
                   </Row>

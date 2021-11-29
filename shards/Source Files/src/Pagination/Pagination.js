@@ -21,7 +21,7 @@ const Pagination = (props) => {
       {<TablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
-        count={props.totalCount * 10}
+        count={props.totalCount}
         rowsPerPage={props.rowsPerPage}
         page={props.currentPage}
         onPageChange={handleChangePage}

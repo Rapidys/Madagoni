@@ -1,8 +1,7 @@
-import React, {useMemo, useState} from 'react';
+import React, {useState} from 'react';
 import {Container, FormSelect} from "shards-react";
 import {
   selectDocumentAC,
-  setOptionsAC
 } from "../Reducers/addNewPost/selectDocReducer";
 import {useDispatch} from "react-redux";
 
@@ -24,7 +23,7 @@ const MySelect = ({defaultValue, onChange, options, value, ...props}) => {
         onChange={(e) => onSortChange(e)}
       >
         <option value="" disabled>{defaultValue}</option>
-        {options && options.map((option, i) => {
+        {options && options.map((option) => {
           return <option value={option.value} key={option.referenceId}
           >
             {option.displayName}

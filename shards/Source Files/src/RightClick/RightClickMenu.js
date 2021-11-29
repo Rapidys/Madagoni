@@ -36,29 +36,29 @@ const RightClickMenu = ({x, y, showMenu}) => {
   }
   let getId = useSelector(state => state.chosenDocument.uniqueId)
   const changeToRed = () => {
-    document.getElementById(getId).style.backgroundColor = '#c4183c';
+    document.getElementById(getId).style.backgroundColor = '#ccffcc';
   }
   const changeToYellow = () => {
-    document.getElementById(getId).style.backgroundColor = '#ffb400';
+    document.getElementById(getId).style.backgroundColor = '#fff2cc';
   }
   const changeToGreen = () => {
-    document.getElementById(getId).style.backgroundColor = '#17c671';
+    document.getElementById(getId).style.backgroundColor = '#ffcccc';
   }
 
   return (
     <div style={style()}>
       <div style={styles.div}
-           className={"bg-danger align-items-center"}
+           className={"colorBtnGreen align-items-center"}
            onClick={changeToRed}
       >
         <span className={"mt-5"}> Red</span>
       </div>
-      <div style={styles.div} className={"bg-warning"}
+      <div style={styles.div} className={"colorBtnYellow"}
            onClick={changeToYellow}
       >
         <span>Yellow</span>
       </div>
-      <div style={styles.div} className={"bg-success"}
+      <div style={styles.div} className={"colorBtnRed"}
            onClick={changeToGreen}
       >
         <span>green</span>
