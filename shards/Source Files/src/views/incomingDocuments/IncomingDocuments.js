@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useMemo} from "react";
 import DocumentPage from "../DraftMessages/Documents/DocumentPage";
 import {
   getIncomingDocs,
@@ -19,6 +19,9 @@ const IncomingDocuments = (props) => {
 
 
   let dispatch = useDispatch()
+
+
+
   useEffect(() => {
     dispatch(motionStatusAC(5))
     dispatch(getIncomingDocs({

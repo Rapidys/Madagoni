@@ -21,6 +21,7 @@ const MySelect = ({defaultValue, onChange, options, value, ...props}) => {
       <FormSelect
         value={docType}
         onChange={(e) => onSortChange(e)}
+        {...props}
       >
         <option value="" disabled>{defaultValue}</option>
         {options && options.map((option) => {

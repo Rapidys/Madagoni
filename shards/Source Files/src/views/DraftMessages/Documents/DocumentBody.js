@@ -16,11 +16,12 @@ let Styles = styled.div`
     .resTtd {
       font-size: 8px;
     }
+
     @media screen and (max-width: 337px) {
-    .resTtd {
-      font-size: 6px;
+      .resTtd {
+        font-size: 6px;
+      }
     }
-  }
 
 `
 
@@ -58,7 +59,7 @@ const DocumentBody = (props) => {
           <thead className="thead bg-light">
           <tr>
             <th scope="col" className="resTtd border-0">
-              #
+              დოკ. <br/> ნომერი
             </th>
             <th scope="col" className="resTtd border-0">
               დოკუმენტის თარიღი
@@ -82,12 +83,12 @@ const DocumentBody = (props) => {
                     router.push(`${props.pageName}/${Mess.documentId}`)
                     setShowMenu(false)
                   }}
-                  key={Mess.documentId}
+                  key={index}
                   onContextMenu={(e) => contextMenu(e, Mess.documentId)}
                   id={Mess.documentId}
               >
                 <th scope="row" className={"resTtd"}>{Mess.documentId}</th>
-                <td className={"resTtd"}>{Mess.documentDate}</td>
+                <td className={"resTtd"}>{Mess.documentDate.slice(0, 10)}</td>
                 <td className={"resTtd"}>{Mess.documentTitle}</td>
                 <td className={"resTtd"}>{Mess.documentType}</td>
 

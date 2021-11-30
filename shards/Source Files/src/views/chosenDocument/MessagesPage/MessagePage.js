@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getMessagePage} from "../../../API/sentDocumentService";
 import AddNewPost from "../../../components/add-new-post/addNewPost";
 
+
 const ChosenDocument = () => {
 
 
@@ -12,44 +13,58 @@ const ChosenDocument = () => {
 
   let dispatch = useDispatch()
   let chosen = useSelector(state => state.chosenDocument.currentMessagePage)
-  const [documentTitle, setDocumentTitle] = useState('')
-  const [documentBody, setDocumentBody] = useState('')
-  let [chosenVisitor, setChosenVisitor] = useState([])
+
 
   useEffect(() => {
     dispatch(getMessagePage(pageId))
-  }, [pageId])
+  }, [])
 
+  const [documentTitle, setDocumentTitle] = useState('')
+  const [documentBody, setDocumentBody] = useState('')
+
+  let [chosenVisitor, setChosenVisitor] = useState([])
+  let [chosenDestination, setChosenDestination] = useState([])
+
+  let [documentType, setDocumentType] = useState()
+  useMemo(() => {
+    setDocumentTitle(chosen.documentTitle)
+    setDocumentBody(chosen.documentBody)
+  }, [chosen.documentTitle, chosen.documentBody])
 
   useMemo(() => {
-
-    setDocumentTitle(chosen.documentTitle || '')
-    setDocumentBody(chosen.documentBody || '')
-    {
-      chosen.documentMotions && chosen.documentMotions.forEach((item, i) => {
-
-        if (item.motionTypeId === 2) return chosenVisitor[i] = item;
-
-      })
-    }
+    setDocumentType(chosen.documentType)
   }, [chosen])
 
+  useMemo(() => {
+    {
+      chosen.documentMotions && chosen.documentMotions.forEach((item, i) => {
+        if (item.motionTypeId === 2) return setChosenVisitor([...chosenVisitor, ...[item]]);
+      })
+    }
+    {
+      chosen.documentMotions && chosen.documentMotions.forEach((item, i) => {
+        if (item.motionTypeId === 3) return setChosenDestination([...chosenDestination, ...[item]]);
+      })
+    }
+  }, [chosen.documentMotions, pageId])
 
   let MotionStatus = useSelector(state => state.MotionStatus.motionStatus)
-  let DocumentType = useSelector(state => state.selectDocument.type)
 
-  console.log(chosenVisitor)
   return (
     <AddNewPost
-      title={`დოკუმენტის ნომერი :${chosen.documentId} `}
-      setDocumentTitle={setDocumentTitle}
+      title={``}
       documentTitle={documentTitle}
-      setDocumentBody={setDocumentBody}
       documentBody={documentBody}
       chosenVisitor={chosenVisitor}
-      setChosenVisitor={setChosenVisitor}
-      documentType={DocumentType}
+      documentType={documentType}
       approve={MotionStatus === 3 ? 'lg-ml-3 xs-ml-0 border - 1' : 'd-none'}
+      draftBtn={MotionStatus === 0 ? 'lg-ml-3 xs-ml-0 border - 1' : 'd-none'}
+      addBtn={MotionStatus !== 3 ? 'lg-ml-3 xs-ml-0 border - 1' : 'd-none'}
+      chosenDestination={chosenDestination}
+      docId={`დოკუმენტის ნომერი :${chosen.documentId} `}
+      Date={`${chosen.documentDate && chosen.documentDate.slice(0, 10)}`}
+      isDisabledVisitor={true}
+      isDisabledDestinate={true}
     />
   );
 };

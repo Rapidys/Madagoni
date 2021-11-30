@@ -13,6 +13,7 @@ export let getMessagePage = (params) => {
     try {
       API.getDocument(params)
         .then(response => {
+          debugger
           dispatch(chosenDocPageAC(response.data))
         })
     } catch (e) {

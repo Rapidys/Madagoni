@@ -6,6 +6,7 @@ import {
 import SelectDocumentType from "./selectDocumentType";
 
 import AttachedFiles from "./attachedFiles/attachedFiles";
+import {useSelector} from "react-redux";
 
 
 const Accordeons = (props) => {
@@ -13,7 +14,6 @@ const Accordeons = (props) => {
 
   let [mainInfo, setMainInfo] = useState(true)
   let [attachedFiles, setAttachedFiles] = useState(false)
-
 
   let attachedFilesToggle = () => {
     setAttachedFiles((c) => !c);
@@ -30,7 +30,10 @@ const Accordeons = (props) => {
           className={"w-100"}>ძირითადი ინფორმაცია</Button>
         <Collapse open={mainInfo}>
           <div className="p-1 mt-3 border rounded">
+
             <div>
+              <div className={"mt-3"}>{props.docId && props.docId}</div>
+              <div  className={"mt-3"}>{props.Date && props.Date}</div>
               <SelectDocumentType documentType={props.documentType}/>
             </div>
           </div>

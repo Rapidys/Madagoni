@@ -10,31 +10,26 @@ import Comments from "./Comments/Comments";
 const SideBarComponents = (props) => {
 
 
-  let [chosenDestination, setChosenDestination] = useState([])
-
   const [open, setOpen] = useState(false);
   const [openVisitors, setOpenVisitors] = useState(false);
   const [comments, setComments] = useState(false)
 
-
   const handleClickOpen = () => {
     setOpen(true);
   };
-
-
   const handleClose = () => {
     setOpen(false);
   };
   const handleOpenVisitors = () => {
     setOpenVisitors(true);
   };
-
   const handleCloseVisitors = () => {
     setOpenVisitors(false);
   };
   const handleOpenComments = () => {
     setComments(true);
   };
+
 
   return (
 
@@ -45,11 +40,15 @@ const SideBarComponents = (props) => {
       <div className={"mb-1"}>
         <Accordeons
           documentType={props.documentType}
+          docId={props.docId}
+          Date={props.Date}
         />
         <div className={props.setVisible}>
           <div className={"mb-1"}>
             <Button onClick={handleOpenComments}
-                    className={"w-100"}>კომენტარები</Button>
+                    className={"w-100"}
+
+            >კომენტარები</Button>
             <Comments
               setComments={setComments}
               comments={comments}
@@ -61,7 +60,9 @@ const SideBarComponents = (props) => {
         {/*visitors*/}
         <div className={"mb-1"}>
           <Button onClick={handleOpenVisitors}
-                  className={"w-100"}>ვიზირებები</Button>
+                  className={"w-100"}
+                  disabled={props.isDisabledVisitor}
+          >ვიზირებები</Button>
           <Card>
             <Col>
               {props.chosenVisitor && props.chosenVisitor.map(u => {
@@ -93,18 +94,22 @@ const SideBarComponents = (props) => {
 
       <div className={"mb-1"}>
         <Button onClick={handleClickOpen}
-                className={"w-100"}>ადრესატი</Button>
+                className={"w-100"}
+                disabled={props.isDisabledDestinate}
+        >ადრესატი</Button>
         <Card>
           <Col>
-            {chosenDestination.length > 0 && chosenDestination.map(u => {
+            {props.chosenDestination && props.chosenDestination.map(u => {
               return <Col className={"d-flex justify-content-between mt-2"}
                           key={u.userId}>
-                {u.firstName
+                {u.firstName || u.targetName
                   ? <Row className={"p-2"}><i
-                    className="mr-2 mt-1 fas fa-user"/>{u.firstName} {u.lastName}
+                    className="mr-2 mt-1 fas fa-user"/>
+                    {u.firstName} {u.lastName} {u.targetName}
                   </Row>
                   : <Row className={"p-2"} key={u.departmentId}><i
-                    className="mr-2 mt-1 fas fa-university"/> {u.displayName}
+                    className="mr-2 mt-1 fas fa-university"/>
+                    {u.displayName}
                   </Row>
                 }
                 <Row className={"p-2 align-items-center"}>
@@ -121,8 +126,8 @@ const SideBarComponents = (props) => {
         <SideBarDestinations
           handleClose={handleClose}
           open={open}
-          chosenUser={chosenDestination}
-          setChosenUser={setChosenDestination}
+          chosenDestination={props.chosenDestination}
+          setChosenDestination={props.setChosenDestination}
         />
       </div>
     </div>

@@ -110,7 +110,7 @@ const Editor = (props) => {
   }
 
   const handleBody = (e) => {
-    props.setDocumentBody(e)
+    props.setDocumentBody && props.setDocumentBody(e)
   }
 
 
@@ -134,7 +134,7 @@ const Editor = (props) => {
                      placeholder="Your Post Title"
                      value={props.documentTitle}
                      onChange={(e) => {
-                       props.setDocumentTitle(e.target.value)
+                       props.setDocumentTitle && props.setDocumentTitle(e.target.value)
                      }}
 
           />
@@ -144,6 +144,7 @@ const Editor = (props) => {
             formats={Editor.formats}
             onChange={handleBody}
             value={props.documentBody}
+
           />
           <div>
             <Modal open={open} toggle={close}>
@@ -164,12 +165,13 @@ const Editor = (props) => {
         <Button
           disabled={!props.documentTitle}
           onClick={addNewPost}
-          className={'border - 1'}
+          className={props.addBtn}
         >გადაგზავნა</Button>
+        {/*"ml-lg-2 ml-sm-0 border - 1"*/}
         <Button
           disabled={!props.documentTitle}
           onClick={handleDraft}
-          className={"ml-lg-2 ml-sm-0 border - 1"}
+          className={props.draftBtn}
         >დრაფტად შენახვა</Button>
         <Button
           className={props.approve}

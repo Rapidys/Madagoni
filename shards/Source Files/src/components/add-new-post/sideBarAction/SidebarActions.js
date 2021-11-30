@@ -11,7 +11,6 @@ import SideBarComponents from "./SideBarComponents";
 
 const SidebarActions = (props) => {
 
-
   return (
     <Card small className="mb-3">
 
@@ -22,8 +21,14 @@ const SidebarActions = (props) => {
             <SideBarComponents
               chosenVisitor={props.chosenVisitor}
               setChosenVisitor={props.setChosenVisitor}
+              chosenDestination={props.chosenDestination}
+              setChosenDestination={props.setChosenDestination}
               documentType={props.documentType}
               setVisible={props.setVisible}
+              docId={props.docId}
+              Date={props.Date}
+              isDisabledVisitor={props.isDisabledVisitor}
+              isDisabledDestinate={props.isDisabledDestinate}
             />
           </ListGroupItem>
 

@@ -19,6 +19,8 @@ import chosenDocumentReducer from "../Reducers/chosenDocumentReducer";
 import signatureDocumetReducer from "../Reducers/signatureDocumentReducer";
 import IncomingDocumentReducer from "../Reducers/IncomingDocumentsReducer";
 import MotionStatusReducer from "../Reducers/MotionStatusReducer";
+import documentReducer from "../Reducers/getDocumentReducers/documentReducer";
+import documentColorReducer from "../Reducers/setDocumentColorReducer";
 
 
 let Reducers = combineReducers({
@@ -39,7 +41,9 @@ let Reducers = combineReducers({
   userInfo: userInfoReducer,
   signatureDocument: signatureDocumetReducer,
   IncomingDocument: IncomingDocumentReducer,
-  MotionStatus : MotionStatusReducer,
+  MotionStatus: MotionStatusReducer,
+  chosenDocumentData: documentReducer,
+  documentColor: documentColorReducer,
 })
 
 let store = createStore(Reducers, applyMiddleware(thunk))

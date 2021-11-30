@@ -14,15 +14,24 @@ const AddNewPost = ({
                       setChosenVisitor,
                       documentType,
                       approve,
-                      setVisible
+                      setVisible,
+                      chosenDestination,
+                      setChosenDestination,
+                      draftBtn,
+                      addBtn,
+                      docId,
+                      Date,
+                      isDisabledVisitor,
+                      isDisabledDestinate
                     }) => {
 
+  debugger
   return (
     <Container fluid className="main-content-container px-4 pb-4">
       {/* Page Header */}
-      <Row noGutters className="page-header py-4">
+      <Row noGutters className="page-header">
         <PageTitle sm="12" title={title}
-                   className="text-sm-left"/>
+                   className="text-sm-left p-1"/>
         {/*subtitle="Blog Posts"*/}
       </Row>
       <Row>
@@ -35,6 +44,8 @@ const AddNewPost = ({
             setDocumentBody={setDocumentBody}
             documentBody={documentBody}
             approve={approve}
+            draftBtn={draftBtn}
+            addBtn={addBtn}
           />
         </Col>
 
@@ -47,6 +58,12 @@ const AddNewPost = ({
             setChosenVisitor={setChosenVisitor}
             documentType={documentType}
             setVisible={setVisible}
+            chosenDestination={chosenDestination}
+            setChosenDestination={setChosenDestination}
+            docId={docId}
+            Date={Date}
+            isDisabledVisitor={isDisabledVisitor}
+            isDisabledDestinate={isDisabledDestinate}
           />
           {/*<SidebarCategories />*/}
         </Col>

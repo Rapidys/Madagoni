@@ -20,7 +20,6 @@ const SideBarVisitors = (props) => {
 
 
   let [confirmation, setConfirmation] = useState([])
-  let [confirmationuserId, setConfirmationuserId] = useState([])
   let [visitorFromTree, setVisitorFromTree] = useState([])
 
   let handleSetNodeVisitor = (value) => {
@@ -41,22 +40,15 @@ const SideBarVisitors = (props) => {
       TargetTypeId: 0,
       MotionStatusId: 1,
     }
-
     let some = 0
-
     if (visitorFromTree.firstName && visitorFromTree.userId) {
-
       for (let i = 0; i < confirmation.length; i++) {
         if (confirmation[i].userId === chosens.userId)
           some = 1
-
       }
       if (some === 0) {
-
         setConfirmation([...confirmation, chosens])
-
       }
-
     }
   }, [visitorFromTree, setVisitorFromTree])
 

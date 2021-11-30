@@ -1,6 +1,22 @@
 import React from 'react';
-import {useSelector} from "react-redux";
-
+import {useDispatch, useSelector} from "react-redux";
+import styled from "styled-components";
+import {setDocumentColor} from "../Reducers/setDocumentColorReducer";
+//
+// let Styles = styled.div`
+//   .colorBtnRed {
+//     background: #ccffcc;
+//     color: black;
+//   }
+//
+//   .colorBtnYellow {
+//     background: #fff2cc;
+//   }
+//
+//   .colorBtnGreen {
+//     background: #ffcccc;
+//   }
+// `
 
 const RightClickMenu = ({x, y, showMenu}) => {
   const style = () => {
@@ -34,36 +50,52 @@ const RightClickMenu = ({x, y, showMenu}) => {
     },
 
   }
+  let dispatch = useDispatch()
   let getId = useSelector(state => state.chosenDocument.uniqueId)
   const changeToRed = () => {
-    document.getElementById(getId).style.backgroundColor = '#ccffcc';
+    document.getElementById(getId).style.backgroundColor = '#ffcccc';
+    dispatch(setDocumentColor({
+      DocuemntId: getId,
+      DocumentColorId: 1,
+    }))
   }
   const changeToYellow = () => {
     document.getElementById(getId).style.backgroundColor = '#fff2cc';
+    dispatch(setDocumentColor({
+      DocuemntId: getId,
+      DocumentColorId: 2,
+    }))
   }
   const changeToGreen = () => {
-    document.getElementById(getId).style.backgroundColor = '#ffcccc';
+    document.getElementById(getId).style.backgroundColor = '#ccffcc';
+    dispatch(setDocumentColor({
+      DocuemntId: getId,
+      DocumentColorId: 3,
+    }))
   }
 
   return (
+
     <div style={style()}>
       <div style={styles.div}
-           className={"colorBtnGreen align-items-center"}
+           className={"align-items-center bg-danger"}
            onClick={changeToRed}
       >
         <span className={"mt-5"}> Red</span>
       </div>
-      <div style={styles.div} className={"colorBtnYellow"}
+      <div style={styles.div} className={"bg-warning"}
            onClick={changeToYellow}
       >
         <span>Yellow</span>
       </div>
-      <div style={styles.div} className={"colorBtnRed"}
+      <div style={styles.div} className={"bg-success"}
            onClick={changeToGreen}
       >
         <span>green</span>
       </div>
     </div>
+
+
   );
 };
 

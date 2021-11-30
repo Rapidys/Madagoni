@@ -3,11 +3,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {getOnPageChange} from "../../API/sentDocumentService";
 import DocumentPage from "./Documents/DocumentPage";
 import {
-  rowsPerPageAc,
   setCurrentPageAC
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
-import RightClick from "../../RightClick/RightClick";
+
 
 const SentDocuments = (props) => {
   let dispatch = useDispatch()

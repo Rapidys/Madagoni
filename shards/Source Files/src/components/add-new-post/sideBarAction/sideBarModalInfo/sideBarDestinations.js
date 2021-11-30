@@ -80,7 +80,7 @@ const SideBarDestinations = (props) => {
 
 
   const save = () => {
-    props.setChosenUser(destination)
+    props.setChosenDestination(destination)
     dispatch(setMotion(destination))
     props.handleClose()
   }
@@ -136,12 +136,8 @@ const SideBarDestinations = (props) => {
 
                     />
                   </div>
-
                 </Col>
-
               </Row>
-
-
             </MenuItem>
           </FormControl>
 
