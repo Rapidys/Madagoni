@@ -3,68 +3,60 @@ import {useParams} from "react-router-dom/cjs/react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getMessagePage} from "../../../API/sentDocumentService";
 import AddNewPost from "../../../components/add-new-post/addNewPost";
+import MotionTypeFiltering from "../../motionTypeFiltering/motionTypeFiltering";
 
 
 const ChosenDocument = () => {
-
-
   let params = useParams()
   let pageId = params.id
 
   let dispatch = useDispatch()
   let chosen = useSelector(state => state.chosenDocument.currentMessagePage)
 
-
   useEffect(() => {
     dispatch(getMessagePage(pageId))
-  }, [])
+  }, [pageId])
+
 
   const [documentTitle, setDocumentTitle] = useState('')
   const [documentBody, setDocumentBody] = useState('')
+  const [chosenDestination, setchosenDestination] = useState([])
+  const [chosenVisitor, setchosenVisitor] = useState([])
 
-  let [chosenVisitor, setChosenVisitor] = useState([])
-  let [chosenDestination, setChosenDestination] = useState([])
+
+  useMemo(() => {
+    setchosenDestination([])
+    setchosenVisitor([])
+  }, [pageId])
 
   let [documentType, setDocumentType] = useState()
   useMemo(() => {
-    setDocumentTitle(chosen.documentTitle)
+    setDocumentTitle(chosen.documentTitle || '')
     setDocumentBody(chosen.documentBody)
-  }, [chosen.documentTitle, chosen.documentBody])
-
-  useMemo(() => {
     setDocumentType(chosen.documentType)
+    MotionTypeFiltering(chosen, chosenDestination, chosenVisitor)
   }, [chosen])
 
-  useMemo(() => {
-    {
-      chosen.documentMotions && chosen.documentMotions.forEach((item, i) => {
-        if (item.motionTypeId === 2) return setChosenVisitor([...chosenVisitor, ...[item]]);
-      })
-    }
-    {
-      chosen.documentMotions && chosen.documentMotions.forEach((item, i) => {
-        if (item.motionTypeId === 3) return setChosenDestination([...chosenDestination, ...[item]]);
-      })
-    }
-  }, [chosen.documentMotions, pageId])
 
   let MotionStatus = useSelector(state => state.MotionStatus.motionStatus)
 
   return (
     <AddNewPost
       title={``}
+      chosenVisitor={chosenVisitor}
+      chosenDestination={chosenDestination}
       documentTitle={documentTitle}
       documentBody={documentBody}
-      chosenVisitor={chosenVisitor}
       documentType={documentType}
       approve={MotionStatus === 3 ? 'lg-ml-3 xs-ml-0 border - 1' : 'd-none'}
       draftBtn={MotionStatus === 0 ? 'lg-ml-3 xs-ml-0 border - 1' : 'd-none'}
       addBtn={MotionStatus !== 3 ? 'lg-ml-3 xs-ml-0 border - 1' : 'd-none'}
-      chosenDestination={chosenDestination}
       docId={`დოკუმენტის ნომერი :${chosen.documentId} `}
       Date={`${chosen.documentDate && chosen.documentDate.slice(0, 10)}`}
       isDisabledVisitor={true}
       isDisabledDestinate={true}
+      readOnly={true}
+      titleReadOnly={true}
     />
   );
 };

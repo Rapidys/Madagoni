@@ -112,6 +112,9 @@ const Editor = (props) => {
   const handleBody = (e) => {
     props.setDocumentBody && props.setDocumentBody(e)
   }
+  const handleTitle = (e) => {
+    props.setDocumentTitle && props.setDocumentTitle(e.target.value)
+  }
 
 
   let getDocumentId = useSelector(state => state.addNewPost.documentId)
@@ -130,15 +133,14 @@ const Editor = (props) => {
     <Card small className="mb-3">
       <CardBody>
         <Form className="add-new-post">
-          <FormInput size="lg" className="mb-3"
+          <FormInput size="lg" className="mb-3" readOnly={props.titleReadOnly}
                      placeholder="Your Post Title"
                      value={props.documentTitle}
-                     onChange={(e) => {
-                       props.setDocumentTitle && props.setDocumentTitle(e.target.value)
-                     }}
+                     onChange={handleTitle}
 
           />
           <ReactQuill
+            readOnly={props.readOnly}
             className="add-new-post__editor mb-1"
             modules={Editor.modules}
             formats={Editor.formats}

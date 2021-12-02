@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getOnPageChange} from "../../API/sentDocumentService";
 import DocumentPage from "./Documents/DocumentPage";
@@ -8,7 +8,7 @@ import {
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 
 
-const SentDocuments = (props) => {
+const SentDocuments = () => {
   let dispatch = useDispatch()
 
   let currentPage = useSelector(state => state.PaginationData.currentPage)
@@ -16,17 +16,16 @@ const SentDocuments = (props) => {
   let totalCount = useSelector(state => state.PaginationData.totalPages)
 
   useEffect(() => {
-
     dispatch(motionStatusAC(2))
     dispatch(getOnPageChange({
       MotionStatus: 2,
       PageNumber: currentPage,
       RecordsPerPage: rowsPerPage,
     }))
-
   }, [rowsPerPage, currentPage])
   useEffect(() => {
     dispatch(setCurrentPageAC(1));
+
   }, [])
 
   let sentDocs = useSelector(state => state.sentDocuments.sentDoc)

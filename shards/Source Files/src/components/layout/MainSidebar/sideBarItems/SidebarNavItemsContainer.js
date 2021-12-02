@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 
 let MapStateToProps = (state) => ({
   navItems: state.sideBarNavigation.navItemsInfo,
+  newDocs : state.chosenDocument.newDocs
 })
 
 const SidebarNavItemsContainer = connect(MapStateToProps)(SidebarNavItems)

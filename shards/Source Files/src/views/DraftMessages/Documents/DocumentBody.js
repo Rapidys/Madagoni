@@ -78,14 +78,20 @@ const DocumentBody = (props) => {
 
           {props.Documents.map((Mess, index) => {
             return (
-              <tr className={"messWrapper"}
-                  onClick={() => {
-                    router.push(`${props.pageName}/${Mess.documentId}`)
-                    setShowMenu(false)
-                  }}
-                  key={index}
-                  onContextMenu={(e) => contextMenu(e, Mess.documentId)}
-                  id={Mess.documentId}
+              <tr
+                className={Mess.isNew === true ? 'font-weight-bold  messWrapper' : 'messWrapper'}
+                onClick={() => {
+                  router.push(`${props.pageName}/${Mess.documentId}`)
+                  setShowMenu(false)
+                }}
+                key={index}
+                onContextMenu={(e) => contextMenu(e, Mess.documentId)}
+                id={Mess.documentId}
+                style={{
+                  backgroundColor: Mess.documentColorId === 1 && '#ffcccc' ||
+                    Mess.documentColorId === 2 && '#fff2cc' || Mess.documentColorId === 3 && '#ccffcc'
+                }}
+
               >
                 <th scope="row" className={"resTtd"}>{Mess.documentId}</th>
                 <td className={"resTtd"}>{Mess.documentDate.slice(0, 10)}</td>

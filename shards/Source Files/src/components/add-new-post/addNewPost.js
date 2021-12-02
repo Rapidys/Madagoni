@@ -22,7 +22,9 @@ const AddNewPost = ({
                       docId,
                       Date,
                       isDisabledVisitor,
-                      isDisabledDestinate
+                      isDisabledDestinate,
+                      readOnly,
+                      titleReadOnly,
                     }) => {
 
   debugger
@@ -46,6 +48,8 @@ const AddNewPost = ({
             approve={approve}
             draftBtn={draftBtn}
             addBtn={addBtn}
+            readOnly={readOnly}
+            titleReadOnly={titleReadOnly}
           />
         </Col>
 

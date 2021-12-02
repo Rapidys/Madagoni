@@ -5,8 +5,6 @@ import thunk from "redux-thunk";
 import {addNewPostReducer} from "../Reducers/addNewPost/addNewPostReducer";
 import {setNewUser} from "../Reducers/registerReducer";
 import treeDataReducer from "../Reducers/TreeDataReducer";
-import setChosenData from "../Reducers/addNewPost/setDate";
-import uploadImgReducer from "../Reducers/uploadImgReducer";
 import DocumentMotionsReducer
   from "../Reducers/addNewPost/DocumentMotionsReducer";
 import selectDocumentReducer from "../Reducers/addNewPost/selectDocReducer";
@@ -19,7 +17,6 @@ import chosenDocumentReducer from "../Reducers/chosenDocumentReducer";
 import signatureDocumetReducer from "../Reducers/signatureDocumentReducer";
 import IncomingDocumentReducer from "../Reducers/IncomingDocumentsReducer";
 import MotionStatusReducer from "../Reducers/MotionStatusReducer";
-import documentReducer from "../Reducers/getDocumentReducers/documentReducer";
 import documentColorReducer from "../Reducers/setDocumentColorReducer";
 
 
@@ -33,8 +30,6 @@ let Reducers = combineReducers({
   addNewPost: addNewPostReducer,
   Register: setNewUser,
   Tree: treeDataReducer,
-  chosenData: setChosenData,
-  uploadImg: uploadImgReducer,
   docMotion: DocumentMotionsReducer,
   selectDocument: selectDocumentReducer,
   uploadFile: uploadFileReducer,
@@ -42,7 +37,6 @@ let Reducers = combineReducers({
   signatureDocument: signatureDocumetReducer,
   IncomingDocument: IncomingDocumentReducer,
   MotionStatus: MotionStatusReducer,
-  chosenDocumentData: documentReducer,
   documentColor: documentColorReducer,
 })
 

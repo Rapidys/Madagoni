@@ -1,4 +1,6 @@
 import axios from 'axios'
+import {Redirect} from "react-router-dom";
+
 
 let baseUrl = 'https://cyberdocapiservice20211103000756.azurewebsites.net/api'
 let token = localStorage.getItem('token')
@@ -13,14 +15,16 @@ let $ApiBase = axios.create({
 })
 
 
-// $ApiBase.interceptors.response.use((config) => {
-//   return config
-//
-// }, (error) => {
-//   if (error.response.status === 403) {
-//     return <Redirect to='/Login'/>
-//   }
-// })
+$ApiBase.interceptors.response.use((config) => {
+
+  return config
+
+}, (error) => {
+  if (error.response.status === 403 || 400 || 401) {
+    return <Redirect to='login'/>
+  }
+  return Promise.reject(error);
+})
 
 
 const API = {
@@ -51,7 +55,7 @@ const API = {
     return $ApiBase.get(`/docs/GetDocument/${params}`)
   },
   getDocuments(documentStatus) {
-    return $ApiBase.post(`/docs/GetDocuments/`, documentStatus)
+    return $ApiBase.post(`/docs/GetDocuments/`, documentStatus,)
   },
   setDocumentColor(documentColor) {
     return $ApiBase.post(`/docs/SetDocumentColor`, documentColor)

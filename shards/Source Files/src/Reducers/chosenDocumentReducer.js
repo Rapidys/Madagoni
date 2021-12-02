@@ -1,10 +1,12 @@
 let initialState = {
   currentMessagePage: {},
   uniqueId: null,
+  newDocs: [],
 }
 
 let chosenDocPage = 'chosenDocPage'
 let uniqueId = 'uniqueId'
+let setNewDocs = 'setNewDocs'
 
 
 let chosenDocumentReducer = (state = initialState, action) => {
@@ -23,6 +25,13 @@ let chosenDocumentReducer = (state = initialState, action) => {
         uniqueId: action.id
       }
     }
+    case setNewDocs: {
+
+      return {
+        ...state,
+        newDocs: [...state.newDocs, ...action.newd]
+      }
+    }
 
 
     default:
@@ -32,6 +41,7 @@ let chosenDocumentReducer = (state = initialState, action) => {
 
 export let chosenDocPageAC = (info) => ({type: chosenDocPage, info})
 export let uniqueIdAC = (id) => ({type: uniqueId, id})
+export let newDocs = (newd) => ({type: setNewDocs, newd})
 
 
 export default chosenDocumentReducer

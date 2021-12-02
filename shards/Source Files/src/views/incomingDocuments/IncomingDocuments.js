@@ -9,6 +9,7 @@ import {
   setCurrentPageAC
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
+import {newDocs} from "../../Reducers/chosenDocumentReducer";
 
 
 const IncomingDocuments = (props) => {
@@ -21,7 +22,6 @@ const IncomingDocuments = (props) => {
   let dispatch = useDispatch()
 
 
-
   useEffect(() => {
     dispatch(motionStatusAC(5))
     dispatch(getIncomingDocs({
@@ -31,18 +31,19 @@ const IncomingDocuments = (props) => {
     }))
   }, [currentPage, rowsPerPage])
 
+
+  let incomings = useSelector(state => state.IncomingDocument.incomingDoc)
+
   useEffect(() => {
     dispatch(setCurrentPageAC(1));
   }, [])
-
-  let drafts = useSelector(state => state.IncomingDocument.incomingDoc)
 
 
   return (
     <DocumentPage
       pageTitle={'მიღებულები'}
       pageName='/tables'
-      Documents={drafts}
+      Documents={incomings}
       totalCount={totalCount}
       rowsPerPage={rowsPerPage}
       currentPage={currentPage - 1}

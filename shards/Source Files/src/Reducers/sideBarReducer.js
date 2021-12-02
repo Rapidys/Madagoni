@@ -1,4 +1,5 @@
 let initialState = {
+  isNew: [],
   navItemsInfo: [
     {
       title: "ახალი",
@@ -13,7 +14,7 @@ let initialState = {
       to: "/blog-posts",
     },
     {
-      title: "მიღებული",
+      title: `მიღებული`,
       htmlBefore: '<i class="material-icons">email</i>',
       to: "/incomingDocuments",
 

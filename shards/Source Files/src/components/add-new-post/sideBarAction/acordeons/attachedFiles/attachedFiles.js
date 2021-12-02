@@ -1,8 +1,7 @@
-import React, {useCallback, useMemo, useState} from 'react';
-import {Button, Collapse} from "shards-react";
+import React, {useState} from 'react';
+import {Collapse} from "shards-react";
 import {useDispatch, useSelector} from "react-redux";
 import {
-  FileIdAC,
   uploadFile,
 } from "../../../../../Reducers/addNewPost/UploadFileReducer";
 import styled from "styled-components";
@@ -12,7 +11,7 @@ import Preloader from "../../../../../Preloader/Preloader";
 let Styles = styled.div`
 
   .fileNamesWrapper {
-    max-width: 170px;
+    width: 40px;
     overflow-wrap: break-word;
     white-space: pre-wrap;
     display: flex;
@@ -46,16 +45,18 @@ const AttachedFiles = (props) => {
   };
   let fetching = useSelector(state => state.uploadFile.isFetching)
 
-  if(fetching) {
+  if (fetching) {
     return <Preloader/>
   }
-
   return (
     <Styles>
 
       <Collapse open={props.attachedFiles}>
 
         <div className="p-3 mt-3 border rounded">
+
+
+
           <div className="custom-file mb-3">
             <input type="file"
                    name="file"
@@ -67,7 +68,7 @@ const AttachedFiles = (props) => {
               Choose file...
             </label>
             <ChosenFiles
-              fileNames = {fileNames}
+              fileNames={fileNames}
             />
             <br/>
 

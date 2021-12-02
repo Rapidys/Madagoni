@@ -1,29 +1,22 @@
-import React, {useMemo, useState} from "react";
-import classNames from "classnames";
+import React, {useState} from "react";
 import "../../assets/range-date-picker.css";
-import {useDispatch} from "react-redux";
 import {TextField} from '@material-ui/core';
-import {setDate} from "../../Reducers/addNewPost/setDate";
 
 
 let RangeDatePicker = (props) => {
 
-  let dispatch = useDispatch()
 
   let [dateValue, setDateValue] = useState({})
 
   let handleTest = (e) => {
-    setDateValue(newDate)
+    setDateValue(e.target.value)
     props.handleSetDate(e.target.value, props.index)
     const newDate = {...dateValue}
     newDate[e.target.id] = e.target.value
-    // dispatch(setDate(value.currentTarget.value))
-    console.log(e.target.id)
   }
 
 
-  const {className} = props;
-  const classes = classNames(className, "d-flex", "my-auto", "date-range");
+
   return (
     <form>
       <TextField
@@ -41,7 +34,11 @@ let RangeDatePicker = (props) => {
   )
 
 }
+export default RangeDatePicker;
 
+
+// const {className} = props;
+// const classes = classNames(className, "d-flex", "my-auto", "date-range");
 
 // class RangeDatePicker extends React.Component {
 //   constructor(props) {
@@ -88,7 +85,6 @@ let RangeDatePicker = (props) => {
 //   }
 // }
 
-export default RangeDatePicker;
 
 
 //

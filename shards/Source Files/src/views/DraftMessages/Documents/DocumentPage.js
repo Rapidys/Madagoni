@@ -6,10 +6,11 @@ import Pagination from "../../../Pagination/Pagination";
 import styled from "styled-components";
 
 let Styles = styled.div`
-    .messWrapper:hover {
-      background: #cfd2ce;
-    }
-  `
+  .messWrapper:hover {
+    background: #cfd2ce;
+    cursor: pointer;
+  }
+`
 const DocumentPage = ({pageTitle, pageName, Documents, ...props}) => {
 
   return (

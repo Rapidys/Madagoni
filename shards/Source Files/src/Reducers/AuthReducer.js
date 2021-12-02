@@ -1,5 +1,4 @@
 import API from "../API/ApiBase";
-import {Redirect} from "react-router-dom";
 
 let initialState = {
   isAuth: false,
@@ -70,14 +69,23 @@ export const login = (email, password) => {
     dispatch(LoadingAC(true))
 
     try {
+
       API.AuthAPI(email, password)
         .then(response => {
           dispatch(setUser({email, password}))
-          if (response && response && response.data.success === true) {
+
+          if (!response.data) {
+            return dispatch(LoadingAC(false))
+          }
+          if (response && response.data) {
             localStorage.setItem('token', response.data.token)
-            dispatch(setIsAuth(true))
-            dispatch(TokenAC(response.data.token))
-            dispatch(LoadingAC(false))
+
+            if (localStorage.getItem('token')) {
+              dispatch(setIsAuth(true))
+              dispatch(TokenAC(response.data.token))
+              dispatch(LoadingAC(false))
+            }
+
           }
         })
 

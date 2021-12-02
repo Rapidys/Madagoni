@@ -7,6 +7,8 @@ import {setToTalPages} from "../Reducers/PaginationReducer";
 import {chosenDocPageAC} from "../Reducers/chosenDocumentReducer";
 import {setSignatureAC} from "../Reducers/signatureDocumentReducer";
 import {setIncomingDocsAC} from "../Reducers/IncomingDocumentsReducer";
+import {setIsAuth} from "../Reducers/AuthReducer";
+
 
 export let getMessagePage = (params) => {
   return dispatch => {
@@ -14,6 +16,7 @@ export let getMessagePage = (params) => {
       API.getDocument(params)
         .then(response => {
           debugger
+
           dispatch(chosenDocPageAC(response.data))
         })
     } catch (e) {
@@ -29,6 +32,10 @@ export let getOnPageChange = (documentStatus) => {
       API.getDocuments(documentStatus)
 
         .then(response => {
+
+          if (!response.data) {
+            return dispatch(setIsAuth(false))
+          }
           dispatch(sendDocumentAC(response.data.documentList))
           dispatch(setToTalPages(response.data.totalCount))
         })
@@ -44,6 +51,9 @@ export let getDraftDocs = (documentStatus) => {
       API.getDocuments(documentStatus)
 
         .then(response => {
+          if (!response.data) {
+            return dispatch(setIsAuth(false))
+          }
           dispatch(setDraftAC(response.data.documentList))
           dispatch(setToTalPages(response.data.totalCount))
         })
@@ -59,6 +69,9 @@ export let getSignatureDocs = (documentStatus) => {
       API.getDocuments(documentStatus)
 
         .then(response => {
+          if (!response.data) {
+            return dispatch(setIsAuth(false))
+          }
           dispatch(setSignatureAC(response.data.documentList))
           dispatch(setToTalPages(response.data.totalCount))
         })
@@ -76,7 +89,9 @@ export let getIncomingDocs = (documentStatus) => {
 
         .then(response => {
 
-          console.log(response)
+          if (!response.data) {
+            return dispatch(setIsAuth(false))
+          }
           dispatch(setIncomingDocsAC(response.data.documentList))
           dispatch(setToTalPages(response.data.totalCount))
         })

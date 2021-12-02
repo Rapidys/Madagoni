@@ -55,22 +55,22 @@ const RightClickMenu = ({x, y, showMenu}) => {
   const changeToRed = () => {
     document.getElementById(getId).style.backgroundColor = '#ffcccc';
     dispatch(setDocumentColor({
-      DocuemntId: getId,
-      DocumentColorId: 1,
+      documentId: getId,
+      documentColorId: 1,
     }))
   }
   const changeToYellow = () => {
     document.getElementById(getId).style.backgroundColor = '#fff2cc';
     dispatch(setDocumentColor({
-      DocuemntId: getId,
-      DocumentColorId: 2,
+      documentId: getId,
+      documentColorId: 2,
     }))
   }
   const changeToGreen = () => {
     document.getElementById(getId).style.backgroundColor = '#ccffcc';
     dispatch(setDocumentColor({
-      DocuemntId: getId,
-      DocumentColorId: 3,
+      documentId: getId,
+      documentColorId: 3,
     }))
   }
 
