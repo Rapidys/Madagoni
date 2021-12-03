@@ -78,12 +78,10 @@ export const login = (email, password) => {
           }
           if (response && response.data) {
             localStorage.setItem('token', response.data.token)
-            if (localStorage.getItem('token')) {
-              dispatch(setIsAuth(true))
-              dispatch(TokenAC(response.data.token))
-              dispatch(LoadingAC(false))
-            }
-
+            API.assignToken()
+            dispatch(setIsAuth(true))
+            dispatch(TokenAC(response.data.token))
+            dispatch(LoadingAC(false))
           }
         })
 

@@ -94,8 +94,11 @@ let Styles = styled.div`
 
 `
 
-const Comments = (props) => {
+const Comments = () => {
+
+
   let visible = useSelector(state => state.getComments.isVisibleModal)
+  let visibleBtn = useSelector(state => state.getComments.isVisibleBtn)
 
   const [textValue, setTextValue] = useState('')
   let params = useParams()
@@ -103,19 +106,16 @@ const Comments = (props) => {
   let dispatch = useDispatch()
   let comments = useSelector(state => state.getComments.comments)
 
-  useEffect(() => {
-    dispatch(getComments(params.id))
-  }, [])
 
   useEffect(() => {
-    if (props.setVisible === 'd-none') {
-    } else {
+    if (visibleBtn === true) {
+      dispatch(getComments(params.id))
       let interval = setInterval(() => {
         dispatch(getComments(params.id))
       }, 5000)
       return () => clearInterval(interval);
     }
-  }, [visible])
+  }, [])
 
   let onTextChange = (e) => {
     setTextValue(e.target.value)

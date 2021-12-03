@@ -5,7 +5,6 @@ import AddNewPost from "./addNewPost";
 import {useDispatch} from "react-redux";
 import {getType} from "../../Reducers/addNewPost/selectDocReducer";
 import {
-  setModalVisible,
   setVisibleBtnAC
 } from "../../Reducers/Comments/CommentsReducer";
 
