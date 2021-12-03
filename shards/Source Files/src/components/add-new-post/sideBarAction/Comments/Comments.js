@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Dialog, DialogActions,
   DialogContent,
@@ -6,8 +6,11 @@ import {
   DialogTitle, FormControl, MenuItem
 } from "@material-ui/core";
 import {Button, Card, Col, FormTextarea, Row,} from "shards-react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
+import {getComments} from "../../../../Reducers/Comments/CommentsReducer";
+import {useParams} from "react-router-dom";
+import {createComment} from "../../../../Reducers/Comments/CreateNewCommentReducer";
 
 let Styles = styled.div`
   .commentBody {
@@ -91,6 +94,24 @@ let Styles = styled.div`
 const Comments = (props) => {
 
   const [textValue, setTextValue] = useState('')
+  let params = useParams()
+
+  let dispatch = useDispatch()
+  let comments = useSelector(state => state.getComments.comments)
+
+  useEffect(() => {
+    dispatch(getComments(params.id))
+  }, [])
+
+  useEffect(() => {
+    if (props.setVisible === 'd-none') {
+    } else {
+      let interval = setInterval(() => {
+        dispatch(getComments(params.id))
+      }, 5000)
+      return () => clearInterval(interval);
+    }
+  }, [props.setComments])
 
   let onTextChange = (e) => {
     setTextValue(e.target.value)
@@ -100,30 +121,16 @@ const Comments = (props) => {
     props.setComments(false);
   };
 
-  let [messages, setMessages] = useState([
-    {
-      id: 1,
-      text: 'წარსულს მთელი მისი კონკრეტული ფორმებითა და მრავალფეროვნებით. საზოგადოების ისტორია '
-    },
-    {
-      id: 2,
-      text: 'ეორე ჯგუფს ქმნის დამხმარე და სპეციალიზებული ისტორიული დისციპლინები: წყაროთმცოდნეობა, პალეოგრაფია, დიპლომატიკა, ქრონოლოგია, ისტორიული მეტროლოგია, სფრაგისტიკა, გენეალოგია, ჰერალდიკა, ნუმიზმატიკა.'
-    },
-    {
-      id: 3,
-      text: 'დამოუკიდებელ ადგილს იკავებს ორი სპეციალიზებული ისტორიული მეცნიერება არქეოლოგია და ეთნოგრაფია.'
-    }
-  ])
   let setComment = () => {
     let newComment = {
-      id: new Date(),
-      text: textValue,
+      DocumentId: Number(params.id),
+      CommentBody: textValue,
     }
-    setMessages([...messages, newComment])
+    dispatch(createComment(newComment, params.id))
+
   }
-
   let userImg = useSelector(state => state.userInfo.img)
-
+  console.log('working')
   return (
     <Dialog
       open={props.comments}
@@ -156,25 +163,33 @@ const Comments = (props) => {
               <Styles>
 
                 <Col className={"commentBody"}>
-                  {messages && messages.map(mess => {
-                    return <Row key={mess.id}>
+                  {comments && comments.map(mess => {
+                    return <Row key={mess.documentCommentId}
+                                className={'d-flex justify-content-between align-items-center'}>
                       <div
                         className={"p-2 d-flex justify-content-between align-items-center"}>
                         <div className='imgDiv ml-2 '>
                           <img src={userImg ? userImg :
                             <i className="fas fa-user"/>}
-                               alt=""/>
+                               alt="#"
+
+                          />
                         </div>
                         <div className="textDiv">
-                          {mess.text}
+                          <div className={'font-weight-bold'}>
+                            {mess.commentUser}
+                          </div>
+                          <div>
+                            {mess.commentBody}
+                          </div>
                         </div>
 
                       </div>
+                      <div>
+                        {mess.commentDate.slice(11, 19)}
+                      </div>
                     </Row>
-
-
                   })}
-
                 </Col>
               </Styles>
               <Col>
@@ -185,7 +200,6 @@ const Comments = (props) => {
                   <FormTextarea onChange={onTextChange} value={textValue}
                                 placeholder='კომენტარი ...'
                                 className={"mb-3"}/>
-
                   <Button
                     onClick={setComment}
                   >
@@ -202,8 +216,6 @@ const Comments = (props) => {
 
       </DialogContent>
       <DialogActions>
-
-        {/*<Button onClick={save}>შენახვა</Button>*/}
       </DialogActions>
     </Dialog>
 

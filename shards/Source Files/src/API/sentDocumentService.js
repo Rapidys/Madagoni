@@ -15,7 +15,6 @@ export let getMessagePage = (params) => {
     try {
       API.getDocument(params)
         .then(response => {
-          debugger
 
           dispatch(chosenDocPageAC(response.data))
         })
@@ -30,7 +29,6 @@ export let getOnPageChange = (documentStatus) => {
   return dispatch => {
     try {
       API.getDocuments(documentStatus)
-
         .then(response => {
 
           if (!response.data) {
@@ -86,9 +84,7 @@ export let getIncomingDocs = (documentStatus) => {
   return dispatch => {
     try {
       API.getDocuments(documentStatus)
-
         .then(response => {
-
           if (!response.data) {
             return dispatch(setIsAuth(false))
           }

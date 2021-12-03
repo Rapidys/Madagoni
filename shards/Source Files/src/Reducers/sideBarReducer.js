@@ -17,13 +17,17 @@ let initialState = {
       title: `მიღებული`,
       htmlBefore: '<i class="material-icons">email</i>',
       to: "/incomingDocuments",
-
+      htmlAfter: null,
+      Received: null,
+      totalReceived:null,
     },
     {
       title: "დასადასტურებლები",
       htmlBefore: '<i class="material-icons">announcement</i>',
       to: "/signatureDocuments",
-
+      htmlAfter: null,
+      forSign: null,
+      totalSigns:null,
     },
     {
       title: "დრაფტები",

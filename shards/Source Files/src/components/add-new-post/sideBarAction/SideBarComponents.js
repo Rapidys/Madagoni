@@ -40,6 +40,7 @@ const SideBarComponents = (props) => {
             <Comments
               setComments={setComments}
               comments={comments}
+              setVisible={props.setVisible}
             />
           </div>
         </div>

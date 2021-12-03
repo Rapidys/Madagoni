@@ -69,17 +69,15 @@ export const login = (email, password) => {
     dispatch(LoadingAC(true))
 
     try {
-
       API.AuthAPI(email, password)
         .then(response => {
           dispatch(setUser({email, password}))
-
           if (!response.data) {
-            return dispatch(LoadingAC(false))
+            dispatch(LoadingAC(false))
+            dispatch(setIsAuth(false))
           }
           if (response && response.data) {
             localStorage.setItem('token', response.data.token)
-
             if (localStorage.getItem('token')) {
               dispatch(setIsAuth(true))
               dispatch(TokenAC(response.data.token))

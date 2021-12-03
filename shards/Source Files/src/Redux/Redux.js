@@ -18,6 +18,9 @@ import signatureDocumetReducer from "../Reducers/signatureDocumentReducer";
 import IncomingDocumentReducer from "../Reducers/IncomingDocumentsReducer";
 import MotionStatusReducer from "../Reducers/MotionStatusReducer";
 import documentColorReducer from "../Reducers/setDocumentColorReducer";
+import folderCounterReducer from "../Reducers/folderCountersReducer";
+import commentsReducer from "../Reducers/Comments/CommentsReducer";
+import creatNewCommentReducer from "../Reducers/Comments/CreateNewCommentReducer";
 
 
 let Reducers = combineReducers({
@@ -38,6 +41,9 @@ let Reducers = combineReducers({
   IncomingDocument: IncomingDocumentReducer,
   MotionStatus: MotionStatusReducer,
   documentColor: documentColorReducer,
+  folderCounter: folderCounterReducer,
+  getComments: commentsReducer,
+  creatNewComment: creatNewCommentReducer,
 })
 
 let store = createStore(Reducers, applyMiddleware(thunk))

@@ -40,11 +40,7 @@ class SidebarMainNavbar extends React.Component {
                 src={logo}
                 alt='Logo'
               />
-              {/*{!hideLogoText && (*/}
-              {/*  <span className="d-none d-md-inline ml-1">*/}
 
-              {/*  </span>*/}
-              {/*)}*/}
             </div>
           </NavbarBrand>
           {/* eslint-disable-next-line */}

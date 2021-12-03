@@ -27,7 +27,6 @@ const AddNewPost = ({
                       titleReadOnly,
                     }) => {
 
-  debugger
   return (
     <Container fluid className="main-content-container px-4 pb-4">
       {/* Page Header */}

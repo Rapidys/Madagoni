@@ -10,6 +10,7 @@ import {
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {newDocs} from "../../Reducers/chosenDocumentReducer";
+import Preloader from "../../Preloader/Preloader";
 
 
 const IncomingDocuments = (props) => {
