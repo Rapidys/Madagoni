@@ -8,7 +8,10 @@ import {
 import {Button, Card, Col, FormTextarea, Row,} from "shards-react";
 import {useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
-import {getComments} from "../../../../Reducers/Comments/CommentsReducer";
+import {
+  getComments,
+  setModalVisible
+} from "../../../../Reducers/Comments/CommentsReducer";
 import {useParams} from "react-router-dom";
 import {createComment} from "../../../../Reducers/Comments/CreateNewCommentReducer";
 
@@ -92,6 +95,7 @@ let Styles = styled.div`
 `
 
 const Comments = (props) => {
+  let visible = useSelector(state => state.getComments.isVisibleModal)
 
   const [textValue, setTextValue] = useState('')
   let params = useParams()
@@ -111,14 +115,15 @@ const Comments = (props) => {
       }, 5000)
       return () => clearInterval(interval);
     }
-  }, [props.setComments])
+  }, [visible])
 
   let onTextChange = (e) => {
     setTextValue(e.target.value)
   }
 
   const handleClose = () => {
-    props.setComments(false);
+    dispatch(setModalVisible(false))
+
   };
 
   let setComment = () => {
@@ -133,7 +138,7 @@ const Comments = (props) => {
   console.log('working')
   return (
     <Dialog
-      open={props.comments}
+      open={visible}
       onClose={handleClose}
       fullWidth={true}
       maxWidth={"sm"}

@@ -7,6 +7,7 @@ import {
   setCurrentPageAC
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
+import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
 
 
 const DraftDocuments = (props) => {
@@ -28,6 +29,8 @@ const DraftDocuments = (props) => {
   }, [currentPage, rowsPerPage])
   useEffect(() => {
     dispatch(setCurrentPageAC(1));
+    dispatch(setVisibleBtnAC(true))
+
   }, [])
 
   let drafts = useSelector(state => state.setDrafts.DraftDoc)

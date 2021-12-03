@@ -4,6 +4,10 @@ import React, {useEffect, useState} from "react";
 import AddNewPost from "./addNewPost";
 import {useDispatch} from "react-redux";
 import {getType} from "../../Reducers/addNewPost/selectDocReducer";
+import {
+  setModalVisible,
+  setVisibleBtnAC
+} from "../../Reducers/Comments/CommentsReducer";
 
 const NewPostSection = () => {
   let dispatch = useDispatch()
@@ -11,6 +15,7 @@ const NewPostSection = () => {
   const [documentBody, setDocumentBody] = useState('')
   useEffect(() => {
     dispatch(getType())
+    dispatch(setVisibleBtnAC(false))
   }, [])
   let [chosenDestination, setChosenDestination] = useState([])
   let [chosenVisitor, setChosenVisitor] = useState([])
@@ -32,7 +37,6 @@ const NewPostSection = () => {
       addBtn={'border - 1'}
       isDisabledVisitor={false}
       isDisabledDestinate={false}
-      setVisible={'d-none'}
     />
 
   )

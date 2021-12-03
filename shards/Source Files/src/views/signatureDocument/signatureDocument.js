@@ -8,6 +8,7 @@ import {
   setCurrentPageAC
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
+import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
 
 
 const SignatureDocuments = () => {
@@ -31,6 +32,8 @@ const SignatureDocuments = () => {
 
   useEffect(() => {
     dispatch(setCurrentPageAC(1));
+    dispatch(setVisibleBtnAC(true))
+
   }, [])
 
   let visirable = useSelector(state => state.signatureDocument.signatureDoc)

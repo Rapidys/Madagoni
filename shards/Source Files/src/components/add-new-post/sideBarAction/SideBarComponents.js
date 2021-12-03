@@ -7,17 +7,19 @@ import SideBarDestinations from "./sideBarModalInfo/sideBarDestinations";
 import SideBarVisitors from "./sideBarModalInfo/sideBarVisitors";
 import Comments from "./Comments/Comments";
 import ChosenUsers from "./chosenUsers/chosenUsers";
+import {setModalVisible} from "../../../Reducers/Comments/CommentsReducer";
+import {useDispatch, useSelector} from "react-redux";
 
 const SideBarComponents = (props) => {
 
 
-  const [comments, setComments] = useState(false)
-
+  let dispatch = useDispatch()
 
   const handleOpenComments = () => {
-    setComments(true);
+    dispatch(setModalVisible(true))
   };
 
+  let isVisibleBtn = useSelector(state => state.getComments.isVisibleBtn)
 
   return (
 
@@ -31,15 +33,13 @@ const SideBarComponents = (props) => {
           docId={props.docId}
           Date={props.Date}
         />
-        <div className={props.setVisible}>
+        <div className={!isVisibleBtn ? 'd-none' : ''}>
           <div className={"mb-1"}>
             <Button onClick={handleOpenComments}
                     className={"w-100"}
 
             >კომენტარები</Button>
             <Comments
-              setComments={setComments}
-              comments={comments}
               setVisible={props.setVisible}
             />
           </div>

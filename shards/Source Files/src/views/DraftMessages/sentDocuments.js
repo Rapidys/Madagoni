@@ -6,6 +6,7 @@ import {
   setCurrentPageAC
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
+import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
 
 
 const SentDocuments = () => {
@@ -25,7 +26,7 @@ const SentDocuments = () => {
   }, [rowsPerPage, currentPage])
   useEffect(() => {
     dispatch(setCurrentPageAC(1));
-
+    dispatch(setVisibleBtnAC(true))
   }, [])
 
   let sentDocs = useSelector(state => state.sentDocuments.sentDoc)

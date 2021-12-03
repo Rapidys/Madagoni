@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getMessagePage} from "../../../API/sentDocumentService";
 import AddNewPost from "../../../components/add-new-post/addNewPost";
 import MotionTypeFiltering from "../../motionTypeFiltering/motionTypeFiltering";
+import {setVisibleBtnAC} from "../../../Reducers/Comments/CommentsReducer";
 
 
 const ChosenDocument = () => {
@@ -15,6 +16,7 @@ const ChosenDocument = () => {
 
   useEffect(() => {
     dispatch(getMessagePage(pageId))
+    dispatch(setVisibleBtnAC(true))
   }, [pageId])
 
 
@@ -27,6 +29,7 @@ const ChosenDocument = () => {
   useMemo(() => {
     setchosenDestination([])
     setchosenVisitor([])
+
   }, [pageId])
 
   let [documentType, setDocumentType] = useState()

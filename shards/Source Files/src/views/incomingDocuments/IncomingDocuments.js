@@ -11,6 +11,7 @@ import {
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {newDocs} from "../../Reducers/chosenDocumentReducer";
 import Preloader from "../../Preloader/Preloader";
+import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
 
 
 const IncomingDocuments = (props) => {
@@ -37,6 +38,8 @@ const IncomingDocuments = (props) => {
 
   useEffect(() => {
     dispatch(setCurrentPageAC(1));
+    dispatch(setVisibleBtnAC(true))
+
   }, [])
 
 
