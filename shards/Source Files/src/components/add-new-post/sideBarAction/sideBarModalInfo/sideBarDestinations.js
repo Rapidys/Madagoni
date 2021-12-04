@@ -73,15 +73,30 @@ const SideBarDestinations = (props) => {
 
     }
     if (department.displayName && department.departmentId) {
-      setDestination([...destination, newDep])
+      for (let i = 0; i < destination.length; i++) {
+        if (destination[i].displayName === department.displayName) {
+          rame = 1
+        }
+      }
+      if (rame === 0) {
+        setDestination([...destination, newDep])
+      }
     }
-
   }, [department])
 
 
   const save = () => {
+    let authorMotion = {
+      MotionTypeId: 1,
+      MotionStatusId: 1,
+      TargetId: 1,
+      DocumentMotionId: 0,
+      TargetTypeId: 1,
+    }
+
     props.setChosenDestination(destination)
-    dispatch(setMotion(destination))
+    dispatch(setMotion([authorMotion, ...destination]))
+    console.log(destination)
     props.handleClose()
   }
 
@@ -130,6 +145,8 @@ const SideBarDestinations = (props) => {
                     <b>ადრესატები</b>
                     <ChosenDestinations
                       destination={destination}
+                      department={department}
+                      setDepartment={setDepartment}
                       setDestination={setDestination}
                       handleSetDate={handleSetDate}
                       save={save}

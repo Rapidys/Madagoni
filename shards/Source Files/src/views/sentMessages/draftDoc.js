@@ -8,6 +8,7 @@ import {
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
+import {setFinishDocAC} from "../../Reducers/IncomingDocumentsReducer";
 
 
 const DraftDocuments = (props) => {
@@ -30,11 +31,11 @@ const DraftDocuments = (props) => {
   useEffect(() => {
     dispatch(setCurrentPageAC(1));
     dispatch(setVisibleBtnAC(true))
+    dispatch(setFinishDocAC(false))
 
   }, [])
 
   let drafts = useSelector(state => state.setDrafts.DraftDoc)
-
 
 
   return (

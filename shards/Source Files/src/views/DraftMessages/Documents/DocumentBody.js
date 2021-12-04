@@ -5,6 +5,7 @@ import RightClickMenu from "../../../RightClick/RightClickMenu";
 import {uniqueIdAC} from "../../../Reducers/chosenDocumentReducer";
 import {useDispatch} from "react-redux";
 import styled from "styled-components";
+import {setCounter} from "../../../Reducers/folderCountersReducer";
 
 let Styles = styled.div`
   @media screen and (max-width: 500px) {

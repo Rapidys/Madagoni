@@ -108,7 +108,7 @@ const Comments = () => {
 
 
   useEffect(() => {
-    if (visibleBtn === true) {
+    if (params.id) {
       dispatch(getComments(params.id))
       let interval = setInterval(() => {
         dispatch(getComments(params.id))
@@ -117,13 +117,13 @@ const Comments = () => {
     }
   }, [])
 
+
   let onTextChange = (e) => {
     setTextValue(e.target.value)
   }
 
   const handleClose = () => {
     dispatch(setModalVisible(false))
-
   };
 
   let setComment = () => {
@@ -147,7 +147,6 @@ const Comments = () => {
         <div className={"closeDiv"}>
           <i className="fa fa-times "
              onClick={handleClose}
-
           />
         </div>
       </Styles>
@@ -177,7 +176,6 @@ const Comments = () => {
                           <img src={userImg ? userImg :
                             <i className="fas fa-user"/>}
                                alt="#"
-
                           />
                         </div>
                         <div className="textDiv">

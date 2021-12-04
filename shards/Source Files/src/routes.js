@@ -17,6 +17,7 @@ import DraftDocuments from "./views/sentMessages/draftDoc";
 import ChosenDocument from "./views/chosenDocument/MessagesPage/MessagePage";
 import SignatureDocuments from "./views/signatureDocument/signatureDocument";
 import IncomingDocuments from "./views/incomingDocuments/IncomingDocuments";
+import AdminPage from "./components/adminPage/adminPage";
 
 export let PrivacyRoutes = [
   {
@@ -83,7 +84,17 @@ export let PrivacyRoutes = [
     path: "/blog-posts",
     layout: DefaultLayout,
     component: BlogPosts
-  }
+  },
+  {
+    path: "/adminPage",
+    layout: DefaultLayout,
+    component: AdminPage
+  },
+  {
+    path: "/register",
+    layout: DefaultLayout,
+    component: RegisterContainer
+  },
 ]
 
 export let PublicRoutes = [
@@ -91,9 +102,4 @@ export let PublicRoutes = [
     path: "/login",
     component: LoginContainer
   },
-  {
-    path: "/register",
-    component: RegisterContainer
-  },
-
 ]

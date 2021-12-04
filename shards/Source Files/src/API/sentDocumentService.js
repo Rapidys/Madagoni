@@ -15,7 +15,6 @@ export let getMessagePage = (params) => {
     try {
       API.getDocument(params)
         .then(response => {
-
           dispatch(chosenDocPageAC(response.data))
         })
     } catch (e) {

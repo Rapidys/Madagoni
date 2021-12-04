@@ -8,7 +8,6 @@ let baseUrl = 'https://cyberdocapiservice20211103000756.azurewebsites.net/api'
 // let token = localStorage.getItem('token')
 
 
-
 const API = {
   AuthAPI(email, password) {
     return $ApiBase.post('/auth/authenticate', {

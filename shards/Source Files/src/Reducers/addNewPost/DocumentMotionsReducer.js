@@ -1,13 +1,5 @@
 let initialState = {
-  Motion: [
-    {
-      MotionTypeId: 1,
-      MotionStatusId: 1,
-      TargetId: 1,
-      DocumentMotionId: 0,
-      TargetTypeId: 1,
-    }
-  ]
+  Motion: []
 }
 
 let SetMotion = "SET-MOTION"
@@ -17,7 +9,7 @@ let DocumentMotionsReducer = (state = initialState, action) => {
     case SetMotion: {
       return {
         ...state,
-        Motion: [...state.Motion, ...action.data],
+        Motion: state.Motion = action.data,
       }
     }
 

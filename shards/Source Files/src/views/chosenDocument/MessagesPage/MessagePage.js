@@ -5,6 +5,7 @@ import {getMessagePage} from "../../../API/sentDocumentService";
 import AddNewPost from "../../../components/add-new-post/addNewPost";
 import MotionTypeFiltering from "../../motionTypeFiltering/motionTypeFiltering";
 import {setVisibleBtnAC} from "../../../Reducers/Comments/CommentsReducer";
+import {setCounter} from "../../../Reducers/folderCountersReducer";
 
 
 const ChosenDocument = () => {
@@ -17,6 +18,7 @@ const ChosenDocument = () => {
   useEffect(() => {
     dispatch(getMessagePage(pageId))
     dispatch(setVisibleBtnAC(true))
+    dispatch(setCounter())
   }, [pageId])
 
 
@@ -29,7 +31,6 @@ const ChosenDocument = () => {
   useMemo(() => {
     setchosenDestination([])
     setchosenVisitor([])
-
   }, [pageId])
 
   let [documentType, setDocumentType] = useState()

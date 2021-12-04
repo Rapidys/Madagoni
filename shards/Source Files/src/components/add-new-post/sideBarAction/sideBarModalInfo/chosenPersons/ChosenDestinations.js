@@ -10,7 +10,13 @@ const ChosenDestinations = (props) => {
   let dispatch = useDispatch()
 
   let deleteUsers = useMemo(() => {
-    return (userId) => props.setDestination && props.setDestination(props.destination.filter(p => p.userId !== userId))
+    return (userId, displayName) => props.setDestination && props.setDestination(props.destination.filter(p => {
+      if (p.displayName && p.departmentId) {
+        return p.displayName !== displayName
+      } else {
+        return p.userId !== userId
+      }
+    }))
   }, [props.destination, props.setDestination])
 
 
@@ -19,8 +25,8 @@ const ChosenDestinations = (props) => {
   }, [Motions, setMotion])
 
 
-  let deleteChosen = (userId) => {
-    deleteUsers(userId)
+  let deleteChosen = (userId, displayName) => {
+    deleteUsers(userId, displayName)
     deleteMotions(userId)
   }
 
@@ -31,8 +37,7 @@ const ChosenDestinations = (props) => {
     <div>
       {props.destination.length > 0 && props.destination.map((user, index) => {
         return (
-
-          <div key={user.userId || user.departmentId}
+          <div key={index}
           >
             <div className={"d-flex justify-content-between p-2 mt-1"}>
               <div>
@@ -42,13 +47,11 @@ const ChosenDestinations = (props) => {
               <div style={{cursor: "pointer"}}
                    onClick={(e) => {
                      e.stopPropagation()
-                     deleteChosen(user.userId)
+                     deleteChosen(user.userId, user.displayName)
                    }}
               >
                 <i className="fa fa-times"/>
-
               </div>
-
 
             </div>
             <div>
@@ -62,8 +65,6 @@ const ChosenDestinations = (props) => {
           </div>
         )
       })}
-
-      {}
 
     </div>
   );

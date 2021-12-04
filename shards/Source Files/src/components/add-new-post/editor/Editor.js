@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import ReactQuill from "react-quill";
 import {
   Button,
@@ -50,7 +50,7 @@ const Editor = (props) => {
     'code-block'
   ]
 
-
+  let finishDoc = useSelector(state => state.IncomingDocument.finishDocument)
   let Motions = useSelector(state => state.docMotion.Motion)
   let selectType = useSelector(state => state.selectDocument.selectType)
   let fileId = useSelector(state => state.uploadFile.fileId)
@@ -120,14 +120,17 @@ const Editor = (props) => {
   let getDocumentId = useSelector(state => state.addNewPost.documentId)
   let getDocumentDate = useSelector(state => state.addNewPost.documentDate)
 
-  if (status === 200) {
-    setOpen(true)
-    props.setDocumentTitle('')
-    props.setDocumentBody('')
-    dispatch(selectDocumentAC({}))
-    dispatch(setMotion([]))
-    dispatch(statusAC(null))
-  }
+  useEffect(() => {
+    if (status === 200) {
+      setOpen(true)
+      props.setDocumentTitle('')
+      props.setDocumentBody('')
+      dispatch(selectDocumentAC({}))
+      dispatch(setMotion([]))
+      dispatch(statusAC(null))
+    }
+  }, [status])
+
 
   return (
     <Card small className="mb-3">
@@ -180,7 +183,11 @@ const Editor = (props) => {
         >
           ხელმოწერა
         </Button>
-
+        <Button
+          className={!finishDoc === true ? 'd-none' : 'border - 1'}
+        >
+          დავასრულე
+        </Button>
       </CardBody>
     </Card>
   )

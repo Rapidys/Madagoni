@@ -9,34 +9,29 @@ let initialState = {
     },
 
     {
-      title: "პოსტები",
-      htmlBefore: '<i class="material-icons">vertical_split</i>',
-      to: "/blog-posts",
-    },
-    {
       title: `მიღებული`,
       htmlBefore: '<i class="material-icons">email</i>',
       to: "/incomingDocuments",
       htmlAfter: null,
       Received: null,
-      totalReceived:null,
+      totalReceived: null,
     },
     {
-      title: "დასადასტურებლები",
+      title: "ხელმოსაწერი",
       htmlBefore: '<i class="material-icons">announcement</i>',
       to: "/signatureDocuments",
       htmlAfter: null,
       forSign: null,
-      totalSigns:null,
+      totalSigns: null,
     },
     {
-      title: "დრაფტები",
+      title: "დრაფტი",
       htmlBefore: '<i class="material-icons">drafts</i>',
       to: "/draftDocuments",
 
     },
     {
-      title: "გაგზავნილები",
+      title: "გაგზავნილი",
       htmlBefore: '<i class="material-icons">edit</i>',
       to: "/sentDocuments",
     },

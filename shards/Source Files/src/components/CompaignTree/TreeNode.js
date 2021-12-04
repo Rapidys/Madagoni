@@ -13,7 +13,6 @@ let Styles = styled.span`
 `
 const TreeNode = (props) => {
   const [visibility, setVisibility] = useState(false)
-  // let date = useSelector(state => state.chosenData.endDate)
 
   const setChosen = useCallback(
     () => {

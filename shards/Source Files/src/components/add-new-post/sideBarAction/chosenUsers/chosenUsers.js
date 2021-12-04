@@ -70,7 +70,10 @@ const ChosenUsers = (props) => {
                           key={index}>
                 {u.firstName || u.targetName
                   ? <Row className={"p-2"}><i
-                    className="mr-2 mt-1 fas fa-user"/>
+                    className="mr-2 mt-1 fas fa-user"
+                    style={{color: u.motionColor}}/>
+
+
                     {u.firstName} {u.lastName} {u.targetName}
                   </Row>
                   : <Row className={"p-2"} key={u.departmentId}><i

@@ -2,13 +2,9 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {setCounter} from "../../../../../Reducers/folderCountersReducer";
 import styled from "styled-components";
+import {Tooltip} from "@material-ui/core";
 
 let Styles = styled.div`
-  .miniModal {
-    width: 100px;
-    height: 30px;
-    border: 1px;
-  }
 
   .Counter {
     width: 15px;
@@ -20,26 +16,27 @@ let Styles = styled.div`
     color: white;
     font-size: 10px;
     position: fixed;
+    cursor: pointer;
   }
 
   .forNewSign {
-    right: 40px;
-    top: 180px;
+    left: 35px;
+    top: 120px;
   }
 
   .forNewReceived {
-    right: 40px;
-    top: 230px;
+    left: 35px;
+    top: 170px;
   }
 
   .forSign {
-    right: 20px;
-    top: 180px;
+    left: 10px;
+    top: 120px;
   }
 
   .forReceived {
-    right: 20px;
-    top: 230px;
+    left: 10px;
+    top: 170px;
   }
 `
 
@@ -61,25 +58,36 @@ const Counter = ({item}) => {
   return (
     <Styles>
 
-      <div className={'Counter forNewReceived'}>
-        <span>{Counter && Counter.forSignNew}</span>
-      </div>
 
+      <Tooltip title="ახალი ხელმოსაწერი" arrow>
 
-      <div className={'Counter forNewSign'}>
-        <span>{Counter && Counter.receivedNew}</span>
-      </div>
+        <div
+          className={Counter.forSignNew === 0 ? 'd-none' : 'Counter forNewReceived bg-danger'}>
+          <span>{Counter && Counter.forSignNew}</span>
+        </div>
 
+      </Tooltip>
 
-      <div className={'Counter forSign bg-danger'}>
+      <Tooltip title={'ახალი მოსული'} arrow>
+        <div
+          className={Counter.receivedNew === 0 ? 'd-none' : 'Counter forNewSign bg-danger'}>
+          <span>{Counter && Counter.receivedNew}</span>
+        </div>
+      </Tooltip>
+      <Tooltip title={'მიღებული დოკ.რაოდენობა'} arrow>
+        <div className={'Counter forSign '}>
           <span
           >{Counter && Counter.received}</span>
-      </div>
+        </div>
+      </Tooltip>
 
+      <Tooltip title={'მიღებული დოკ.რაოდენობა'} arrow>
+        <div className={'Counter forReceived '}>
+          <span>{Counter && Counter.forSign}</span>
+        </div>
 
-      <div className={'Counter forReceived bg-danger'}>
-        <span>{Counter && Counter.forSign}</span>
-      </div>
+      </Tooltip>
+
 
     </Styles>
   );

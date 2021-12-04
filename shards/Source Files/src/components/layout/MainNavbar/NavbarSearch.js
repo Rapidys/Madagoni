@@ -56,15 +56,23 @@ export default () => {
           </NavLink>
 
           <DropdownItem divider/>
-          <NavLink to="/documentFiles" className={"text-decoration-none"}>
+          <NavLink to="/blog-posts" className={"text-decoration-none"}>
             <DropdownItem className={"items"}>
               <i
-                className="material-icons cursor-pointer hov">description</i>
+                className="material-icons cursor-pointer hov">vertical_split</i>
 
-              <span className={"ml-2"}>დოკუმენტები</span>
+              <span className={"ml-2"}>პოსტები</span>
             </DropdownItem>
           </NavLink>
 
+          <NavLink to="/adminPage" className={"text-decoration-none"}>
+            <DropdownItem className={"items"}>
+              <i
+                className="material-icons cursor-pointer hov">widgets</i>
+
+              <span className={"ml-2"}>ადმინისტრირება</span>
+            </DropdownItem>
+          </NavLink>
         </Collapse>
       </NavItem>
 

@@ -1,17 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {Link, NavLink} from "react-router-dom";
 import {Container, Nav, NavItem, Row} from "shards-react";
 
 
-const MainFooter = ({ contained, menuItems, copyright }) => (
+const MainFooter = ({contained, menuItems, copyright}) => (
   <footer className="main-footer d-flex p-2 px-3 bg-white border-top">
     <Container fluid={contained}>
       <Row>
         <Nav>
           {menuItems.map((item, idx) => (
             <NavItem key={idx}>
-              <NavLink tag={Link} to={'/blog-overview'}>
+              <NavLink tag={Link} to={item.to} className={"mr-3"}>
                 {item.title}
               </NavLink>
             </NavItem>
@@ -23,44 +22,29 @@ const MainFooter = ({ contained, menuItems, copyright }) => (
   </footer>
 );
 
-MainFooter.propTypes = {
-  /**
-   * Whether the content is contained, or not.
-   */
-  contained: PropTypes.bool,
-  /**
-   * The menu items array.
-   */
-  menuItems: PropTypes.array,
-  /**
-   * The copyright info.
-   */
-  copyright: PropTypes.string
-};
-
 MainFooter.defaultProps = {
   contained: false,
-  copyright: "Copyright © 2018 DesignRevision",
+  copyright: "Copyright © 2021 CyberDocs",
   menuItems: [
     {
-      title: "Home",
+      title: "დიაგრამები",
       to: "/blog-overview"
     },
     {
-      title: "Services",
-      to: "/blog-overview"
+      title: "პოსტები",
+      to: "/blog-posts"
     },
     {
-      title: "About",
-      to: "#"
+      title: "ახალი დოკუმენტი",
+      to: "/add-new-post"
     },
     {
-      title: "Products",
-      to: "#"
+      title: "მიღებული",
+      to: "/incomingDocuments"
     },
     {
-      title: "Blog",
-      to: "#"
+      title: "გაგზავნილი",
+      to: "/sentDocuments"
     }
   ]
 };
