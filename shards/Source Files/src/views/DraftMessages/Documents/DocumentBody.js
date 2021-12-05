@@ -94,7 +94,7 @@ const DocumentBody = (props) => {
                 }}
 
               >
-                <th scope="row" className={"resTtd"}>{Mess.documentId}</th>
+                <td className={"resTtd"}>{Mess.documentId}</td>
                 <td className={"resTtd"}>{Mess.documentDate.slice(0, 10)}</td>
                 <td className={"resTtd"}>{Mess.documentTitle}</td>
                 <td className={"resTtd"}>{Mess.documentType}</td>

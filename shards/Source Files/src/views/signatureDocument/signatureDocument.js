@@ -9,7 +9,7 @@ import {
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
-import {setFinishDocAC} from "../../Reducers/getDocReducer";
+import {setAddBtnAC, setFinishDocAC} from "../../Reducers/getDocReducer";
 
 
 const SignatureDocuments = () => {
@@ -35,6 +35,7 @@ const SignatureDocuments = () => {
     dispatch(setCurrentPageAC(1));
     dispatch(setVisibleBtnAC(true))
     dispatch(setFinishDocAC(false))
+    dispatch(setAddBtnAC(false))
   }, [])
 
   let visirable = useSelector(state => state.GetDoc.documents)
@@ -43,7 +44,7 @@ const SignatureDocuments = () => {
   return (
     <DocumentPage
       pageTitle={'დასადასტურებელი დოკუმენტები'}
-      pageName='/document'
+      pageName='/signatureDocument'
       Documents={visirable}
       totalCount={totalCount}
       rowsPerPage={rowsPerPage}

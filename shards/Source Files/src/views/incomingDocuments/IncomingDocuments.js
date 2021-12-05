@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useCallback, useEffect, useMemo} from "react";
 import DocumentPage from "../DraftMessages/Documents/DocumentPage";
 import {
   getDocs,
@@ -9,10 +9,11 @@ import {
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
-import {setFinishDocAC} from "../../Reducers/getDocReducer";
+import Preloader from "../../Preloader/Preloader";
+import {approveBtnAC, setFinishDocAC} from "../../Reducers/getDocReducer";
 
 
-const IncomingDocuments = (props) => {
+const IncomingDocuments = () => {
 
   let currentPage = useSelector(state => state.PaginationData.currentPage)
   let rowsPerPage = useSelector(state => state.PaginationData.rowsPerPage)
@@ -31,25 +32,34 @@ const IncomingDocuments = (props) => {
     }))
   }, [currentPage, rowsPerPage])
 
-
   let incomings = useSelector(state => state.GetDoc.documents)
+  let loading = useSelector(state => state.GetDoc.isLoading)
+
 
   useEffect(() => {
     dispatch(setCurrentPageAC(1));
     dispatch(setVisibleBtnAC(true))
-    dispatch(setFinishDocAC(true))
+    dispatch(approveBtnAC(false))
   }, [])
 
   return (
-    <DocumentPage
-      pageTitle={'მიღებულები'}
-      pageName='/document'
-      Documents={incomings}
-      totalCount={totalCount}
-      rowsPerPage={rowsPerPage}
-      currentPage={currentPage - 1}
+    <>
+      {
+        loading === true
+          ? <Preloader/>
+          : <DocumentPage
+            pageTitle={'მიღებულები'}
+            pageName='/incomingDocument'
+            Documents={incomings}
+            totalCount={totalCount}
+            rowsPerPage={rowsPerPage}
+            currentPage={currentPage - 1}
 
-    />
+          />
+      }
+
+    </>
+
   )
 };
 

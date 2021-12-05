@@ -9,8 +9,7 @@ import {
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
-import {setFinishDocAC} from "../../Reducers/getDocReducer";
-
+import {approveBtnAC, setFinishDocAC} from "../../Reducers/getDocReducer";
 
 
 const CompletedDocuments = () => {
@@ -36,6 +35,8 @@ const CompletedDocuments = () => {
     dispatch(setCurrentPageAC(1));
     dispatch(setVisibleBtnAC(true))
     dispatch(setFinishDocAC(false))
+    dispatch(approveBtnAC(false))
+
   }, [])
 
   let visirable = useSelector(state => state.GetDoc.documents)
@@ -43,7 +44,7 @@ const CompletedDocuments = () => {
   return (
     <DocumentPage
       pageTitle={'შესრულებული დოკუმენტები'}
-      pageName='/document'
+      pageName='/completedDocument'
       Documents={visirable}
       totalCount={totalCount}
       rowsPerPage={rowsPerPage}

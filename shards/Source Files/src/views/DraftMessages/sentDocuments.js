@@ -7,7 +7,7 @@ import {
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
 import {getDocs} from "../../API/sentDocumentService";
-import {setFinishDocAC} from "../../Reducers/getDocReducer";
+import {approveBtnAC, setFinishDocAC} from "../../Reducers/getDocReducer";
 
 
 const SentDocuments = () => {
@@ -29,6 +29,8 @@ const SentDocuments = () => {
     dispatch(setCurrentPageAC(1));
     dispatch(setVisibleBtnAC(true))
     dispatch(setFinishDocAC(false))
+    dispatch(approveBtnAC(false))
+
   }, [])
 
   let sentDocs = useSelector(state => state.GetDoc.documents)
@@ -38,7 +40,7 @@ const SentDocuments = () => {
     <>
       <DocumentPage
         pageTitle={'გაგზავნილები'}
-        pageName='/document'
+        pageName='/sentDocument'
         Documents={sentDocs}
         totalCount={totalCount}
         rowsPerPage={rowsPerPage}

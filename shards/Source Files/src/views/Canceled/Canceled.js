@@ -8,7 +8,7 @@ import {
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
-import {setFinishDocAC} from "../../Reducers/getDocReducer";
+import {approveBtnAC, setFinishDocAC} from "../../Reducers/getDocReducer";
 
 
 const CanceledDocuments = () => {
@@ -34,6 +34,7 @@ const CanceledDocuments = () => {
     dispatch(setCurrentPageAC(1));
     dispatch(setVisibleBtnAC(true))
     dispatch(setFinishDocAC(false))
+    dispatch(approveBtnAC(false))
   }, [])
 
   let visirable = useSelector(state => state.GetDoc.documents)
@@ -41,7 +42,7 @@ const CanceledDocuments = () => {
   return (
     <DocumentPage
       pageTitle={'გაუქმებული დოკუმენტები'}
-      pageName='/document'
+      pageName='/canceledDocument'
       Documents={visirable}
       totalCount={totalCount}
       rowsPerPage={rowsPerPage}

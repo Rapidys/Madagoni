@@ -19,6 +19,7 @@ import {
 } from "../../../Reducers/addNewPost/addNewPostReducer";
 import MySelect from "../../../MySelect/MySelect";
 import {Dialog, DialogContent, DialogTitle} from "@material-ui/core";
+import {useHistory} from "react-router-dom";
 
 
 const Editor = (props) => {
@@ -52,11 +53,12 @@ const Editor = (props) => {
     'code-block'
   ]
 
-  let finishDoc = useSelector(state => state.GetDoc.finishDocument)
+  let getDoc = useSelector(state => state.GetDoc)
   let Motions = useSelector(state => state.docMotion.Motion)
   let selectType = useSelector(state => state.selectDocument.selectType)
   let fileId = useSelector(state => state.uploadFile.fileId)
   let status = useSelector(state => state.addNewPost.status)
+
 
   const [open, setOpen] = useState(false)
 
@@ -133,7 +135,6 @@ const Editor = (props) => {
     }
   }, [status])
 
-
   let [finishCategories, setFinishCategories] = useState(false)
   let finishModal = () => {
     setFinishCategories((e) => !e)
@@ -176,7 +177,7 @@ const Editor = (props) => {
         <Button
           disabled={!props.documentTitle}
           onClick={addNewPost}
-          className={props.addBtn}
+          className={getDoc.addBtn !== true ? 'd-none' : 'border - 1'}
         >გადაგზავნა</Button>
         {/*"ml-lg-2 ml-sm-0 border - 1"*/}
         <Button
@@ -185,12 +186,12 @@ const Editor = (props) => {
           className={props.draftBtn}
         >დრაფტად შენახვა</Button>
         <Button
-          className={props.approve}
+          className={getDoc.approveBtn !== true ? 'd-none' : 'border - 1'}
         >
           ხელმოწერა
         </Button>
         <Button
-          className={!finishDoc === true ? 'd-none' : 'border - 1'}
+          className={getDoc.finishDocument !== true ? 'd-none' : 'border - 1'}
           onClick={finishModal}
         >
           დავასრულე
@@ -213,7 +214,7 @@ const Editor = (props) => {
               />
 
               <Button className={"mt-5"}
-              onClick = {finishModal}
+                      onClick={finishModal}
               >
                 არჩევა
               </Button>

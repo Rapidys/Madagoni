@@ -13,12 +13,10 @@ const AddNewPost = ({
                       chosenVisitor,
                       setChosenVisitor,
                       documentType,
-                      approve,
                       setVisible,
                       chosenDestination,
                       setChosenDestination,
                       draftBtn,
-                      addBtn,
                       docId,
                       Date,
                       isDisabledVisitor,
@@ -44,9 +42,7 @@ const AddNewPost = ({
             documentTitle={documentTitle}
             setDocumentBody={setDocumentBody}
             documentBody={documentBody}
-            approve={approve}
             draftBtn={draftBtn}
-            addBtn={addBtn}
             readOnly={readOnly}
             titleReadOnly={titleReadOnly}
           />

@@ -2,11 +2,13 @@ let initialState = {
   currentMessagePage: {},
   uniqueId: null,
   newDocs: [],
+  isLoading: false,
 }
 
 let chosenDocPage = 'chosenDocPage'
 let uniqueId = 'uniqueId'
 let setNewDocs = 'setNewDocs'
+let chosenLoading = 'chosenLoading'
 
 
 let chosenDocumentReducer = (state = initialState, action) => {
@@ -32,6 +34,13 @@ let chosenDocumentReducer = (state = initialState, action) => {
         newDocs: [...state.newDocs, ...action.newd]
       }
     }
+    case chosenLoading: {
+
+      return {
+        ...state,
+        isLoading: action.loading
+      }
+    }
 
 
     default:
@@ -42,6 +51,7 @@ let chosenDocumentReducer = (state = initialState, action) => {
 export let chosenDocPageAC = (info) => ({type: chosenDocPage, info})
 export let uniqueIdAC = (id) => ({type: uniqueId, id})
 export let newDocs = (newd) => ({type: setNewDocs, newd})
+export let chosenIsLoadingAC = (loading) => ({type: chosenLoading, loading})
 
 
 export default chosenDocumentReducer

@@ -86,12 +86,42 @@ export let PrivacyRoutes = [
     component: CanceledDocuments,
     exact: true,
   },
+
   {
-    path: "/document/:id",
+    path: "/incomingDocument/:id",
     layout: DefaultLayout,
     component: ChosenDocument,
     exact: true,
-
+  },
+  {
+    path: "/sentDocument/:id",
+    layout: DefaultLayout,
+    component: ChosenDocument,
+    exact: true,
+  },
+  {
+    path: "/draftDocument/:id",
+    layout: DefaultLayout,
+    component: ChosenDocument,
+    exact: true,
+  },
+  {
+    path: "/signatureDocument/:id",
+    layout: DefaultLayout,
+    component: ChosenDocument,
+    exact: true,
+  },
+  {
+    path: "/canceledDocument/:id",
+    layout: DefaultLayout,
+    component: ChosenDocument,
+    exact: true,
+  },
+  {
+    path: "/completedDocument/:id",
+    layout: DefaultLayout,
+    component: ChosenDocument,
+    exact: true,
   },
   {
     path: "/blog-posts",

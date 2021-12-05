@@ -10,8 +10,7 @@ import {
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
-import {setFinishDocAC} from "../../Reducers/getDocReducer";
-
+import {approveBtnAC, setFinishDocAC} from "../../Reducers/getDocReducer";
 
 
 const DraftDocuments = (props) => {
@@ -35,6 +34,7 @@ const DraftDocuments = (props) => {
     dispatch(setCurrentPageAC(1));
     dispatch(setVisibleBtnAC(true))
     dispatch(setFinishDocAC(false))
+    dispatch(approveBtnAC(false))
 
   }, [])
 
@@ -44,7 +44,7 @@ const DraftDocuments = (props) => {
   return (
     <DocumentPage
       pageTitle={'დრაფტები'}
-      pageName='/document'
+      pageName='/draftDocument'
       Documents={drafts}
 
       totalCount={totalCount}

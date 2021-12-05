@@ -6,6 +6,9 @@ import AddNewPost from "../../../components/add-new-post/addNewPost";
 import MotionTypeFiltering from "../../motionTypeFiltering/motionTypeFiltering";
 import {setVisibleBtnAC} from "../../../Reducers/Comments/CommentsReducer";
 import {setCounter} from "../../../Reducers/folderCountersReducer";
+import Preloader from "../../../Preloader/Preloader";
+import {useHistory} from "react-router-dom";
+import {btnFilter} from "./btnFilter";
 
 
 const ChosenDocument = () => {
@@ -14,6 +17,7 @@ const ChosenDocument = () => {
 
   let dispatch = useDispatch()
   let chosen = useSelector(state => state.chosenDocument.currentMessagePage)
+  let isLoading = useSelector(state => state.chosenDocument.isLoading)
 
   useEffect(() => {
     dispatch(getMessagePage(pageId))
@@ -43,25 +47,34 @@ const ChosenDocument = () => {
 
 
   let MotionStatus = useSelector(state => state.MotionStatus.motionStatus)
-
+  let history = useHistory()
+  useEffect(() => {
+    btnFilter(history, params, dispatch)
+  }, [])
   return (
-    <AddNewPost
-      title={``}
-      chosenVisitor={chosenVisitor}
-      chosenDestination={chosenDestination}
-      documentTitle={documentTitle}
-      documentBody={documentBody}
-      documentType={documentType}
-      approve={MotionStatus === 3 ? 'lg-ml-3 xs-ml-0 border - 1' : 'd-none'}
-      draftBtn={MotionStatus === 0 ? 'lg-ml-3 xs-ml-0 border - 1' : 'd-none'}
-      addBtn={MotionStatus !== 3 ? 'lg-ml-3 xs-ml-0 border - 1' : 'd-none'}
-      docId={`დოკუმენტის ნომერი :${chosen.documentId} `}
-      Date={`${chosen.documentDate && chosen.documentDate.slice(0, 10)}`}
-      isDisabledVisitor={true}
-      isDisabledDestinate={true}
-      readOnly={true}
-      titleReadOnly={true}
-    />
+    <>
+      {
+        isLoading === true
+          ? <Preloader/>
+          : <AddNewPost
+            title={``}
+            chosenVisitor={chosenVisitor}
+            chosenDestination={chosenDestination}
+            documentTitle={documentTitle}
+            documentBody={documentBody}
+            documentType={documentType}
+            draftBtn={MotionStatus === 0 ? 'lg-ml-3 xs-ml-0 border - 1' : 'd-none'}
+            docId={`დოკუმენტის ნომერი :${chosen.documentId} `}
+            Date={`${chosen.documentDate && chosen.documentDate.slice(0, 10)}`}
+            isDisabledVisitor={true}
+            isDisabledDestinate={true}
+            readOnly={true}
+            titleReadOnly={true}
+          />
+      }
+
+    </>
+
   );
 };
 
