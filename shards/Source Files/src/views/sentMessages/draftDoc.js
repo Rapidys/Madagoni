@@ -1,6 +1,8 @@
 import React, {useEffect} from "react";
 import DocumentPage from "../DraftMessages/Documents/DocumentPage";
-import {getDraftDocs, getOnPageChange} from "../../API/sentDocumentService";
+import {
+  getDocs,
+} from "../../API/sentDocumentService";
 import {useDispatch, useSelector} from "react-redux";
 import {
   rowsPerPageAc,
@@ -8,7 +10,8 @@ import {
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
-import {setFinishDocAC} from "../../Reducers/IncomingDocumentsReducer";
+import {setFinishDocAC} from "../../Reducers/getDocReducer";
+
 
 
 const DraftDocuments = (props) => {
@@ -22,7 +25,7 @@ const DraftDocuments = (props) => {
   useEffect(() => {
 
     dispatch(motionStatusAC(1))
-    dispatch(getDraftDocs({
+    dispatch(getDocs({
       MotionStatus: 1,
       PageNumber: currentPage,
       RecordsPerPage: rowsPerPage,
@@ -35,13 +38,13 @@ const DraftDocuments = (props) => {
 
   }, [])
 
-  let drafts = useSelector(state => state.setDrafts.DraftDoc)
+  let drafts = useSelector(state => state.GetDoc.documents)
 
 
   return (
     <DocumentPage
       pageTitle={'დრაფტები'}
-      pageName='/tables'
+      pageName='/document'
       Documents={drafts}
 
       totalCount={totalCount}

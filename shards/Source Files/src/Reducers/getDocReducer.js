@@ -1,17 +1,19 @@
 let initialState = {
-  incomingDoc: [],
+  documents: [],
   finishDocument: false,
+
 }
 
-let setIncoming = 'setIncoming'
+let setGetDoc = 'setGetDoc'
 let setFinishDoc = 'FINISH-DOC'
 
-let IncomingDocumentReducer = (state = initialState, action) => {
+
+let GetDocReducer = (state = initialState, action) => {
   switch (action.type) {
-    case setIncoming: {
+    case setGetDoc: {
       return {
         ...state,
-        incomingDoc: action.doc
+        documents: action.doc
       }
     }
     case setFinishDoc: {
@@ -24,7 +26,9 @@ let IncomingDocumentReducer = (state = initialState, action) => {
       return state
   }
 }
-export let setIncomingDocsAC = (doc) => ({type: setIncoming, doc})
+
+export let GetDocumentAC = (doc) => ({type: setGetDoc, doc})
 export let setFinishDocAC = (setVisible) => ({type: setFinishDoc, setVisible})
 
-export default IncomingDocumentReducer
+
+export default GetDocReducer

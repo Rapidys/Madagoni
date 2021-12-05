@@ -62,7 +62,7 @@ const Counter = ({item}) => {
       <Tooltip title="ახალი ხელმოსაწერი" arrow>
 
         <div
-          className={Counter.forSignNew === 0 ? 'd-none' : 'Counter forNewReceived bg-danger'}>
+          className={Counter && Counter.forSignNew === 0 ? 'd-none' : 'Counter forNewReceived bg-danger'}>
           <span>{Counter && Counter.forSignNew}</span>
         </div>
 
@@ -70,7 +70,7 @@ const Counter = ({item}) => {
 
       <Tooltip title={'ახალი მოსული'} arrow>
         <div
-          className={Counter.receivedNew === 0 ? 'd-none' : 'Counter forNewSign bg-danger'}>
+          className={Counter && Counter.receivedNew === 0 ? 'd-none' : 'Counter forNewSign bg-danger'}>
           <span>{Counter && Counter.receivedNew}</span>
         </div>
       </Tooltip>

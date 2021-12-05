@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import DocumentPage from "../DraftMessages/Documents/DocumentPage";
 import {
-  getSignatureDocs
+  getDocs,
 } from "../../API/sentDocumentService";
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -9,7 +9,7 @@ import {
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
-import {setFinishDocAC} from "../../Reducers/IncomingDocumentsReducer";
+import {setFinishDocAC} from "../../Reducers/getDocReducer";
 
 
 const SignatureDocuments = () => {
@@ -22,7 +22,7 @@ const SignatureDocuments = () => {
   let dispatch = useDispatch()
   useEffect(() => {
     dispatch(motionStatusAC(3))
-    dispatch(getSignatureDocs({
+    dispatch(getDocs({
       MotionStatus: 3,
       PageNumber: currentPage,
       RecordsPerPage: rowsPerPage,
@@ -37,13 +37,13 @@ const SignatureDocuments = () => {
     dispatch(setFinishDocAC(false))
   }, [])
 
-  let visirable = useSelector(state => state.signatureDocument.signatureDoc)
+  let visirable = useSelector(state => state.GetDoc.documents)
 
 
   return (
     <DocumentPage
       pageTitle={'დასადასტურებელი დოკუმენტები'}
-      pageName='/tables'
+      pageName='/document'
       Documents={visirable}
       totalCount={totalCount}
       rowsPerPage={rowsPerPage}

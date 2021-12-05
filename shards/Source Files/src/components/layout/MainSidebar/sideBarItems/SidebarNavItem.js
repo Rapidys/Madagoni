@@ -1,11 +1,11 @@
-import React, {useEffect, useMemo} from "react";
+import React from "react";
 import {NavLink as RouteNavLink} from "react-router-dom";
 import {NavItem, NavLink} from "shards-react";
 import styled from "styled-components";
 
 let Styles = styled.div`
   .navBreak {
-    max-width: 105px;
+    max-width: 130px;
     overflow-wrap: break-word;
     white-space: pre-wrap;
 

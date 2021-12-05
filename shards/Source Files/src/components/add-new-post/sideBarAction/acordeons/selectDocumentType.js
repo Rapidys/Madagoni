@@ -1,13 +1,7 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import MySelect from "../../../../MySelect/MySelect";
-import {useDispatch, useSelector} from "react-redux";
-import {
-  getType,
-} from "../../../../Reducers/addNewPost/selectDocReducer";
-import chosenDocumentReducer, {
-  chosenDocPageAC,
-  docDisableTypeAC
-} from "../../../../Reducers/chosenDocumentReducer";
+import {useSelector} from "react-redux";
+
 
 const SelectDocumentType = ({documentType}) => {
 

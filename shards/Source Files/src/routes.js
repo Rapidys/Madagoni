@@ -18,6 +18,8 @@ import ChosenDocument from "./views/chosenDocument/MessagesPage/MessagePage";
 import SignatureDocuments from "./views/signatureDocument/signatureDocument";
 import IncomingDocuments from "./views/incomingDocuments/IncomingDocuments";
 import AdminPage from "./components/adminPage/adminPage";
+import CompletedDocuments from "./views/Completed/completed";
+import CanceledDocuments from "./views/Canceled/Canceled";
 
 export let PrivacyRoutes = [
   {
@@ -63,6 +65,11 @@ export let PrivacyRoutes = [
     component: SignatureDocuments
   },
   {
+    path: "/completed",
+    layout: DefaultLayout,
+    component: CompletedDocuments
+  },
+  {
     path: "/draftDocuments",
     layout: DefaultLayout,
     component: DraftDocuments
@@ -74,7 +81,13 @@ export let PrivacyRoutes = [
     exact: true,
   },
   {
-    path: "/tables/:id",
+    path: "/canceled",
+    layout: DefaultLayout,
+    component: CanceledDocuments,
+    exact: true,
+  },
+  {
+    path: "/document/:id",
     layout: DefaultLayout,
     component: ChosenDocument,
     exact: true,

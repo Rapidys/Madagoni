@@ -7,7 +7,8 @@ import {getType} from "../../Reducers/addNewPost/selectDocReducer";
 import {
   setVisibleBtnAC
 } from "../../Reducers/Comments/CommentsReducer";
-import {setFinishDocAC} from "../../Reducers/IncomingDocumentsReducer";
+import {setFinishDocAC} from "../../Reducers/getDocReducer";
+
 
 const NewPostSection = () => {
   let dispatch = useDispatch()

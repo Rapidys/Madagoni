@@ -1,13 +1,13 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getOnPageChange} from "../../API/sentDocumentService";
 import DocumentPage from "./Documents/DocumentPage";
 import {
   setCurrentPageAC
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
-import {setFinishDocAC} from "../../Reducers/IncomingDocumentsReducer";
+import {getDocs} from "../../API/sentDocumentService";
+import {setFinishDocAC} from "../../Reducers/getDocReducer";
 
 
 const SentDocuments = () => {
@@ -19,7 +19,7 @@ const SentDocuments = () => {
 
   useEffect(() => {
     dispatch(motionStatusAC(2))
-    dispatch(getOnPageChange({
+    dispatch(getDocs({
       MotionStatus: 2,
       PageNumber: currentPage,
       RecordsPerPage: rowsPerPage,
@@ -31,14 +31,14 @@ const SentDocuments = () => {
     dispatch(setFinishDocAC(false))
   }, [])
 
-  let sentDocs = useSelector(state => state.sentDocuments.sentDoc)
+  let sentDocs = useSelector(state => state.GetDoc.documents)
 
 
   return (
     <>
       <DocumentPage
         pageTitle={'გაგზავნილები'}
-        pageName='/tables'
+        pageName='/document'
         Documents={sentDocs}
         totalCount={totalCount}
         rowsPerPage={rowsPerPage}

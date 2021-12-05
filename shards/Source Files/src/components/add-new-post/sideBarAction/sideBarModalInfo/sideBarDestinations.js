@@ -96,7 +96,6 @@ const SideBarDestinations = (props) => {
 
     props.setChosenDestination(destination)
     dispatch(setMotion([authorMotion, ...destination]))
-    console.log(destination)
     props.handleClose()
   }
 

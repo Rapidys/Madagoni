@@ -12,17 +12,25 @@ let initialState = {
       title: `მიღებული`,
       htmlBefore: '<i class="material-icons">email</i>',
       to: "/incomingDocuments",
-      htmlAfter: null,
-      Received: null,
-      totalReceived: null,
+
     },
     {
       title: "ხელმოსაწერი",
       htmlBefore: '<i class="material-icons">announcement</i>',
       to: "/signatureDocuments",
-      htmlAfter: null,
-      forSign: null,
-      totalSigns: null,
+
+    },
+    {
+      title: "შესრულებული",
+      htmlBefore: '<i class="material-icons">assistant_photo</i>',
+      to: "/completed",
+
+    },
+
+    {
+      title: "გაგზავნილი",
+      htmlBefore: '<i class="material-icons">edit</i>',
+      to: "/sentDocuments",
     },
     {
       title: "დრაფტი",
@@ -31,11 +39,11 @@ let initialState = {
 
     },
     {
-      title: "გაგზავნილი",
-      htmlBefore: '<i class="material-icons">edit</i>',
-      to: "/sentDocuments",
-    },
+      title: "გაუქმებული",
+      htmlBefore: '<i class="material-icons">block</i>',
+      to: "/canceled",
 
+    },
     {
       title: "პროცესში",
       htmlBefore: '<i class="material-icons">error</i>',

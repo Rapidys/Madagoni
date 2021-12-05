@@ -17,6 +17,8 @@ import {
   setNewObject,
   statusAC
 } from "../../../Reducers/addNewPost/addNewPostReducer";
+import MySelect from "../../../MySelect/MySelect";
+import {Dialog, DialogContent, DialogTitle} from "@material-ui/core";
 
 
 const Editor = (props) => {
@@ -50,7 +52,7 @@ const Editor = (props) => {
     'code-block'
   ]
 
-  let finishDoc = useSelector(state => state.IncomingDocument.finishDocument)
+  let finishDoc = useSelector(state => state.GetDoc.finishDocument)
   let Motions = useSelector(state => state.docMotion.Motion)
   let selectType = useSelector(state => state.selectDocument.selectType)
   let fileId = useSelector(state => state.uploadFile.fileId)
@@ -132,6 +134,10 @@ const Editor = (props) => {
   }, [status])
 
 
+  let [finishCategories, setFinishCategories] = useState(false)
+  let finishModal = () => {
+    setFinishCategories((e) => !e)
+  }
   return (
     <Card small className="mb-3">
       <CardBody>
@@ -185,9 +191,37 @@ const Editor = (props) => {
         </Button>
         <Button
           className={!finishDoc === true ? 'd-none' : 'border - 1'}
+          onClick={finishModal}
         >
           დავასრულე
         </Button>
+        <Dialog
+          open={finishCategories}
+          onClose={finishModal}
+          fullWidth={true}
+          maxWidth={"sm"}
+        >
+          <DialogTitle>დასრულება</DialogTitle>
+          <DialogContent>
+            <ModalBody>
+              <MySelect
+                defaultValue={'დასრულების ტიპი'}
+                options={[
+                  {referenceId: 1, displayName: 'დავასრულე'},
+                  {referenceId: 2, displayName: 'გავეცანი'},
+                ]}
+              />
+
+              <Button className={"mt-5"}
+              onClick = {finishModal}
+              >
+                არჩევა
+              </Button>
+            </ModalBody>
+          </DialogContent>
+
+        </Dialog>
+
       </CardBody>
     </Card>
   )

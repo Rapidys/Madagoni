@@ -12,7 +12,8 @@ import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
 import {setFinishDocAC} from "../../Reducers/getDocReducer";
 
 
-const IncomingDocuments = (props) => {
+
+const CompletedDocuments = () => {
 
   let currentPage = useSelector(state => state.PaginationData.currentPage)
   let rowsPerPage = useSelector(state => state.PaginationData.rowsPerPage)
@@ -20,37 +21,35 @@ const IncomingDocuments = (props) => {
 
 
   let dispatch = useDispatch()
-
-
   useEffect(() => {
-    dispatch(motionStatusAC(5))
+    dispatch(motionStatusAC(6))
     dispatch(getDocs({
-      MotionStatus: 5,
+      MotionStatus: 6,
       PageNumber: currentPage,
       RecordsPerPage: rowsPerPage,
     }))
+
+
   }, [currentPage, rowsPerPage])
-
-
-  let incomings = useSelector(state => state.GetDoc.documents)
 
   useEffect(() => {
     dispatch(setCurrentPageAC(1));
     dispatch(setVisibleBtnAC(true))
-    dispatch(setFinishDocAC(true))
+    dispatch(setFinishDocAC(false))
   }, [])
+
+  let visirable = useSelector(state => state.GetDoc.documents)
 
   return (
     <DocumentPage
-      pageTitle={'მიღებულები'}
+      pageTitle={'შესრულებული დოკუმენტები'}
       pageName='/document'
-      Documents={incomings}
+      Documents={visirable}
       totalCount={totalCount}
       rowsPerPage={rowsPerPage}
       currentPage={currentPage - 1}
-
     />
   )
 };
 
-export default IncomingDocuments;
+export default CompletedDocuments;

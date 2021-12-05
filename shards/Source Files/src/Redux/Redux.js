@@ -10,24 +10,21 @@ import DocumentMotionsReducer
 import selectDocumentReducer from "../Reducers/addNewPost/selectDocReducer";
 import uploadFileReducer from "../Reducers/addNewPost/UploadFileReducer";
 import userInfoReducer from "../Reducers/userInfoReducer";
-import DraftDocumentReducer from "../Reducers/DraftDocumentReducer";
-import sentDocumentsReducer from "../Reducers/sendDocumentReducer";
 import PaginationReducer from "../Reducers/PaginationReducer";
 import chosenDocumentReducer from "../Reducers/chosenDocumentReducer";
-import signatureDocumetReducer from "../Reducers/signatureDocumentReducer";
-import IncomingDocumentReducer from "../Reducers/IncomingDocumentsReducer";
 import MotionStatusReducer from "../Reducers/MotionStatusReducer";
 import documentColorReducer from "../Reducers/setDocumentColorReducer";
 import folderCounterReducer from "../Reducers/folderCountersReducer";
 import commentsReducer from "../Reducers/Comments/CommentsReducer";
-import creatNewCommentReducer from "../Reducers/Comments/CreateNewCommentReducer";
+import creatNewCommentReducer
+  from "../Reducers/Comments/CreateNewCommentReducer";
+import GetDocReducer from "../Reducers/getDocReducer";
 
 
 let Reducers = combineReducers({
   sideBarNavigation: sideBarReducer,
   Auth: AuthReducer,
-  sentDocuments: sentDocumentsReducer,
-  setDrafts: DraftDocumentReducer,
+  GetDoc: GetDocReducer,
   chosenDocument: chosenDocumentReducer,
   PaginationData: PaginationReducer,
   addNewPost: addNewPostReducer,
@@ -37,8 +34,6 @@ let Reducers = combineReducers({
   selectDocument: selectDocumentReducer,
   uploadFile: uploadFileReducer,
   userInfo: userInfoReducer,
-  signatureDocument: signatureDocumetReducer,
-  IncomingDocument: IncomingDocumentReducer,
   MotionStatus: MotionStatusReducer,
   documentColor: documentColorReducer,
   folderCounter: folderCounterReducer,

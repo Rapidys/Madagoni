@@ -10,6 +10,7 @@ let initialState = {
 let setComments = 'SET-COMMENTS'
 let modalVisible = 'MODAL-VISIBLE'
 let setVisibleBtn = 'SET-VISIBLE-BUTTON'
+
 let commentsReducer = (state = initialState, action) => {
   switch (action.type) {
     case setComments:
