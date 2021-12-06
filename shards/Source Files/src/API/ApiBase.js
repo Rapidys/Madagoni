@@ -5,9 +5,6 @@ import {Redirect} from "react-router-dom";
 let baseUrl = 'https://cyberdocapiservice20211103000756.azurewebsites.net/api'
 
 
-// let token = localStorage.getItem('token')
-
-
 const API = {
   AuthAPI(email, password) {
     return $ApiBase.post('/auth/authenticate', {
@@ -48,6 +45,9 @@ const API = {
   getCommentsapi(documentId) {
     return $ApiBase.get(`/docComments/GetComments/${documentId}`)
   },
+  getNotification() {
+    return $ApiBase.get(`/Notifications/GetNotifications`)
+  },
   createNewComment(newComment) {
     return $ApiBase.post(`/DocComments/CreateComment`, newComment)
   },
@@ -71,7 +71,7 @@ $ApiBase.interceptors.response.use((config) => {
   return config
 }, (error) => {
   if (error && error.response.status === 403 || 400 || 401) {
-    return <Redirect to='login'/>
+    return <Redirect to='login'/> && localStorage.clear()
   }
   return Promise.reject(error);
 })

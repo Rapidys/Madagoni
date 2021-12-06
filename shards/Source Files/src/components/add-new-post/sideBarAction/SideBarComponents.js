@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
-  Button, Card, Col, Row,
+  Button
 } from "shards-react";
 import Accordeons from "./acordeons/acordeons";
-import SideBarDestinations from "./sideBarModalInfo/sideBarDestinations";
-import SideBarVisitors from "./sideBarModalInfo/sideBarVisitors";
+
 import Comments from "./Comments/Comments";
 import ChosenUsers from "./chosenUsers/chosenUsers";
 import {setModalVisible} from "../../../Reducers/Comments/CommentsReducer";

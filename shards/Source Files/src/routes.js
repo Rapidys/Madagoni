@@ -10,7 +10,6 @@ import NewPostSection from "./components/add-new-post/newPostSection";
 import Errors from "./views/Errors";
 import BlogPosts from "./views/BlogPosts";
 import LoginContainer from "./components/Login/LoginContainer";
-import Documents from "./components/Documents/Documents";
 import RegisterContainer from "./components/Register/Register";
 import SentDocuments from "./views/DraftMessages/sentDocuments";
 import DraftDocuments from "./views/sentMessages/draftDoc";
@@ -20,6 +19,7 @@ import IncomingDocuments from "./views/incomingDocuments/IncomingDocuments";
 import AdminPage from "./components/adminPage/adminPage";
 import CompletedDocuments from "./views/Completed/completed";
 import CanceledDocuments from "./views/Canceled/Canceled";
+import ChartControl from "./components/blog/chartControl/chartControl";
 
 export let PrivacyRoutes = [
   {
@@ -34,10 +34,9 @@ export let PrivacyRoutes = [
     component: BlogOverview
   },
   {
-    path: "/documentFiles",
+    path: "/chartControl",
     layout: DefaultLayout,
-    component: Documents,
-
+    component: ChartControl
   },
   {
     path: "/user-profile-lite",

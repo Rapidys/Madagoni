@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Card, Col, Container, Nav, NavItem, Row} from "shards-react";
+import {Card, Col, Nav, NavItem} from "shards-react";
 import {Link, NavLink} from "react-router-dom";
 import styled from "styled-components";
 
@@ -8,6 +8,10 @@ let Styles = styled.div`
   * {
     flex-direction: column;
   }
+
+  .wrapp {
+    height: 514px;
+  }
 `
 
 const AdminPage = () => {
@@ -15,7 +19,7 @@ const AdminPage = () => {
   let [adminPanelFunctions, setAdminPanelFunctions] = useState([
     {
       title: "დიაგრამების კონტროლი",
-      to: "/blog-overview"
+      to: "chartControl"
     },
     {
       title: "იუზერის დარეგისტრირება",
@@ -32,7 +36,7 @@ const AdminPage = () => {
   ])
   return (
     <Styles>
-      <Card>
+      <Card className={'wrapp '}>
         <Col>
           <Nav className={" p-5"}>
             {adminPanelFunctions.map((item, idx) => (

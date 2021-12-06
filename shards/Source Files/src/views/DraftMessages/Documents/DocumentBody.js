@@ -95,7 +95,13 @@ const DocumentBody = (props) => {
 
               >
                 <td className={"resTtd"}>{Mess.documentId}</td>
-                <td className={"resTtd"}>{Mess.documentDate.slice(0, 10)}</td>
+                <td className={"resTtd"}>
+                  {new Intl.DateTimeFormat("en-GB", {
+                    year: "numeric",
+                    month: "long",
+                    day: "2-digit"
+                  }).format(new Date(Mess.documentDate))}
+                </td>
                 <td className={"resTtd"}>{Mess.documentTitle}</td>
                 <td className={"resTtd"}>{Mess.documentType}</td>
 

@@ -6,7 +6,6 @@ let initialState = {
 }
 let setUser = 'EMAIL'
 let registerReducer = (state = initialState, action) => {
-  debugger
   switch (action.type) {
     case setUser :
       return {

@@ -2,27 +2,23 @@ import React, {useEffect} from 'react';
 import {Redirect, Route, Switch} from "react-router-dom";
 import {PrivacyRoutes, PublicRoutes} from "../routes";
 import withTracker from "../withTracker";
-import {connect, useSelector} from "react-redux";
+import {connect} from "react-redux";
 import {LoadingAC, setIsAuth} from "../Reducers/AuthReducer";
 import Preloader from "../Preloader/Preloader";
 
 
 const AppRouter = (props) => {
-  let token = useSelector((state => state.Auth.token))
+
   useEffect(() => {
+    props.setIsLoading(false)
     if (localStorage.getItem('token')) {
-      props.setIsLoading(false)
       props.setIsAuth(true)
     }
-    if (!localStorage.getItem('token')) {
-      props.setIsLoading(false)
-    }
-  }, [token])
+  }, [])
 
   if (props.isLoading) {
     return <Preloader/>
   }
-
 
   return (
 

@@ -11,6 +11,13 @@ import {
 import {connect, useSelector} from "react-redux";
 import {Logout} from "../../../../Reducers/AuthReducer";
 import {Link} from "react-router-dom";
+import styled from "styled-components";
+
+let Styles = styled.span`
+  .dropDownLinks {
+    cursor: pointer;
+  }
+`
 
 let UserActions = (props) => {
 
@@ -24,20 +31,23 @@ let UserActions = (props) => {
   return (
     <NavItem tag={Dropdown} caret toggle={toggleUserActions}>
       <DropdownToggle caret tag={NavLink} className="text-nowrap px-3">
-        <img
-          className="user-avatar rounded-circle mr-2"
-          src={userImg}
-          alt="User Avatar"
-        />{" "}
+        <Styles>
+          <img
+            className="user-avatar rounded-circle mr-2 dropDownLinks"
+            src={userImg}
+            alt="User Avatar"
+          />
+        </Styles>
+
         <span className="d-none d-md-inline-block">{props.login}</span>
       </DropdownToggle>
       <Collapse tag={DropdownMenu} right small open={visible}>
-        <NavLink >
-          <DropdownItem to="/user-profile-lite">
+        <Link to='/user-profile-lite' className={'text-decoration-none'}>
+          <DropdownItem>
             <i className="material-icons">&#xE7FD;</i>
-            Profile
+            პროფილი
           </DropdownItem>
-        </NavLink>
+        </Link>
 
 
         <DropdownItem divider/>
@@ -45,13 +55,14 @@ let UserActions = (props) => {
         <NavLink>
           <DropdownItem to="/" className="text-danger" onClick={props.LogOut}>
             <i className="material-icons text-danger">&#xE879;</i>
-            Logout
+            გასვლა
           </DropdownItem>
         </NavLink>
 
 
       </Collapse>
     </NavItem>
+
   );
 
 }

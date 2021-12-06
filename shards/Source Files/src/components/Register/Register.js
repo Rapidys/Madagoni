@@ -9,7 +9,7 @@ import {setNewUser} from "../../Reducers/registerReducer";
 let Styles = styled.div`
   .loginWrapper {
     max-width: 600px;
-    margin:60px auto;
+    margin: 60px auto;
     padding: 20px;
     box-sizing: border-box;
 
@@ -45,14 +45,13 @@ const Register = (props) => {
             validateOnBlur
             validationSchema={validationSchema}
             onSubmit={(values) => {
-              setIsActive(true)
 
               let newPostObject = {
                 userId: 5,
                 email: values.email,
                 firstName: values.firstName,
                 lastName: values.lastName,
-                isActive: isActive,
+                isActive: true,
               }
               console.log(newPostObject)
               props.newPost(newPostObject)
@@ -63,7 +62,7 @@ const Register = (props) => {
                 handleSubmit, handleBlur, handleChange,
                 touched, dirty
               }) => {
-              return <Form >
+              return <Form>
                 <FormGroup>
                   <FormInput
                     type='text'
@@ -124,7 +123,7 @@ const Register = (props) => {
                   <Button theme={'success'}
                           onClick={handleSubmit}
                           type={'submit'}
-                    disabled={!isValid || !dirty}
+                          disabled={!isValid || !dirty}
                   >
                     დარეგისტრირება
                   </Button>

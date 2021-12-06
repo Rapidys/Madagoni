@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {Button, Card, CardBody, Form, FormGroup, FormInput} from "shards-react";
 import styled from "styled-components";
-import {Link, Redirect} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {LoadingAC, login} from "../../Reducers/AuthReducer";
+import {useDispatch} from "react-redux";
+import {login} from "../../Reducers/AuthReducer";
 
 
 let Styles = styled.div`
@@ -29,11 +28,10 @@ const Login = () => {
     <Styles>
       <Card className="loginWrapper mt-5">
         <CardBody>
-          <h3>Login</h3>
           <Form className="m-auto">
             <FormGroup>
-              <label htmlFor="#username">Username</label>
-              <FormInput id="#username" placeholder="Username"
+              <label htmlFor="#username">ელ-ფოსტა</label>
+              <FormInput id="#username" placeholder="ელ-ფოსტა"
                          value={email}
                          onChange={(e) => {
                            setEmail(e.target.value)
@@ -41,8 +39,8 @@ const Login = () => {
               />
             </FormGroup>
             <FormGroup>
-              <label htmlFor="#password">Password</label>
-              <FormInput type="password" id="#password" placeholder="Password"
+              <label htmlFor="#password">პაროლი</label>
+              <FormInput type="password" id="#password" placeholder="პაროლი"
 
                          value={password}
                          onChange={(e) => {
@@ -53,11 +51,8 @@ const Login = () => {
             <Button theme="secondary"
                     onClick={SignIn}
             >
-              Sign In
+              შესვლა
             </Button>
-            <Link to='/register'>
-              <Button className={"ml-3"}>Register</Button>
-            </Link>
           </Form>
         </CardBody>
 

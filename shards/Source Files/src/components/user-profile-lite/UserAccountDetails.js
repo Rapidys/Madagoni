@@ -15,10 +15,10 @@ import {
   Button
 } from "shards-react";
 
-const UserAccountDetails = ({ title }) => (
+const UserAccountDetails = ({title}) => (
   <Card small className="mb-4">
     <CardHeader className="border-bottom">
-      <h6 className="m-0">{title}</h6>
+      <h6 className="m-0">დეტალები</h6>
     </CardHeader>
     <ListGroup flush>
       <ListGroupItem className="p-3">
@@ -28,96 +28,86 @@ const UserAccountDetails = ({ title }) => (
               <Row form>
                 {/* First Name */}
                 <Col md="6" className="form-group">
-                  <label htmlFor="feFirstName">First Name</label>
+                  <label htmlFor="feFirstName">სახელი</label>
                   <FormInput
                     id="feFirstName"
                     placeholder="First Name"
                     value="Sierra"
-                    onChange={() => {}}
+                    onChange={() => {
+                    }}
                   />
                 </Col>
                 {/* Last Name */}
                 <Col md="6" className="form-group">
-                  <label htmlFor="feLastName">Last Name</label>
+                  <label htmlFor="feLastName">გვარი</label>
                   <FormInput
                     id="feLastName"
                     placeholder="Last Name"
                     value="Brooks"
-                    onChange={() => {}}
+                    onChange={() => {
+                    }}
                   />
                 </Col>
               </Row>
               <Row form>
                 {/* Email */}
                 <Col md="6" className="form-group">
-                  <label htmlFor="feEmail">Email</label>
+                  <label htmlFor="feEmail">ე-მაილი</label>
                   <FormInput
                     type="email"
                     id="feEmail"
                     placeholder="Email Address"
                     value="sierra@example.com"
-                    onChange={() => {}}
+                    onChange={() => {
+                    }}
                     autoComplete="email"
                   />
                 </Col>
                 {/* Password */}
                 <Col md="6" className="form-group">
-                  <label htmlFor="fePassword">Password</label>
+                  <label htmlFor="fePassword">პაროლი</label>
                   <FormInput
                     type="password"
                     id="fePassword"
                     placeholder="Password"
                     value="EX@MPL#P@$$w0RD"
-                    onChange={() => {}}
+                    onChange={() => {
+                    }}
                     autoComplete="current-password"
                   />
                 </Col>
               </Row>
               <FormGroup>
-                <label htmlFor="feAddress">Address</label>
+                <label htmlFor="feAddress">მისამართი</label>
                 <FormInput
                   id="feAddress"
                   placeholder="Address"
                   value="1234 Main St."
-                  onChange={() => {}}
+                  onChange={() => {
+                  }}
                 />
               </FormGroup>
               <Row form>
                 {/* City */}
                 <Col md="6" className="form-group">
-                  <label htmlFor="feCity">City</label>
+                  <label htmlFor="feCity">ქალაქი</label>
                   <FormInput
                     id="feCity"
                     placeholder="City"
-                    onChange={() => {}}
+                    onChange={() => {
+                    }}
                   />
                 </Col>
-                {/* State */}
-                <Col md="4" className="form-group">
-                  <label htmlFor="feInputState">State</label>
-                  <FormSelect id="feInputState">
-                    <option>Choose...</option>
-                    <option>...</option>
-                  </FormSelect>
-                </Col>
-                {/* Zip Code */}
-                <Col md="2" className="form-group">
-                  <label htmlFor="feZipCode">Zip</label>
-                  <FormInput
-                    id="feZipCode"
-                    placeholder="Zip"
-                    onChange={() => {}}
-                  />
-                </Col>
+
               </Row>
               <Row form>
                 {/* Description */}
                 <Col md="12" className="form-group">
-                  <label htmlFor="feDescription">Description</label>
-                  <FormTextarea id="feDescription" rows="5" />
+                  <label htmlFor="feDescription">აღწერა</label>
+                  <FormTextarea id="feDescription" rows="5"/>
                 </Col>
               </Row>
-              <Button theme="accent">Update Account</Button>
+              <Button theme="accent">განახლება</Button>
             </Form>
           </Col>
         </Row>

@@ -19,6 +19,7 @@ import commentsReducer from "../Reducers/Comments/CommentsReducer";
 import creatNewCommentReducer
   from "../Reducers/Comments/CreateNewCommentReducer";
 import GetDocReducer from "../Reducers/getDocReducer";
+import notificationReducer from "../Reducers/notificationReducer";
 
 
 let Reducers = combineReducers({
@@ -39,6 +40,7 @@ let Reducers = combineReducers({
   folderCounter: folderCounterReducer,
   getComments: commentsReducer,
   creatNewComment: creatNewCommentReducer,
+  getNotifications: notificationReducer,
 })
 
 let store = createStore(Reducers, applyMiddleware(thunk))

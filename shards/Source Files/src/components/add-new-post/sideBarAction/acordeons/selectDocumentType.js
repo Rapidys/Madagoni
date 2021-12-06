@@ -16,7 +16,7 @@ const SelectDocumentType = ({documentType}) => {
       <MySelect
         defaultValue={defaultValue}
         options={Options}
-        className={"mt-4 mb-4"}
+        className={"mb-2 p-1"}
         disabled={defaultValue !== 'დოკუმენტის ტიპი' && true}
 
       />

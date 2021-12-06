@@ -72,7 +72,7 @@ export const login = (email, password) => {
       API.AuthAPI(email, password)
         .then(response => {
           dispatch(setUser({email, password}))
-          if (!response.data) {
+          if (!response) {
             dispatch(LoadingAC(false))
             dispatch(setIsAuth(false))
           }
