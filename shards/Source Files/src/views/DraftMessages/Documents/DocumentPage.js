@@ -4,6 +4,8 @@ import DocumentBody
   from "./DocumentBody";
 import Pagination from "../../../Pagination/Pagination";
 import styled from "styled-components";
+import {useSelector} from "react-redux";
+import Preloader from "../../../Preloader/Preloader";
 
 let Styles = styled.div`
   .messWrapper:hover {
@@ -11,8 +13,13 @@ let Styles = styled.div`
     cursor: pointer;
   }
 `
-const DocumentPage = ({pageTitle, pageName, Documents, ...props}) => {
 
+const DocumentPage = ({pageTitle, pageName, Documents, ...props}) => {
+  let loading = useSelector(state => state.GetDoc.isLoading)
+
+  if (loading === true) {
+    return <Preloader/>
+  }
   return (
     <Styles>
 

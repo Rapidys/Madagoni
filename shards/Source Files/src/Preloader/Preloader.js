@@ -1,10 +1,10 @@
 import React from 'react';
-import Preloade from '../assets/Spinner-2.gif'
+import s from './Preloader.module.css'
 
 const Preloader = () => {
   return (
-    <div style={{textAlign:"center"}}>
-      <img src={Preloade} alt="Loading..."/>
+    <div className={s.wrapper}>
+      <div className={s.Preloader}/>
     </div>
   );
 };

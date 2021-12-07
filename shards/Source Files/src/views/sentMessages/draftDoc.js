@@ -35,10 +35,10 @@ const DraftDocuments = (props) => {
     dispatch(setVisibleBtnAC(true))
     dispatch(setFinishDocAC(false))
     dispatch(approveBtnAC(false))
-
   }, [])
 
   let drafts = useSelector(state => state.GetDoc.documents)
+
 
 
   return (
@@ -46,7 +46,6 @@ const DraftDocuments = (props) => {
       pageTitle={'დრაფტები'}
       pageName='/draftDocument'
       Documents={drafts}
-
       totalCount={totalCount}
       rowsPerPage={rowsPerPage}
       currentPage={currentPage - 1}

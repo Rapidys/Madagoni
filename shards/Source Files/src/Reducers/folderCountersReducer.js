@@ -24,7 +24,9 @@ export let setCounter = () => {
   return dispatch => {
     try {
       API.GetFolderCounters().then(response => {
-        dispatch(setFolderCountAC(response.data))
+        if(response){
+          dispatch(setFolderCountAC(response.data))
+        }
       })
     } catch (e) {
       console.log(e)

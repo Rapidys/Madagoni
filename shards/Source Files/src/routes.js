@@ -20,6 +20,7 @@ import AdminPage from "./components/adminPage/adminPage";
 import CompletedDocuments from "./views/Completed/completed";
 import CanceledDocuments from "./views/Canceled/Canceled";
 import ChartControl from "./components/blog/chartControl/chartControl";
+import Files from "./components/Files/File";
 
 export let PrivacyRoutes = [
   {
@@ -136,6 +137,11 @@ export let PrivacyRoutes = [
     path: "/register",
     layout: DefaultLayout,
     component: RegisterContainer
+  },
+  {
+    path: "/Files",
+    layout: DefaultLayout,
+    component: Files
   },
 ]
 

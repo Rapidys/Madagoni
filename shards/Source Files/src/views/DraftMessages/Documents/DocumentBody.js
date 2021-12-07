@@ -8,22 +8,31 @@ import styled from "styled-components";
 import {setCounter} from "../../../Reducers/folderCountersReducer";
 
 let Styles = styled.div`
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 540px) {
     .resTtd {
       font-size: 12px;
     }
   }
-  @media screen and (max-width: 470px) {
+  @media screen and (max-width: 460px) {
     .resTtd {
-      font-size: 8px;
+      font-size: 9px;
     }
 
-    @media screen and (max-width: 337px) {
+    @media screen and (max-width: 400px) {
       .resTtd {
         font-size: 6px;
       }
     }
-
+    @media screen and (max-width: 400px) {
+      .resTtd {
+        font-size: 6px;
+      }
+    }
+    @media screen and (max-width: 300px) {
+      .resTtd {
+        font-size: 5px;
+      }
+    }
 `
 
 const DocumentBody = (props) => {
@@ -84,6 +93,7 @@ const DocumentBody = (props) => {
                 onClick={() => {
                   router.push(`${props.pageName}/${Mess.documentId}`)
                   setShowMenu(false)
+                  dispatch(setCounter())
                 }}
                 key={index}
                 onContextMenu={(e) => contextMenu(e, Mess.documentId)}

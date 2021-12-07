@@ -10,7 +10,7 @@ import {
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
 import Preloader from "../../Preloader/Preloader";
-import {approveBtnAC, setFinishDocAC} from "../../Reducers/getDocReducer";
+import {approveBtnAC} from "../../Reducers/getDocReducer";
 
 
 const IncomingDocuments = () => {
@@ -33,7 +33,6 @@ const IncomingDocuments = () => {
   }, [currentPage, rowsPerPage])
 
   let incomings = useSelector(state => state.GetDoc.documents)
-  let loading = useSelector(state => state.GetDoc.isLoading)
 
 
   useEffect(() => {
@@ -43,22 +42,17 @@ const IncomingDocuments = () => {
   }, [])
 
   return (
-    <>
-      {
-        loading === true
-          ? <Preloader/>
-          : <DocumentPage
-            pageTitle={'მიღებულები'}
-            pageName='/incomingDocument'
-            Documents={incomings}
-            totalCount={totalCount}
-            rowsPerPage={rowsPerPage}
-            currentPage={currentPage - 1}
 
-          />
-      }
 
-    </>
+    <DocumentPage
+      pageTitle={'მიღებულები'}
+      pageName='/incomingDocument'
+      Documents={incomings}
+      totalCount={totalCount}
+      rowsPerPage={rowsPerPage}
+      currentPage={currentPage - 1}
+    />
+
 
   )
 };

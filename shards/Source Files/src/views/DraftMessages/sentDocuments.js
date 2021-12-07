@@ -8,6 +8,7 @@ import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
 import {getDocs} from "../../API/sentDocumentService";
 import {approveBtnAC, setFinishDocAC} from "../../Reducers/getDocReducer";
+import Preloader from "../../Preloader/Preloader";
 
 
 const SentDocuments = () => {
@@ -35,19 +36,18 @@ const SentDocuments = () => {
 
   let sentDocs = useSelector(state => state.GetDoc.documents)
 
-
   return (
-    <>
-      <DocumentPage
-        pageTitle={'გაგზავნილები'}
-        pageName='/sentDocument'
-        Documents={sentDocs}
-        totalCount={totalCount}
-        rowsPerPage={rowsPerPage}
-        currentPage={currentPage - 1}
 
-      />
-    </>
+
+    <DocumentPage
+      pageTitle={'გაგზავნილები'}
+      pageName='/sentDocument'
+      Documents={sentDocs}
+      totalCount={totalCount}
+      rowsPerPage={rowsPerPage}
+      currentPage={currentPage - 1}
+
+    />
 
   )
 };
