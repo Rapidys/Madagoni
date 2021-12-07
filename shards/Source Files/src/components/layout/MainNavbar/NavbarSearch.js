@@ -60,7 +60,6 @@ export default () => {
             <DropdownItem className={"items"}>
               <i
                 className="material-icons cursor-pointer hov">vertical_split</i>
-
               <span className={"ml-2"}>პოსტები</span>
             </DropdownItem>
           </NavLink>

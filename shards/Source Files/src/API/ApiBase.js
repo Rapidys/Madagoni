@@ -36,6 +36,9 @@ const API = {
   getDocuments(documentStatus) {
     return $ApiBase.post(`/docs/GetDocuments`, documentStatus,)
   },
+  signDocument(id) {
+    return $ApiBase.get(`/docs/SignDocument/${id}`,)
+  },
   setDocumentColor(documentColor) {
     return $ApiBase.post(`/docs/SetDocumentColor`, documentColor)
   },

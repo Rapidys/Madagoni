@@ -1,12 +1,11 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useState} from "react";
 import ReactQuill from "react-quill";
 import {
   Button,
   Card,
   CardBody,
   Form,
-  FormInput, Modal, ModalBody,
-  ModalHeader
+  FormInput
 } from "shards-react";
 import "react-quill/dist/quill.snow.css";
 import "../../../assets/quill.css";
@@ -17,41 +16,17 @@ import {
   setNewObject,
   statusAC
 } from "../../../Reducers/addNewPost/addNewPostReducer";
-import MySelect from "../../../MySelect/MySelect";
-import {Dialog, DialogContent, DialogTitle} from "@material-ui/core";
-import {useHistory} from "react-router-dom";
+import {useParams} from "react-router-dom";
+import {setSignDocument} from "../../../Reducers/signDocumentReducer";
+import FinishButtonModal from "./BtnModals/FinishButtonModal";
+import DocCreateModal from "./BtnModals/docCreateModal";
+import SignDocumentModal from "./BtnModals/signDocumentModal";
 
 
 const Editor = (props) => {
-  Editor.modules = {
-    toolbar: [
-      [{header: '1'}, {header: '2'}, {header: [3, 4, 5, 6]}, {font: []}],
-      [{size: []}],
-      [{align: ''}, {align: 'center'}, {align: 'right'}, {align: 'justify'}],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      ['link', 'image', 'video'],
-      ['clean'],
-      ['code-block'],
 
 
-    ]
-  }
-  Editor.formats = [
-    'header',
-    'font',
-    'size',
-    'bold',
-    'italic',
-    'underline',
-    'strike',
-    'blockquote',
-    'list',
-    'bullet',
-    'link',
-    'image',
-    'video',
-    'code-block'
-  ]
+  let params = useParams()
 
   let getDoc = useSelector(state => state.GetDoc)
   let Motions = useSelector(state => state.docMotion.Motion)
@@ -59,10 +34,12 @@ const Editor = (props) => {
   let fileId = useSelector(state => state.uploadFile.fileId)
   let status = useSelector(state => state.addNewPost.status)
 
+  let dispatch = useDispatch()
 
   const [open, setOpen] = useState(false)
+  const [openSign, setOpenSign] = useState(false)
 
-  let dispatch = useDispatch()
+
   let close = () => {
     setOpen(false)
   }
@@ -113,19 +90,23 @@ const Editor = (props) => {
 
   }
 
+
   const handleBody = (e) => {
     props.setDocumentBody && props.setDocumentBody(e)
   }
   const handleTitle = (e) => {
     props.setDocumentTitle && props.setDocumentTitle(e.target.value)
   }
-
+  const setSignature = () => {
+    dispatch(setSignDocument(Number(params.id)))
+    setOpenSign((e) => !e)
+  }
 
   let getDocumentId = useSelector(state => state.addNewPost.documentId)
   let getDocumentDate = useSelector(state => state.addNewPost.documentDate)
 
   useEffect(() => {
-    if (status === 200) {
+    if (status && status === 200) {
       setOpen(true)
       props.setDocumentTitle('')
       props.setDocumentBody('')
@@ -159,19 +140,12 @@ const Editor = (props) => {
 
           />
           <div>
-            <Modal open={open} toggle={close}>
-              <ModalHeader>
-                დოკუმენტის ნომერი : {getDocumentId}
-              </ModalHeader>
-              <ModalBody className={"d-flex align-items-center"}>
-                <i className="fas fa-check-circle"
-                   style={{color: 'green', fontSize: '30px'}}/>
-                <span
-                  className={"ml-2"}>დოკუმენტის შექმნის თარიღი : {getDocumentDate}</span>
 
-
-              </ModalBody>
-            </Modal>
+            <DocCreateModal getDocumentDate={getDocumentDate}
+                            getDocumentId={getDocumentId}
+                            open={open}
+                            close={close}
+            />
           </div>
         </Form>
         <Button
@@ -187,41 +161,26 @@ const Editor = (props) => {
         >დრაფტად შენახვა</Button>
         <Button
           className={getDoc.approveBtn !== true ? 'd-none' : 'border - 1'}
+          onClick={setSignature}
         >
           ხელმოწერა
         </Button>
+
+        <div>
+          <SignDocumentModal
+            openSign={openSign}
+            closeSign={setSignature}
+          />
+        </div>
+
         <Button
           className={getDoc.finishDocument !== true ? 'd-none' : 'border - 1'}
           onClick={finishModal}
         >
           დავასრულე
         </Button>
-        <Dialog
-          open={finishCategories}
-          onClose={finishModal}
-          fullWidth={true}
-          maxWidth={"sm"}
-        >
-          <DialogTitle>დასრულება</DialogTitle>
-          <DialogContent>
-            <ModalBody>
-              <MySelect
-                defaultValue={'დასრულების ტიპი'}
-                options={[
-                  {referenceId: 1, displayName: 'დავასრულე'},
-                  {referenceId: 2, displayName: 'გავეცანი'},
-                ]}
-              />
-
-              <Button className={"mt-5"}
-                      onClick={finishModal}
-              >
-                არჩევა
-              </Button>
-            </ModalBody>
-          </DialogContent>
-
-        </Dialog>
+        <FinishButtonModal finishCategories={finishCategories}
+                           finishModal={finishModal}/>
 
       </CardBody>
     </Card>
@@ -230,3 +189,31 @@ const Editor = (props) => {
 
 
 export default Editor;
+
+Editor.modules = {
+  toolbar: [
+    [{header: '1'}, {header: '2'}, {header: [3, 4, 5, 6]}, {font: []}],
+    [{size: []}],
+    [{align: ''}, {align: 'center'}, {align: 'right'}, {align: 'justify'}],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    ['link', 'image', 'video'],
+    ['clean'],
+    ['code-block'],
+  ]
+}
+Editor.formats = [
+  'header',
+  'font',
+  'size',
+  'bold',
+  'italic',
+  'underline',
+  'strike',
+  'blockquote',
+  'list',
+  'bullet',
+  'link',
+  'image',
+  'video',
+  'code-block'
+]

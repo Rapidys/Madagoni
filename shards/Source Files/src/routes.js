@@ -7,7 +7,6 @@ import {DefaultLayout} from "./layouts";
 import BlogOverview from "./views/BlogOverview";
 import UserProfileLite from "./views/UserProfileLite";
 import NewPostSection from "./components/add-new-post/newPostSection";
-import Errors from "./views/Errors";
 import BlogPosts from "./views/BlogPosts";
 import LoginContainer from "./components/Login/LoginContainer";
 import RegisterContainer from "./components/Register/Register";
@@ -48,11 +47,6 @@ export let PrivacyRoutes = [
     path: "/add-new-post",
     layout: DefaultLayout,
     component: NewPostSection
-  },
-  {
-    path: "/errors",
-    layout: DefaultLayout,
-    component: Errors
   },
   {
     path: "/incomingDocuments",

@@ -7,20 +7,7 @@ import {Tooltip} from "@material-ui/core";
 let Styles = styled.div`
 
   .Counter {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #00a2bf;
-    text-align: center;
-    margin-left: 5px;
-    color: white;
-    font-size: 11px;
-    position: fixed;
-    cursor: pointer;
-  }
-
-  .newCounter {
-    width: 15px;
+    min-width: 15px;
     height: 15px;
     border-radius: 50%;
     background: #00a2bf;
@@ -44,18 +31,19 @@ let Styles = styled.div`
 
   .forSign {
     left: 10px;
-    top: 100px;
+    top: 120px;
   }
 
   .forReceived {
     left: 10px;
-    top: 150px;
+    top: 170px;
   }
 
-  .counterAlign {
-    display: table;
-    margin: 7px auto;
-  }
+  //.counterAlign {
+  //  display: inline-table;
+  //  margin: 1px auto;
+  //}
+
 `
 
 
@@ -80,7 +68,7 @@ const Counter = ({item}) => {
       <Tooltip title="ახალი ხელმოსაწერი" arrow>
 
         <div
-          className={Counter && Counter.forSignNew === 0 ? 'd-none' : 'newCounter forNewReceived bg-danger'}>
+          className={Counter && Counter.forSignNew === 0 ? 'd-none' : 'Counter forNewReceived bg-danger'}>
           <span>{Counter && Counter.forSignNew}</span>
         </div>
 
@@ -88,7 +76,7 @@ const Counter = ({item}) => {
 
       <Tooltip title={'ახალი მოსული'} arrow>
         <div
-          className={Counter && Counter.receivedNew === 0 ? 'd-none' : 'newCounter forNewSign bg-danger'}>
+          className={Counter && Counter.receivedNew === 0 ? 'd-none' : 'Counter forNewSign bg-danger'}>
           <span>{Counter && Counter.receivedNew}</span>
         </div>
       </Tooltip>

@@ -4,51 +4,47 @@ let initialState = {
     {
       title: "ახალი",
       to: "/add-new-post",
-      htmlBefore: '<i class="material-icons">add</i>',
+      htmlBefore: '<i class="fas fa-plus"></i>',
       htmlAfter: ""
     },
 
     {
       title: `მიღებული`,
-      htmlBefore: '<i class="material-icons">email</i>',
+      htmlBefore: '<i class="fa fa-envelope" ></i>',
       to: "/incomingDocuments",
 
     },
     {
       title: "ხელმოსაწერი",
-      htmlBefore: '<i class="material-icons">announcement</i>',
+      htmlBefore: '<i class="fas fa-signature"></i>',
       to: "/signatureDocuments",
 
     },
     {
-      title: "შესრულებული",
-      htmlBefore: '<i class="material-icons">assistant_photo</i>',
+      title: "დასრულებული",
+      htmlBefore: '<i class="fa fa-flag"></i>',
       to: "/completed",
 
     },
 
     {
       title: "გაგზავნილი",
-      htmlBefore: '<i class="material-icons">edit</i>',
+      htmlBefore: '<i class="fa fa-paper-plane"></i>',
       to: "/sentDocuments",
     },
     {
       title: "დრაფტი",
-      htmlBefore: '<i class="material-icons">drafts</i>',
+      htmlBefore: '<i class="fab fa-firstdraft"></i>',
       to: "/draftDocuments",
 
     },
     {
       title: "გაუქმებული",
-      htmlBefore: '<i class="material-icons">block</i>',
+      htmlBefore: '<i class="fas fa-ban"></i>',
       to: "/canceled",
 
     },
-    {
-      title: "პროცესში",
-      htmlBefore: '<i class="material-icons">error</i>',
-      to: "/errors",
-    }
+
   ]
 
 }
