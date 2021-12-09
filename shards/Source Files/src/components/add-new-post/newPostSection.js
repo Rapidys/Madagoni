@@ -7,7 +7,11 @@ import {getType} from "../../Reducers/addNewPost/selectDocReducer";
 import {
   setVisibleBtnAC
 } from "../../Reducers/Comments/CommentsReducer";
-import {setAddBtnAC, setFinishDocAC} from "../../Reducers/getDocReducer";
+import {
+  approveBtnAC,
+  setAddBtnAC,
+  setFinishDocAC
+} from "../../Reducers/getDocReducer";
 
 
 const NewPostSection = () => {
@@ -19,6 +23,7 @@ const NewPostSection = () => {
     dispatch(setVisibleBtnAC(false)) //hidden comment btn in addNewPostComponents
     dispatch(setFinishDocAC(false))
     dispatch(setAddBtnAC(true))
+    dispatch(approveBtnAC(false))
   }, [])
   let [chosenDestination, setChosenDestination] = useState([])
   let [chosenVisitor, setChosenVisitor] = useState([])

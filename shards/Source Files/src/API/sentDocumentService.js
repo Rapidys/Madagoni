@@ -36,7 +36,7 @@ export let getDocs = (documentStatus) => {
         .then(response => {
           dispatch(setDocLoadingAC(false))
 
-          if (!response.data) {
+          if (!response) {
             return dispatch(setIsAuth(false))
           }
           dispatch(GetDocumentAC(response.data.documentList))

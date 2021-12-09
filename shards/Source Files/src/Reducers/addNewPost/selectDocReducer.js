@@ -41,7 +41,10 @@ export const getType = () => {
     try {
       API.getDocTypes()
         .then(response => {
-          dispatch(setOptionsAC(response.data))
+          if (response) {
+            dispatch(setOptionsAC(response.data))
+
+          }
         })
 
     } catch (e) {

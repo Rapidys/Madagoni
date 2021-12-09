@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MakeFiles from "./makeFiles";
 import {Button, CardHeader, Col, Container, Row} from "shards-react";
 import {Card} from "@material-ui/core";
+import Column from "./Column";
 
 const Files = () => {
-
 
 
   return (
@@ -15,8 +15,8 @@ const Files = () => {
             <CardHeader>
               ფაილები
             </CardHeader>
-
             <MakeFiles/>
+
 
           </Card>
         </Col>

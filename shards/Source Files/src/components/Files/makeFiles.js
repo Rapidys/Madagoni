@@ -1,5 +1,17 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Button, CardBody} from "shards-react";
+import styled from "styled-components";
+
+let Styles = styled.div`
+  .Btns {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    text-align: center;
+    //position: absolute;
+  }
+
+`
 
 const MakeFiles = () => {
 
@@ -8,63 +20,80 @@ const MakeFiles = () => {
     {id: 1,}
   ])
   let [rowCount, setRowCount] = useState([])
+
   let addCol = () => {
     let newCol = {
       id: Date.now(),
       col: true
     }
     setColCount([...ColCount, newCol])
+
+
   }
+  let ref = useRef()
+
   let addRow = () => {
-    let newRow = {
-      id: Date.now(),
+    let html = ''
+
+    for (let i = 0; i < ColCount.length; i++) {
+      html += `
+      <tr>
+        <td className={'border'}>
+          <input type="text"/>
+        </td>
+      </tr>
+      `
+
     }
-    setRowCount([...ColCount])
+    ref.current.innerHTML += `${html} <br />`
+    setRowCount([html])
+    console.log(html)
   }
+
   return (
+    <Styles>
+      <CardBody>
+        <table>
+          <thead className="thead bg-light">
+          {/*<tr>*/}
+          {/*  <th scope="col" className="border-0">*/}
+          {/*    1*/}
+          {/*  </th>*/}
+          {/*  <th scope="col" className="border-0">*/}
+          {/*    2*/}
+          {/*  </th>*/}
+          {/*  <th scope="col" className="border-0">*/}
+          {/*    3*/}
+          {/*  </th>*/}
+          {/*  <th scope="col" className="border-0">*/}
+          {/*    4*/}
+          {/*  </th>*/}
+          {/*</tr>*/}
+          </thead>
+          <tbody className={'d-flex'}>
+          {ColCount.map(() => {
+            return (
+              <tr>
+                <td className={'border'}>
+                  <input type="text"/>
+                </td>
+              </tr>
 
-    <CardBody>
-      <table>
-        <thead className="thead bg-light">
-        <tr>
-          <th scope="col" className="border-0">
-            1
-          </th>
-        </tr>
-        </thead>
+            )
+          })}
+          </tbody>
+          <div ref={ref}>
+          </div>
+        </table>
+        <Button
+          onClick={addCol}
+        >სვეტი</Button>
+        <Button
+          onClick={addRow}
+        >რიგი</Button>
+      </CardBody>
 
-        <tbody className={'d-flex'}>
-        {ColCount.map(() => {
-          return <tr>
-            <td className={'border'}>
-              <input type="text"/>
-            </td>
-          </tr>
-        })}
-        {rowCount.map(() => {
-          return <tr>
-            <td className={'border'}>
-              <input type="text"/>
-            </td>
-          </tr>
-
-        })}
-        </tbody>
-
-
-      </table>
-      <Button
-        onClick={addCol}
-      >სვეტის დამატება</Button>
-
-      <Button
-        className={'ml-2'}
-        onClick={addRow}
-      >
-        რიგის დამატება
-      </Button>
-
-    </CardBody>
+    </Styles>
 
   )
     ;

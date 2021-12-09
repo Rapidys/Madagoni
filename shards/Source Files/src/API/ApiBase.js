@@ -24,6 +24,13 @@ const API = {
   GetStructure() {
     return $ApiBase.get('/admin/GetStructure')
   },
+  FinishDocumentSelectTypes() {
+    return $ApiBase.get('/reference/GetReference/CompletionResults')
+  },
+  FinishDocument(id, CompleteMotion) {
+    debugger
+    return $ApiBase.post(`/docs/CompleteMotion/${id}`, CompleteMotion)
+  },
   UploadFileApi(file) {
     return $ApiBase.post(`/docs/UploadFile`, file)
   },

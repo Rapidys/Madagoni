@@ -66,10 +66,10 @@ const ChosenDocument = () => {
             draftBtn={MotionStatus === 0 ? 'lg-ml-3 xs-ml-0 border - 1' : 'd-none'}
             docId={`დოკუმენტის ნომერი :${chosen.documentId} `}
             Date={`${chosen.documentDate && chosen.documentDate.slice(0, 10)}`}
-            isDisabledVisitor={true}
-            isDisabledDestinate={true}
-            readOnly={true}
-            titleReadOnly={true}
+            isDisabledVisitor={false}
+            isDisabledDestinate={false}
+            readOnly={false}
+            titleReadOnly={false}
           />
       }
 

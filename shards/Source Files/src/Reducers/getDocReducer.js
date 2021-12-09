@@ -1,10 +1,14 @@
+import API from "../API/ApiBase";
+
 let initialState = {
   documents: [],
   finishDocument: false,
   approveBtn: false,
   addBtn: false,
   isLoading: false,
-
+  Options: null,
+  selectedDocId: 1,
+  isFinished: false,
 }
 
 let setGetDoc = 'setGetDoc'
@@ -12,7 +16,9 @@ let setFinishDoc = 'FINISH-DOC'
 let setDocLoading = 'setDocLoading'
 let setApproveBtn = 'setApproveBtn'
 let setAddBtn = 'setAddBtn'
-
+let setOptions = 'SET-FINISH-OPTIONS'
+let setSelectedDocId = 'setSelectedDocId'
+let setIsFinished = 'setIsFinished'
 
 let GetDocReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -46,6 +52,26 @@ let GetDocReducer = (state = initialState, action) => {
         addBtn: action.setVisible
       }
     }
+    case setOptions: {
+      return {
+        ...state,
+        Options: action.options
+      }
+    }
+    case setSelectedDocId: {
+      return {
+        ...state,
+        selectedDocId: action.id
+      }
+    }
+    case setIsFinished: {
+      return {
+        ...state,
+        isFinished: action.finished
+      }
+    }
+
+
     default:
       return state
   }
@@ -56,6 +82,27 @@ export let setFinishDocAC = (setVisible) => ({type: setFinishDoc, setVisible})
 export let setDocLoadingAC = (loading) => ({type: setDocLoading, loading})
 export let approveBtnAC = (setVisible) => ({type: setApproveBtn, setVisible})
 export let setAddBtnAC = (setVisible) => ({type: setAddBtn, setVisible})
+export let setFinishOptionsAC = (options) => ({type: setOptions, options})
+export let setSelectedDocIdAC = (id) => ({type: setSelectedDocId, id})
+export let setIsFinishedAC = (finished) => ({type: setIsFinished, finished})
 
 
 export default GetDocReducer
+
+
+export let GetFinishDocument = (id, selectedInfo) => {
+  return dispatch => {
+    let CompleteMotion = {
+      MotionId: selectedInfo,
+      ResultComment: "შეძენილ იქნა ჰონდა სკაიჯეტი"
+    }
+    try {
+      API.FinishDocument(id, CompleteMotion).then((response) => {
+        dispatch(setIsFinishedAC(true))
+      })
+    } catch (e) {
+      console.log(e)
+    }
+
+  }
+}

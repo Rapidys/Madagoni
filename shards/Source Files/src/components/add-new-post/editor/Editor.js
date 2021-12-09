@@ -21,6 +21,7 @@ import {setSignDocument} from "../../../Reducers/signDocumentReducer";
 import FinishButtonModal from "./BtnModals/FinishButtonModal";
 import DocCreateModal from "./BtnModals/docCreateModal";
 import SignDocumentModal from "./BtnModals/signDocumentModal";
+import FinishMessage from "./BtnModals/finishMessage";
 
 
 const Editor = (props) => {
@@ -166,12 +167,12 @@ const Editor = (props) => {
           ხელმოწერა
         </Button>
 
-        <div>
-          <SignDocumentModal
-            openSign={openSign}
-            closeSign={setSignature}
-          />
-        </div>
+
+        <SignDocumentModal
+          openSign={openSign}
+          closeSign={setSignature}
+        />
+
 
         <Button
           className={getDoc.finishDocument !== true ? 'd-none' : 'border - 1'}
@@ -180,8 +181,10 @@ const Editor = (props) => {
           დავასრულე
         </Button>
         <FinishButtonModal finishCategories={finishCategories}
-                           finishModal={finishModal}/>
-
+                           finishModal={finishModal}
+                           setFinishCategories={setFinishCategories}
+        />
+        <FinishMessage/>
       </CardBody>
     </Card>
   )

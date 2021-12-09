@@ -1,9 +1,9 @@
 // import React from 'react';
 //
-// const Column = ({ColCount}) => {
+// const Column = ({rowCount}) => {
 //   return (
 //     <tbody>
-//     {ColCount.map(() => {
+//     {rowCount.map(() => {
 //       return <tr>
 //         <td className={'border'}>
 //           <input type="text"/>

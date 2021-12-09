@@ -5,7 +5,7 @@ import {
 } from "../../../Reducers/getDocReducer";
 
 
-export let btnFilter = (history , params,dispatch) => {
+export let btnFilter = (history, params, dispatch) => {
   if (history.location.pathname === `/incomingDocument/${params.id}`) {
     dispatch(setFinishDocAC(true))
   }
