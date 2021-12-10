@@ -9,7 +9,6 @@ const ChosenUsers = (props) => {
 
   const [open, setOpen] = useState(false);
   const [openVisitors, setOpenVisitors] = useState(false);
-  let chosen = useSelector(state => state.chosenDocument.currentMessagePage)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -39,9 +38,7 @@ const ChosenUsers = (props) => {
                   <i className="mr-2 mt-1 fas fa-user"
                      style={{color: u.motionColor}}/>
                   {u.firstName} {u.lastName} {u.targetName}</Row>
-                <Row className={"p-2 align-items-center"}>
 
-                </Row>
               </Col>
             })}
 
@@ -68,22 +65,26 @@ const ChosenUsers = (props) => {
             {props.chosenDestination && props.chosenDestination.map((u, index) => {
               return <Col className={"d-flex justify-content-between mt-2"}
                           key={index}>
-                {u.firstName || u.targetName
-                  ? <Row className={"p-2"}><i
-                    className="mr-2 mt-1 fas fa-user"
-                    style={{color: u.motionColor}}/>
+                <div>
+                  {u.firstName || u.targetName
+                    ? <Row className={"p-2"}><i
+                      className="mr-2 mt-1 fas fa-user"
+                      style={{color: u.motionColor}}/>
 
 
-                    {u.firstName} {u.lastName} {u.targetName}
+                      {u.firstName} {u.lastName} {u.targetName}
+                    </Row>
+                    : <Row className={"p-2"} key={u.departmentId}><i
+                      className="mr-2 mt-1 fas fa-university"/>
+                      {u.displayName}
+                    </Row>
+                  }
+                </div>
+
+                  <Row className={"p-2 align-items-center"}>
+                    {u.dueDate && u.dueDate}
                   </Row>
-                  : <Row className={"p-2"} key={u.departmentId}><i
-                    className="mr-2 mt-1 fas fa-university"/>
-                    {u.displayName}
-                  </Row>
-                }
-                <Row className={"p-2 align-items-center"}>
 
-                </Row>
               </Col>
             })}
 

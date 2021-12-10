@@ -1,7 +1,10 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useState} from 'react';
 import RangeDatePicker from "../../../../common/RangeDatePicker";
 import {useDispatch, useSelector} from "react-redux";
 import {setMotion} from "../../../../../Reducers/addNewPost/DocumentMotionsReducer";
+import MotionTypeFiltering
+  from "../../../../../views/motionTypeFiltering/motionTypeFiltering";
+import {useHistory} from "react-router-dom";
 
 const ChosenDestinations = (props) => {
 
@@ -33,6 +36,7 @@ const ChosenDestinations = (props) => {
   if (props.destination.length === 0) {
     return <div>არჩეულები არ არიან</div>
   }
+
   return (
     <div>
       {props.destination.length > 0 && props.destination.map((user, index) => {
@@ -41,8 +45,10 @@ const ChosenDestinations = (props) => {
           >
             <div className={"d-flex justify-content-between p-2 mt-1"}>
               <div>
-                {user.firstName && user.firstName} {user.lastName && user.lastName}
-                {user.displayName && user.displayName}
+                {user.firstName
+                  ? user.firstName + ' ' + user.lastName
+                  : user.displayName
+                }
               </div>
               <div style={{cursor: "pointer"}}
                    onClick={(e) => {
@@ -64,7 +70,9 @@ const ChosenDestinations = (props) => {
             </div>
           </div>
         )
-      })}
+      })
+      }
+
 
     </div>
   );

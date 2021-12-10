@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import "../../assets/range-date-picker.css";
 import {TextField} from '@material-ui/core';
+import {useHistory} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 
 let RangeDatePicker = (props) => {
@@ -14,7 +16,6 @@ let RangeDatePicker = (props) => {
     const newDate = {...dateValue}
     newDate[e.target.id] = e.target.value
   }
-
 
 
   return (
@@ -84,7 +85,6 @@ export default RangeDatePicker;
 //     );
 //   }
 // }
-
 
 
 //

@@ -72,7 +72,12 @@ const SideBarVisitors = (props) => {
         fullWidth={true}
         maxWidth={"lg"}
       >
-        <DialogTitle>დეპარტამენტები</DialogTitle>
+        <div className={'d-flex justify-content-between'}>
+          <DialogTitle>დეპარტამენტები</DialogTitle>
+          <i className="fas fa-times p-4" style={{cursor: 'pointer'}}
+             onClick={props.handleCloseVisitors}/>
+        </div>
+
         <DialogContent>
           <DialogContentText>
             აირჩიეთ სასურველი ვიზიტორები
@@ -121,7 +126,6 @@ const SideBarVisitors = (props) => {
 
         </DialogContent>
         <DialogActions>
-          <Button onClick={props.handleCloseVisitors}>გამოსვლა</Button>
           <Button onClick={Save}>შენახვა</Button>
 
         </DialogActions>

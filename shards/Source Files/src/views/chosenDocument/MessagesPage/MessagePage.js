@@ -60,6 +60,8 @@ const ChosenDocument = () => {
             title={``}
             chosenVisitor={chosenVisitor}
             chosenDestination={chosenDestination}
+            setChosenDestination={setchosenDestination}
+            setChosenVisitor={setchosenVisitor}
             documentTitle={documentTitle}
             documentBody={documentBody}
             documentType={documentType}

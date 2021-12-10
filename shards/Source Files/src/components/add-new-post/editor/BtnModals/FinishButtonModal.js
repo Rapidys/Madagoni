@@ -26,7 +26,9 @@ const FinishButtonModal = ({
   let [finishDocType, setFinishDocType] = useState()
   useEffect(() => {
     API.FinishDocumentSelectTypes().then((response) => {
-      dispatch(setFinishOptionsAC(response.data))
+      if (response) {
+        dispatch(setFinishOptionsAC(response.data))
+      }
     })
   }, [])
 

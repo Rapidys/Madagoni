@@ -17,6 +17,7 @@ import {setMotion} from "../../../../Reducers/addNewPost/DocumentMotionsReducer"
 
 const SideBarDestinations = (props) => {
 
+
   let [destination, setDestination] = useState([])
   let [valueFromTree, setValueFromTree] = useState([])
   let [department, setDepartment] = useState([])
@@ -24,6 +25,7 @@ const SideBarDestinations = (props) => {
   let handleSetDate = (value, index) => {
     destination[index].dueDate = value
   }
+
 
   function handleSetNodeValue(value) {
     setValueFromTree(value)
@@ -113,7 +115,12 @@ const SideBarDestinations = (props) => {
         fullWidth={true}
         maxWidth={"lg"}
       >
-        <DialogTitle>დეპარტამენტები</DialogTitle>
+        <div className={'d-flex justify-content-between'}>
+          <DialogTitle>დეპარტამენტები</DialogTitle>
+          <i className="fas fa-times p-4" style={{cursor: 'pointer'}}
+             onClick={props.handleClose}/>
+        </div>
+
         <DialogContent>
           <DialogContentText>
             აირჩიეთ სასურველი ავტორები
@@ -159,7 +166,6 @@ const SideBarDestinations = (props) => {
 
         </DialogContent>
         <DialogActions>
-          <Button onClick={props.handleClose}>გამოსვლა</Button>
           <Button onClick={save}>შენახვა</Button>
         </DialogActions>
       </Dialog>
