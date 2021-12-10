@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
-import MakeFiles from "./makeFiles";
-import {Button, CardHeader, Col, Container, Row} from "shards-react";
+import React from 'react';
+import {CardHeader, Col, Container, Row} from "shards-react";
 import {Card} from "@material-ui/core";
-import Column from "./Column";
+import MakeFiles from "./makeFiles";
 
 const Files = () => {
 

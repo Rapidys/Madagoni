@@ -1,80 +1,82 @@
 import React, {useState} from 'react';
 import {Button, CardBody} from "shards-react";
 import styled from "styled-components";
+import Column from "./Column";
 
 let Styles = styled.div`
+  td {
+    padding: 0;
+    margin: 0;
+  }
+
   .Btns {
     width: 25px;
     height: 25px;
     border-radius: 50%;
     text-align: center;
-    //position: absolute;
   }
+
+  input {
+    width: 100px;
+    height: 25px
+  }
+
 `
 
 const MakeFiles = () => {
 
 
-  let [ColCount, setColCount] = useState([
-    {id: 1,}
-  ])
-  let [rowCount, setRowCount] = useState([])
-  let addCol = () => {
-    let newCol = {
-      id: Date.now()
-    }
-    setColCount([...ColCount, newCol])
-  }
-  let addRow = () => {
+  let [Col, setCol] = useState([1])
+  let [Row, setRow] = useState([])
 
-    setRowCount([...rowCount, ...ColCount])
+  let add = () => {
+    setCol([...Col, 1])
   }
 
-  let deleteInputs = () => {
-    let newCol = {
-      id: Date.now(),
-      col: true
-    }
-    setColCount([newCol])
+  let addDown = () => {
+    setRow([...Row, 1])
   }
+  let Delete = () => {
+    setCol([1])
+    setRow([])
+  }
+  let Rows = Row.map((item, index) => {
+    return <Column Col={Col} key={index}/>
+  })
+
   return (
     <Styles>
       <CardBody>
-        <table className="bg-light">
-          <tbody className={'d-flex'}>
-          {ColCount.map(() => {
-            return (
-              <tr>
-                <td className={'border'}>
-                  <input type="text"/>
-                </td>
-              </tr>
-            )
-          })}
-          </tbody>
-          <tbody className={'d-flex'}>
-          {rowCount.map(() => {
-            return (
-              <tr>
-                <td className={'border'}>
-                  <input type="text"/>
-                </td>
-              </tr>
-          )
-          })}
+
+        <table>
+          <tbody>
+          <Column Col={Col}/>
+          {Rows}
           </tbody>
         </table>
 
-        <Button
-          onClick={addCol}
-        >სვეტი</Button>
-        <Button
-          onClick={addRow}
-        >rigi</Button>
 
-        <Button
-          onClick={deleteInputs}
-        >წაშლა</Button>
+        <div className={'mt-3'}>
+          <Button
+            onClick={add}
+          >
+            სვეტი
+          </Button>
+          <Button
+            onClick={addDown}
+            className={'ml-1'}
+          >
+            რიგი
+          </Button>
+          <Button
+            onClick={Delete}
+            className={Col.length > 1 ? 'ml-1 btn-danger' : 'd-none'}
+          >
+            წაშლა
+          </Button>
+        </div>
+
+
       </CardBody>
 
     </Styles>

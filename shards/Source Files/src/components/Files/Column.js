@@ -1,17 +1,17 @@
-// import React from 'react';
-//
-// const Column = ({rowCount}) => {
-//   return (
-//     <tbody>
-//     {rowCount.map(() => {
-//       return <tr>
-//         <td className={'border'}>
-//           <input type="text"/>
-//         </td>
-//       </tr>
-//     })}
-//     </tbody>
-//   );
-// };
-//
-// export default Column;
+import React from 'react';
+
+const Column = ({Col}) => {
+  return (
+    <tr>
+      {
+        Col && Col.map((item, index) => {
+          return <td key={index}>
+            <input type="text"/>
+          </td>
+        })
+      }
+    </tr>
+  );
+};
+
+export default Column;
