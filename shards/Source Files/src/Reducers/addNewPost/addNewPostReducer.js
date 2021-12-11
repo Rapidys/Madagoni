@@ -54,7 +54,7 @@ export let setNewObject = (newPost) => {
 
             API.newPostAPI(newPost)
                 .then(response => {
-                    if (response.status === 200) {
+                    if (response && response.status === 200) {
                         dispatch(setNewPostAC(newPost))
                         dispatch(setDocumentIdAC(response.data.documentId))
                         dispatch(setDocumentDateAC(response.data.documentDate))

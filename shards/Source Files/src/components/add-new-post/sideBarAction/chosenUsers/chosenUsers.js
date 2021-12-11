@@ -37,7 +37,9 @@ const ChosenUsers = (props) => {
                 <Row className={"p-2"}>
                   <i className="mr-2 mt-1 fas fa-user"
                      style={{color: u.motionColor}}/>
-                  {u.firstName} {u.lastName} {u.targetName}</Row>
+                  {u.firstName} {u.lastName} {u.targetName}
+                </Row>
+
 
               </Col>
             })}
@@ -53,7 +55,8 @@ const ChosenUsers = (props) => {
         />
       </div>
 
-      {/*addresants */}
+      {/*addresants */
+      }
 
       <div className={"mb-1"}>
         <Button onClick={handleClickOpen}
@@ -63,9 +66,9 @@ const ChosenUsers = (props) => {
         <Card>
           <Col>
             {props.chosenDestination && props.chosenDestination.map((u, index) => {
-              return <Col className={"d-flex justify-content-between mt-2"}
+              return <Col className={"mt-2"}
                           key={index}>
-                <div>
+                <div className={'d-flex justify-content-between '}>
                   {u.firstName || u.targetName
                     ? <Row className={"p-2"}><i
                       className="mr-2 mt-1 fas fa-user"
@@ -81,9 +84,9 @@ const ChosenUsers = (props) => {
                   }
                 </div>
 
-                  <Row className={"p-2 align-items-center"}>
-                    {u.dueDate && u.dueDate}
-                  </Row>
+                <Row className={"p-2 align-items-center text-danger"}>
+                  ვადა : {u.dueDate && u.dueDate.slice(0, 10)}
+                </Row>
 
               </Col>
             })}
@@ -103,7 +106,8 @@ const ChosenUsers = (props) => {
 
 
     </div>
-  );
+  )
+    ;
 };
 
 export default ChosenUsers;

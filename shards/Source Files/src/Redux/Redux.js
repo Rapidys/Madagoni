@@ -20,6 +20,7 @@ import creatNewCommentReducer
   from "../Reducers/Comments/CreateNewCommentReducer";
 import GetDocReducer from "../Reducers/getDocReducer";
 import notificationReducer from "../Reducers/notificationReducer";
+import BlogPostsReducer from "../Reducers/posts/blogPostsReducer";
 
 
 let Reducers = combineReducers({
@@ -41,6 +42,7 @@ let Reducers = combineReducers({
   getComments: commentsReducer,
   creatNewComment: creatNewCommentReducer,
   getNotifications: notificationReducer,
+  BlogPosts :BlogPostsReducer,
 })
 
 let store = createStore(Reducers, applyMiddleware(thunk))

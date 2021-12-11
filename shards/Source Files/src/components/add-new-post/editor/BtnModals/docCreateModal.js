@@ -1,29 +1,24 @@
 import React from 'react';
-import {Dialog, DialogContent, DialogTitle} from "@material-ui/core";
-import {ModalBody} from "shards-react";
+import MyModal from "../../../MyModal/MyModal";
 
 const DocCreateModal = ({getDocumentDate, getDocumentId, open, close}) => {
   return (
-    <Dialog
+
+    <MyModal
       open={open}
       onClose={close}
-      fullWidth={true}
       maxWidth={"sm"}
+      title={`დოკუმენტის ნომერი : ${getDocumentId}`}
     >
-      <DialogTitle>დოკუმენტის ნომერი : {getDocumentId}</DialogTitle>
-      <DialogContent>
-        <ModalBody className={"d-flex align-items-center"}>
-          <i className="fas fa-check-circle"
-             style={{color: 'green', fontSize: '30px'}}/>
+      <i className="fas fa-check-circle"
+         style={{color: 'green', fontSize: '30px'}}/>
 
 
-          <span
-            className={"ml-2"}>დოკუმენტის შექმნის თარიღი : {getDocumentDate && getDocumentDate.slice(0, 10)}</span>
+      <span
+        className={"ml-2"}>დოკუმენტის შექმნის თარიღი : {getDocumentDate && getDocumentDate.slice(0, 10)}</span>
+    </MyModal>
 
-        </ModalBody>
-      </DialogContent>
 
-    </Dialog>
   );
 };
 

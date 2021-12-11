@@ -1,8 +1,6 @@
 import React, {useState} from "react";
 import "../../assets/range-date-picker.css";
 import {TextField} from '@material-ui/core';
-import {useHistory} from "react-router-dom";
-import {useSelector} from "react-redux";
 
 
 let RangeDatePicker = (props) => {
@@ -12,7 +10,7 @@ let RangeDatePicker = (props) => {
 
   let handleTest = (e) => {
     setDateValue(e.target.value)
-    props.handleSetDate(e.target.value, props.index)
+    props.handleSetDate && props.handleSetDate(e.target.value, props.index)
     const newDate = {...dateValue}
     newDate[e.target.id] = e.target.value
   }
@@ -22,7 +20,7 @@ let RangeDatePicker = (props) => {
     <form>
       <TextField
         id={"date"}
-        label="შესასრულებელია - მდე"
+        label={props.handleSetDate && " შესასრულებელია - მდე"}
         type="date"
         selected={dateValue}
         onChange={(e) => handleTest(e)}

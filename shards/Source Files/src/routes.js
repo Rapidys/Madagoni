@@ -7,7 +7,7 @@ import {DefaultLayout} from "./layouts";
 import BlogOverview from "./views/BlogOverview";
 import UserProfileLite from "./views/UserProfileLite";
 import NewPostSection from "./components/add-new-post/newPostSection";
-import BlogPosts from "./views/BlogPosts";
+import BlogPosts from "./views/blogPosts/BlogPosts";
 import LoginContainer from "./components/Login/LoginContainer";
 import RegisterContainer from "./components/Register/Register";
 import SentDocuments from "./views/DraftMessages/sentDocuments";

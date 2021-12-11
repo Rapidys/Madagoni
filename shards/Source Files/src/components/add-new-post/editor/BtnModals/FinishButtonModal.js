@@ -10,6 +10,7 @@ import {
   setSelectedDocIdAC
 } from "../../../../Reducers/getDocReducer";
 import {useParams} from "react-router-dom";
+import MyModal from "../../../MyModal/MyModal";
 
 const FinishButtonModal = ({
                              finishCategories,
@@ -42,30 +43,27 @@ const FinishButtonModal = ({
     setFinishCategories(false)
   }
   return (
-    <Dialog
+
+    <MyModal
       open={finishCategories}
       onClose={finishModal}
-      fullWidth={true}
       maxWidth={"sm"}
+      title = 'დასრულება'
     >
-      <DialogTitle>დასრულება</DialogTitle>
-      <DialogContent>
-        <ModalBody>
-          <MySelect
-            defaultValue={'დასრულების ტიპი'}
-            options={Options}
-            onChange={onFinishChange}
-            value={finishDocType}
-          />
+      <MySelect
+        defaultValue={'დასრულების ტიპი'}
+        options={Options}
+        onChange={onFinishChange}
+        value={finishDocType}
+      />
 
-          <Button className={"mt-5"}
-                  onClick={finishDocument}
-          >
-            დასრულება
-          </Button>
-        </ModalBody>
-      </DialogContent>
-    </Dialog>
+      <Button className={"mt-5"}
+              onClick={finishDocument}
+      >
+        დასრულება
+      </Button>
+    </MyModal>
+
   );
 };
 

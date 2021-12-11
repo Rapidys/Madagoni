@@ -1,36 +1,29 @@
 import React from 'react';
-import {Dialog, DialogContent, DialogTitle} from "@material-ui/core";
-import {Button, ModalBody} from "shards-react";
-import MySelect from "../../../../MySelect/MySelect";
 import {useDispatch, useSelector} from "react-redux";
 import {setIsFinishedAC} from "../../../../Reducers/getDocReducer";
+import MyModal from "../../../MyModal/MyModal";
 
 const FinishMessage = () => {
-  let isFinished = useSelector(state => state.GetDoc.isFinished)
+  let isFinished = useSelector((state => state.GetDoc.isFinished))
   let dispatch = useDispatch()
 
   let onClose = () => {
     dispatch(setIsFinishedAC(false))
   }
   return (
-    <Dialog
+    <MyModal
       open={isFinished}
       onClose={onClose}
-      fullWidth={true}
       maxWidth={"sm"}
+      title={'დასრულება'}
     >
-      <DialogTitle>დასრულება</DialogTitle>
-      <DialogContent>
-        <ModalBody>
-          <i className="fas fa-check-circle"
-             style={{color: 'green', fontSize: '30px'}}/>
-          <span
-            className={"ml-2"}>  წარმატებით დასრულდა </span>
+      <i className="fas fa-check-circle"
+         style={{color: 'green', fontSize: '30px'}}/>
+      <span
+        className={"ml-2"}>წარმატებით დასრულდა</span>
 
-        </ModalBody>
-      </DialogContent>
+    </MyModal>
 
-    </Dialog>
   );
 };
 

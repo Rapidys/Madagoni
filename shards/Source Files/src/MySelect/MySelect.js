@@ -12,8 +12,8 @@ const MySelect = ({defaultValue, onChange, options, value, ...props}) => {
         onChange={(e) => onChange(e)}
         {...props}
       >
-        <option value="" disabled>{defaultValue && defaultValue}</option>
-        {options && options.map((option,index) => {
+        <option value='' disabled>{defaultValue && defaultValue}</option>
+        {options && options.map((option, index) => {
           return <option value={option.value} key={index}
           >
             {option.displayName}
