@@ -65,7 +65,7 @@ const AttachedFiles = (props) => {
                    onChange={(e) => saveFile(e)}
             />
             <label className="custom-file-label" htmlFor="customFile2">
-              აირჩიე ფაილი...
+              ფაილი...
             </label>
             <ChosenFiles
               fileNames={fileNames}

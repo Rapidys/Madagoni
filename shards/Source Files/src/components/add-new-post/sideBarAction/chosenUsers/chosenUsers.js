@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {Button, Card, Col, Row} from "shards-react";
 import SideBarVisitors from "../sideBarModalInfo/sideBarVisitors";
 import SideBarDestinations from "../sideBarModalInfo/sideBarDestinations";
-import {useSelector} from "react-redux";
 
 const ChosenUsers = (props) => {
 
@@ -37,14 +36,15 @@ const ChosenUsers = (props) => {
                 <Row className={"p-2"}>
                   <i className="mr-2 mt-1 fas fa-user"
                      style={{color: u.motionColor}}/>
-                  {u.firstName} {u.lastName} {u.targetName}
+                  {u.firstName
+                    ? u.firstName + ' ' + u.lastName
+                    : u.targetName
+                  }
                 </Row>
 
 
               </Col>
             })}
-
-
           </Col>
         </Card>
         <SideBarVisitors
@@ -66,10 +66,11 @@ const ChosenUsers = (props) => {
         <Card>
           <Col>
             {props.chosenDestination && props.chosenDestination.map((u, index) => {
+              debugger
               return <Col className={"mt-2"}
                           key={index}>
                 <div className={'d-flex justify-content-between '}>
-                  {u.firstName || u.targetName
+                  {u.firstName || u.targetTypeId === 1
                     ? <Row className={"p-2"}><i
                       className="mr-2 mt-1 fas fa-user"
                       style={{color: u.motionColor}}/>
@@ -79,14 +80,17 @@ const ChosenUsers = (props) => {
                     </Row>
                     : <Row className={"p-2"} key={u.departmentId}><i
                       className="mr-2 mt-1 fas fa-university"/>
-                      {u.displayName}
+                      {u.displayName
+                        ? u.displayName
+                        : u.targetName
+                      }
                     </Row>
                   }
                 </div>
 
-                <Row className={"p-2 align-items-center text-danger"}>
-                  ვადა : {u.dueDate && u.dueDate.slice(0, 10)}
-                </Row>
+                {/*<Row className={"p-2 align-items-center text-danger"}>*/}
+                {/*  ვადა : {u.dueDate && u.dueDate.slice(0, 10)}*/}
+                {/*</Row>*/}
 
               </Col>
             })}

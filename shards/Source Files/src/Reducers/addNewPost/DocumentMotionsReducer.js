@@ -1,24 +1,33 @@
 let initialState = {
-  Motion: []
+  MotionDest: [],
+  MotionVis: []
 }
 
-let SetMotion = "SET-MOTION"
+let SetMotionDest = "SET-MOTION-DEST"
+let SetMotionVis = "SET-MOTION-VIS"
 
 let DocumentMotionsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SetMotion: {
+    case SetMotionDest: {
       return {
         ...state,
-        Motion: state.Motion = action.data,
+        MotionDest: state.MotionDest = action.data
       }
     }
-
+    case SetMotionVis: {
+      return {
+        ...state,
+        MotionVis: state.MotionVis = action.data
+      }
+    }
     default:
       return state
   }
 }
-export let setMotion = (data) => ({
-  type: SetMotion, data
+export let setMotionDest = (data) => ({
+  type: SetMotionDest, data
 })
-
+export let setMotionVis = (data) => ({
+  type: SetMotionVis, data
+})
 export default DocumentMotionsReducer

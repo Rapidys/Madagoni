@@ -17,7 +17,7 @@ const API = {
     return $ApiBase.post('/docs/create', newPost)
   },
   registerUser(user) {
-    return $ApiBase.post('/admin/UpdateUser', {
+    return $ApiBase.get('/admin/GetStructure', {
       user
     })
   },
@@ -80,7 +80,13 @@ let $ApiBase = API.axiosCreate()
 $ApiBase.interceptors.response.use((config) => {
   return config
 }, (error) => {
-  if (error && error.response.status === 403 || 400 || 401) {
+  if (error && error.response.status === 403) {
+    return <Redirect to='login'/> && localStorage.clear()
+  }
+  if (error && error.response.status === 400) {
+    return <Redirect to='login'/> && localStorage.clear()
+  }
+  if (error && error.response.status === 401) {
     return <Redirect to='login'/> && localStorage.clear()
   }
   return Promise.reject(error);

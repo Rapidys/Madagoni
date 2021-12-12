@@ -5,7 +5,6 @@ import {
 } from "../../API/sentDocumentService";
 import {useDispatch, useSelector} from "react-redux";
 import {
-  rowsPerPageAc,
   setCurrentPageAC
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
@@ -13,7 +12,7 @@ import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
 import {approveBtnAC, setFinishDocAC} from "../../Reducers/getDocReducer";
 
 
-const DraftDocuments = (props) => {
+const DraftDocuments = () => {
 
   let currentPage = useSelector(state => state.PaginationData.currentPage)
   let rowsPerPage = useSelector(state => state.PaginationData.rowsPerPage)

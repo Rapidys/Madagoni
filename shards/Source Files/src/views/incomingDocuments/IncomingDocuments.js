@@ -9,8 +9,9 @@ import {
 } from "../../Reducers/PaginationReducer";
 import {motionStatusAC} from "../../Reducers/MotionStatusReducer";
 import {setVisibleBtnAC} from "../../Reducers/Comments/CommentsReducer";
-import Preloader from "../../Preloader/Preloader";
 import {approveBtnAC} from "../../Reducers/getDocReducer";
+import DocCreateModal
+  from "../../components/add-new-post/editor/BtnModals/docCreateModal";
 
 
 const IncomingDocuments = () => {
@@ -44,14 +45,17 @@ const IncomingDocuments = () => {
   return (
 
 
-    <DocumentPage
-      pageTitle={'მიღებულები'}
-      pageName='/incomingDocument'
-      Documents={incomings}
-      totalCount={totalCount}
-      rowsPerPage={rowsPerPage}
-      currentPage={currentPage - 1}
-    />
+
+  <DocumentPage
+    pageTitle={'მიღებულები'}
+    pageName='/incomingDocument'
+    Documents={incomings}
+    totalCount={totalCount}
+    rowsPerPage={rowsPerPage}
+    currentPage={currentPage - 1}
+  />
+
+
 
 
   )

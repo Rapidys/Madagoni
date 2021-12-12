@@ -13,7 +13,10 @@ import {
   DialogTitle, FormControl, MenuItem
 } from "@material-ui/core";
 import ChosenVisitors from "./chosenPersons/ChosenVisitors";
-import {setMotion} from "../../../../Reducers/addNewPost/DocumentMotionsReducer";
+import {
+  setMotion,
+  setMotionVis
+} from "../../../../Reducers/addNewPost/DocumentMotionsReducer";
 
 
 const SideBarVisitors = (props) => {
@@ -37,7 +40,7 @@ const SideBarVisitors = (props) => {
       documentMotionId: 0,
       MotionTypeId: 2,
       TargetId: visitorFromTree.userId,
-      TargetTypeId: 0,
+      TargetTypeId: 1,
       MotionStatusId: 1,
     }
     let some = 0
@@ -55,11 +58,11 @@ const SideBarVisitors = (props) => {
 
   let Save = () => {
     props.setChosenVisitor(confirmation)
-    dispatch(setMotion(confirmation))
+    dispatch(setMotionVis(confirmation))
     props.handleCloseVisitors()
   }
 
-  let treeData = useSelector(state => state.Tree.Structure)
+  let treeData = useSelector((state => state.Tree.Structure))
 
 
   return (

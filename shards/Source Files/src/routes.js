@@ -9,7 +9,7 @@ import UserProfileLite from "./views/UserProfileLite";
 import NewPostSection from "./components/add-new-post/newPostSection";
 import BlogPosts from "./views/blogPosts/BlogPosts";
 import LoginContainer from "./components/Login/LoginContainer";
-import RegisterContainer from "./components/Register/Register";
+import RegisterContainer from "./components/Register/RegisterDepartment";
 import SentDocuments from "./views/DraftMessages/sentDocuments";
 import DraftDocuments from "./views/sentMessages/draftDoc";
 import ChosenDocument from "./views/chosenDocument/MessagesPage/MessagePage";
@@ -20,6 +20,7 @@ import CompletedDocuments from "./views/Completed/completed";
 import CanceledDocuments from "./views/Canceled/Canceled";
 import ChartControl from "./components/blog/chartControl/chartControl";
 import Files from "./components/Files/File";
+import Register from "./components/Register/Register";
 
 export let PrivacyRoutes = [
   {
@@ -130,7 +131,7 @@ export let PrivacyRoutes = [
   {
     path: "/register",
     layout: DefaultLayout,
-    component: RegisterContainer
+    component: Register
   },
   {
     path: "/Files",

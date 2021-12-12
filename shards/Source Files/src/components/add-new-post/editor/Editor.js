@@ -10,13 +10,17 @@ import {
 import "react-quill/dist/quill.snow.css";
 import "../../../assets/quill.css";
 import {useDispatch, useSelector} from "react-redux";
-import {setMotion} from "../../../Reducers/addNewPost/DocumentMotionsReducer";
+import {
+  setMotion,
+  setMotionDest
+} from "../../../Reducers/addNewPost/DocumentMotionsReducer";
 import {selectDocumentAC} from "../../../Reducers/addNewPost/selectDocReducer";
 import {
+  isSendedAC,
   setNewObject,
   statusAC
 } from "../../../Reducers/addNewPost/addNewPostReducer";
-import {useParams} from "react-router-dom";
+import {Redirect, useParams} from "react-router-dom";
 import {setSignDocument} from "../../../Reducers/signDocumentReducer";
 import FinishButtonModal from "./BtnModals/FinishButtonModal";
 import DocCreateModal from "./BtnModals/docCreateModal";
@@ -30,65 +34,36 @@ const Editor = (props) => {
   let params = useParams()
 
   let getDoc = useSelector(state => state.GetDoc)
-  let Motions = useSelector(state => state.docMotion.Motion)
+  let Motions = useSelector(state => state.docMotion)
   let selectType = useSelector(state => state.selectDocument.selectType)
   let fileId = useSelector(state => state.uploadFile.fileId)
-  let status = useSelector(state => state.addNewPost.status)
+  let isSended = useSelector(state => state.addNewPost.isSended)
 
   let dispatch = useDispatch()
 
-  const [open, setOpen] = useState(false)
   const [openSign, setOpenSign] = useState(false)
 
 
-  let close = () => {
-    setOpen(false)
-  }
 
 
   function addNewPost() {
     {
-      Motions && Motions.map(motion => {
+      Motions.MotionDest && Motions.MotionDest.map(motion => {
         motion.MotionStatusId = 2
       })
     }
-    let newPost = {
-      DocumentId: 0,
-      DocumentDate: null,
-      DocumentTitle: props.documentTitle,
-      DocumentBody: props.documentBody,
-      isActive: true,
-      DocumentTypeId: selectType,
-      DocumentMotions: Motions,
-      Attachments: fileId
-    }
-    dispatch(setNewObject(newPost))
-
+    dispatch(setNewObject(Motions, selectType, props.documentBody, props.documentTitle, fileId))
   }
-
 
   let handleDraft = () => {
 
     {
-      Motions && Motions.map(motion => {
+      Motions.MotionDest && Motions.MotionDest.map(motion => {
         motion.MotionStatusId = 1
       })
     }
 
-
-    let newPost = {
-      DocumentId: 0,
-      DocumentDate: null,
-      DocumentTitle: props.documentTitle,
-      DocumentBody: props.documentBody,
-      isActive: true,
-      DocumentTypeId: selectType,
-      DocumentMotions: Motions,
-      Attachments: fileId  // unda iyos ibieqti {isActive da atachmentId}
-
-    }
-    dispatch(setNewObject(newPost))
-
+    dispatch(setNewObject(Motions, selectType, props.documentBody, props.documentTitle, fileId))
   }
 
 
@@ -103,23 +78,16 @@ const Editor = (props) => {
     setOpenSign((e) => !e)
   }
 
-  let getDocumentId = useSelector(state => state.addNewPost.documentId)
-  let getDocumentDate = useSelector(state => state.addNewPost.documentDate)
-
-  useEffect(() => {
-    if (status && status === 200) {
-      setOpen(true)
-      props.setDocumentTitle('')
-      props.setDocumentBody('')
-      dispatch(selectDocumentAC({}))
-      dispatch(setMotion([]))
-      dispatch(statusAC(null))
-    }
-  }, [status])
 
   let [finishCategories, setFinishCategories] = useState(false)
   let finishModal = () => {
     setFinishCategories((e) => !e)
+  }
+
+
+  if (isSended) {
+    return <Redirect to={'/sentDocuments'}/>
+
   }
   return (
     <Card small className="mb-3">
@@ -142,11 +110,7 @@ const Editor = (props) => {
           />
           <div>
 
-            <DocCreateModal getDocumentDate={getDocumentDate}
-                            getDocumentId={getDocumentId}
-                            open={open}
-                            close={close}
-            />
+
           </div>
         </Form>
         <Button

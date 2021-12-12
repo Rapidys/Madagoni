@@ -9,8 +9,8 @@ import {useHistory} from "react-router-dom";
 const ChosenDestinations = (props) => {
 
 
-  let Motions = useSelector(state => state.docMotion.Motion)
-  let dispatch = useDispatch()
+  let MotionDest = useSelector((state => state.docMotion.MotionDest))
+
 
   let deleteUsers = useMemo(() => {
     return (userId, displayName) => props.setDestination && props.setDestination(props.destination.filter(p => {
@@ -24,8 +24,8 @@ const ChosenDestinations = (props) => {
 
 
   let deleteMotions = useMemo(() => {
-    return (userId) => dispatch(setMotion((Motions.filter(p => p.userId !== userId))))
-  }, [Motions, setMotion])
+    return (userId) => [MotionDest].filter(p => p.userId !== userId)
+  }, [MotionDest])
 
 
   let deleteChosen = (userId, displayName) => {

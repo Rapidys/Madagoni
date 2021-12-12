@@ -12,7 +12,9 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import ChosenDestinations from "./chosenPersons/ChosenDestinations";
-import {setMotion} from "../../../../Reducers/addNewPost/DocumentMotionsReducer";
+import {
+  setMotionDest
+} from "../../../../Reducers/addNewPost/DocumentMotionsReducer";
 
 
 const SideBarDestinations = (props) => {
@@ -47,7 +49,7 @@ const SideBarDestinations = (props) => {
       DocumentMotionId: 0,
       MotionTypeId: 3,
       TargetId: valueFromTree.userId,
-      TargetTypeId: 0,
+      TargetTypeId: 1,
       MotionStatusId: 1,
       dueDate: null,
     }
@@ -70,7 +72,9 @@ const SideBarDestinations = (props) => {
       displayName: department.displayName,
       departmentId: department.departmentId,
       MotionTypeId: 3,
+      targetId: department.departmentId,
       MotionStatusId: 1,
+      TargetTypeId: 2,
       dueDate: null,
 
     }
@@ -97,12 +101,12 @@ const SideBarDestinations = (props) => {
     }
 
     props.setChosenDestination(destination)
-    dispatch(setMotion([authorMotion, ...destination]))
+    dispatch(setMotionDest([authorMotion, ...destination]))
     props.handleClose()
   }
 
 
-  let treeData = useSelector(state => state.Tree.Structure)
+  let treeData = useSelector((state => state.Tree.Structure))
 
 
   return (
