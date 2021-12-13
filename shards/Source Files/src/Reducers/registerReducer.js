@@ -18,18 +18,11 @@ let registerReducer = (state = initialState, action) => {
 export let setUserAC = (user) => ({type: setUser, user})
 
 
-export let setNewUser = (values) => {
-  let newPostObject = {
-    departmentId: 0,
-    parentId: 0,
-    displayName: values && values.firstName,
-    isActive: true,
-    employes: []
-  }
+export let setNewUser = (newUser) => {
   return dispatch => {
-    API.registerUser(newPostObject)
+    API.registerUser(newUser)
       .then(response => {
-        dispatch(setUserAC(newPostObject))
+        dispatch(setUserAC(newUser))
       })
   }
 }

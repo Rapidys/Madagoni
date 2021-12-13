@@ -1,9 +1,9 @@
-import Tree from "./Tree";
 import styled from 'styled-components'
 import {useEffect} from "react";
-import Preloader from "../../Preloader/Preloader";
-import {useDispatch} from "react-redux";
-import {TreeData} from "../../Reducers/TreeDataReducer";
+import {useDispatch, useSelector} from "react-redux";
+import Tree from "./RTree";
+import Preloader from "../../../Preloader/Preloader";
+import {TreeData} from "../../../Reducers/TreeDataReducer";
 
 let Styles = styled.div`
 
@@ -31,6 +31,7 @@ let Styles = styled.div`
 const TreeList = (props) => {
 
   let dispatch = useDispatch()
+  let treeData = useSelector((state => state.Tree.Structure))
 
   useEffect(async () => {
     return await dispatch(TreeData())
@@ -39,7 +40,6 @@ const TreeList = (props) => {
   if (props.treeData.length === 0) {
     return <Preloader/>
   }
-
   return (
     <Styles>
       <div className="row">
@@ -47,11 +47,7 @@ const TreeList = (props) => {
           <div className="mt-3">
             <div className="row mt-3 d-flex  ml-1">
               <div className="text-left text-dark">
-                <Tree data={props.treeData}
-                      handleSetNodeValue={props.handleSetNodeValue}
-                      handleSetDepValue={props.handleSetDepValue}
-
-                />
+                <Tree data={treeData} SetOpen ={props.SetOpen} getValueFromTree = {props.getValueFromTree}/>
 
               </div>
             </div>

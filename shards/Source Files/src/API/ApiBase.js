@@ -16,10 +16,8 @@ const API = {
   newPostAPI(newPost) {
     return $ApiBase.post('/docs/create', newPost)
   },
-  registerUser(user) {
-    return $ApiBase.get('/admin/GetStructure', {
-      user
-    })
+  registerUser(newUser) {
+    return $ApiBase.post('/admin/UpdateStructure', newUser)
   },
   GetStructure() {
     return $ApiBase.get('/admin/GetStructure')
@@ -28,7 +26,6 @@ const API = {
     return $ApiBase.get('/reference/GetReference/CompletionResults')
   },
   FinishDocument(id, CompleteMotion) {
-    debugger
     return $ApiBase.post(`/docs/CompleteMotion/${id}`, CompleteMotion)
   },
   UploadFileApi(file) {
@@ -80,15 +77,10 @@ let $ApiBase = API.axiosCreate()
 $ApiBase.interceptors.response.use((config) => {
   return config
 }, (error) => {
-  if (error && error.response.status === 403) {
-    return <Redirect to='login'/> && localStorage.clear()
+  if (error && error.status === 403 || 400 || 401) {
+    return <Redirect to='/login'/> && localStorage.clear()
   }
-  if (error && error.response.status === 400) {
-    return <Redirect to='login'/> && localStorage.clear()
-  }
-  if (error && error.response.status === 401) {
-    return <Redirect to='login'/> && localStorage.clear()
-  }
+
   return Promise.reject(error);
 })
 

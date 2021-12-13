@@ -1,6 +1,7 @@
-import React, {useCallback, useState} from 'react';
-import Tree from "./Tree";
+import React, {useState} from 'react';
+import Tree from "./RTree";
 import styled from "styled-components";
+import {useSelector} from "react-redux";
 
 let Styles = styled.span`
   .nameWrapper {
@@ -11,36 +12,22 @@ let Styles = styled.span`
   }
 
 `
-const TreeNode = (props) => {
 
+
+const TreeNode = (props) => {
+  let treeData = useSelector((state => state.Tree.Structure))
+
+  let addUserInDepartment = () => {
+    props.getValueFromTree(props.node)
+    props.SetOpen(true)
+  }
 
   const [visibility, setVisibility] = useState(false)
 
-  const setChosen = useCallback(
-    () => {
-      props.handleSetNodeValue({
-          firstName: props.node.firstName,
-          lastName: props.node.lastName,
-          userId: props.node.userId,
-          departmentId: props.node.departmentId,
-        }
-      )
-    },
 
-    [],
-  );
+  const hasChild = !!props.node.departments
+  const hasEmployes = !!props.node.employes
 
-  const setDepartment = () => {
-    props.handleSetDepValue && props.handleSetDepValue({
-      displayName: props.node.displayName,
-      departmentId: props.node.departmentId,
-    })
-
-  }
-
-
-  const hasChild = props.node.departments ? true : false
-  const hasEmployes = props.node.employes ? true : false
   return (
     <li className={"d-tree-node border-0"}>
       <div className={"d-flex"}
@@ -59,24 +46,25 @@ const TreeNode = (props) => {
         )}
 
         <div className={"col d-tree-head"}>
-          {props.node.displayName
-            ? <i className="mr-2 mt-1 fas fa-university"/>
-            : <i className="ml-2 mr-2 mt-1 fas fa-user"/>
-          }
 
 
           {
             <span>
                 <Styles>
+                 <div onClick={addUserInDepartment}>
+                    {props.node.displayName &&
+                    <i className="mr-2 mt-1 fas fa-university"
+                    />}
                    <span
-                     onClick={setDepartment}
                      className={"nameWrapper"}
                    >{props.node.displayName}</span>
-                </Styles>
+                 </div>
 
+                </Styles>
+              {props.node.firstName &&
+              <i className="ml-2 mr-2 mt-1 fas fa-user"/>}
               <span
                 style={{cursor: "pointer"}}
-                onClick={setChosen}
               >{props.node.firstName} {props.node.lastName}</span>
             </span>
 
@@ -88,8 +76,8 @@ const TreeNode = (props) => {
         return <div className={"d-tree-content"} key={empl.userId}>
           <ul className={"d-flex d-tree-container flex-column"}>
             <Tree data={empl}
-                  handleSetDepValue={props.handleSetDepValue}
-                  handleSetNodeValue={props.handleSetNodeValue}
+                  getValueFromTree={props.getValueFromTree}
+                  SetOpen={props.SetOpen}
             />
           </ul>
         </div>
@@ -100,9 +88,8 @@ const TreeNode = (props) => {
         return <div className={"d-tree-content"} key={dep.departmentId}>
           <ul className={"d-flex d-tree-container flex-column"}>
             <Tree data={dep}
-                  handleSetDepValue={props.handleSetDepValue}
-                  handleSetNodeValue={props.handleSetNodeValue}
-
+                  getValueFromTree={props.getValueFromTree}
+                  SetOpen={props.SetOpen}
             />
           </ul>
         </div>
